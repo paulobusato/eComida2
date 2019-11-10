@@ -10,6 +10,8 @@ import { ClienteModule } from './cliente/cliente.module';
 import { EstabelecimentoModule } from './estabelecimento/estabelecimento.module';
 import { LandingComponent } from './landing/landing.component';
 
+import { MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +25,9 @@ import { LandingComponent } from './landing/landing.component';
     AdministrativoModule,
     ClienteModule,
     EstabelecimentoModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

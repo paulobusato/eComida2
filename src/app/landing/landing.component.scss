@@ -1,0 +1,120 @@
+@import 'src/variables.scss';
+
+@media only screen  and (min-width : 768px) {
+  header, main, footer {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+header {
+  height: 81px;
+
+  mat-toolbar {
+    height: 100%;
+
+    h1, mat-icon {
+      font-size: 48px;
+    }
+
+    mat-icon {
+      width: 48px;
+      height: 48px;
+    }
+  }
+}
+
+main {
+
+  .estabelecimento {
+    background-color: #4caf50;
+    height: 250px;
+    padding: 24px;
+
+    h2, p {
+      margin: 0;
+      color: #000000;
+      font-size: 1.3rem;
+    }
+
+    h2 {
+      color: #fff;
+      font-weight: bold;
+      font-size: 2em;
+    }
+
+    a {
+      padding: 16px;
+      line-height: 1.25em;
+      border-radius: 4px;
+      width: 250px;
+      background-color: mat-color($theme-app-secundary);
+      color: #fff;
+    }
+  }
+}
+
+// .depoimentos {
+//   position: relative;
+//   height: 500px;
+//   margin-top: 3rem;
+
+//   h3 {
+//     font-size: 3rem;
+//     letter-spacing: 0.2rem;
+//     font-weight: bold;
+//   }
+
+//   .frase {
+//     text-align: center;
+//     position: relative;
+//     padding: 15px 210px;
+//     margin: 30px 0;
+//     font-size: 2rem;
+//   }
+
+//   .frase::before {
+//     content: "\201C";
+//     top: 0px;
+//     left: 112px;
+//     line-height: 1;
+//     font-size: 8rem;
+//     font-family: serif;
+//     position: absolute;
+//     color: #356859;
+//   }
+
+//   .frase::after {
+//       content: "\201D";
+//       bottom: 0px;
+//       right: 112px;
+//       line-height: 0;
+//       font-size: 8rem;
+//       font-family: serif;
+//       position: absolute;
+//       color: #356859;
+//   }
+
+//   .frase-imagens {
+//       display: flex;
+//       justify-content: space-around;
+//       padding: 0 10rem;
+//   }
+
+//   .frase-imagens img {
+//       border-radius: 50%;
+//   }
+
+//   .frase-imagens .oculto {
+//       opacity: 0.3;
+//   }
+// }
+
+footer {
+  height: 81px;
+
+  mat-toolbar {
+    height: 100%;
+    padding: 12px;
+  }
+}
