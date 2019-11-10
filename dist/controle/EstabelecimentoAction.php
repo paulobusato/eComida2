@@ -4,6 +4,7 @@ require_once '../modelo/dao/Dao.php';
 require_once '../modelo/entidade/Estabelecimento.php';
 require_once '../modelo/dao/EstabelecimentoDao.php';
 
+header('Access-Control-Allow-Origin: http://localhost:4200');
 header('Content-type: application/json');
 
 $method = $_SERVER["REQUEST_METHOD"];
@@ -33,10 +34,12 @@ switch ($method) {
     echo json_encode("true");
     break;
   case 'PUT':
-    echo 'PUT';
+    EstabelecimentoDao::alterar($estabelecimento);
+    echo json_encode("true");
     break;
   case 'DELETE':
-    echo 'DELETE';
+    EstabelecimentoDao::excluir($estabelecimento->idEstabelecimento);
+    echo json_encode("true");
     break;
   default:
     echo 'Não existe';

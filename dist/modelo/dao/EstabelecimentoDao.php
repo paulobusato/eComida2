@@ -8,7 +8,22 @@ class EstabelecimentoDao {
 
     $db_estabelecimentos = Dao::consultar($sql);
     foreach ($db_estabelecimentos as $db_estabelecimento) {
-      $estabelecimento = new Estabelecimento($db_estabelecimento->IDESTABELECIMENTO, $db_estabelecimento->RAZAOSOCIAL);
+      $estabelecimento = new Estabelecimento(
+        $db_estabelecimento->IDESTABELECIMENTO,
+        $db_estabelecimento->RAZAOSOCIAL,
+        $db_estabelecimento->NOMEFANTASIA,
+        $db_estabelecimento->CNPJ,
+        $db_estabelecimento->STATUS,
+        $db_estabelecimento->EMAIL,
+        "",
+        $db_estabelecimento->TELEFONE,
+        $db_estabelecimento->CEP,
+        $db_estabelecimento->LOGRADOURO,
+        $db_estabelecimento->NUMERO,
+        $db_estabelecimento->BAIRRO,
+        $db_estabelecimento->CIDADE,
+        $db_estabelecimento->UF
+      );
       array_push($estabelecimentos, $estabelecimento);
     }
 
