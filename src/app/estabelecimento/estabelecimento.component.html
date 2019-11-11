@@ -1,1 +1,48 @@
-<p>estabelecimento works!</p>
+<header>
+  <mat-toolbar color="primary" gdColumns="48px auto 48px">
+    <mat-icon>chevron_left</mat-icon>
+    <h1><a>eComida</a></h1>
+  </mat-toolbar>
+</header>
+<main>
+  <h2>Cadastro</h2>
+  <form [formGroup]="estabelecimentoForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Razão Social" formControlName="razaoSocial">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Nome Fantasia" formControlName="nomeFantasia">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="CNPJ" formControlName="cnpj">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Senha" formControlName="senha">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Telefone" formControlName="telefone">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="CEP" formControlName="cep">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Logradouro" formControlName="logradouro">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Numero" formControlName="numero">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Bairro" formControlName="bairro">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Cidade" formControlName="cidade">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="UF" formControlName="uf">
+    </mat-form-field>
+    <button type="submit" mat-stroked-button color="primary">Cadastrar</button>
+  </form>
+</main>

@@ -3,13 +3,24 @@ import { CommonModule } from '@angular/common';
 
 import { EstabelecimentoRoutingModule } from './estabelecimento-routing.module';
 import { EstabelecimentoComponent } from './estabelecimento.component';
+import { MatToolbarModule, MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [EstabelecimentoComponent],
   imports: [
     CommonModule,
-    EstabelecimentoRoutingModule
+    EstabelecimentoRoutingModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
   ]
 })
 export class EstabelecimentoModule { }
