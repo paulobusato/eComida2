@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EstabelecimentoService } from './estabelecimento.service';
-import { Estabelecimento } from './estabelecimento.type';
 
 @Component({
   selector: 'app-estabelecimento',
@@ -34,9 +33,10 @@ export class EstabelecimentoComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // console.dir(this.estabelecimentoForm.value);
-    this.estabelecimentoService.obterEstabelecimentos().subscribe
-    ((estabelecimentos: Estabelecimento[]) => console.dir(estabelecimentos));
+    this.estabelecimentoService.addEstabelecimento({ ...this.estabelecimentoForm.value , status: 'P' }).subscribe(
+      () => console.log('Cadastrado com successo'),
+      error => console.log(error)
+    );
   }
 
 }
