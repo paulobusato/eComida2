@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { EstabelecimentoService } from './estabelecimento.service';
+import { Estabelecimento } from './estabelecimento.type';
 
 @Component({
   selector: 'app-estabelecimento',
@@ -9,7 +11,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class EstabelecimentoComponent implements OnInit {
   estabelecimentoForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private estabelecimentoService: EstabelecimentoService
+  ) { }
 
   ngOnInit() {
     this.estabelecimentoForm = this.fb.group({
@@ -29,7 +34,9 @@ export class EstabelecimentoComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.dir(this.estabelecimentoForm.value);
+    // console.dir(this.estabelecimentoForm.value);
+    this.estabelecimentoService.obterEstabelecimentos().subscribe
+    ((estabelecimentos: Estabelecimento[]) => console.dir(estabelecimentos));
   }
 
 }

@@ -11,6 +11,7 @@ import { EstabelecimentoModule } from './estabelecimento/estabelecimento.module'
 import { LandingComponent } from './landing/landing.component';
 
 import { MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/mater
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FlexLayoutModule,
     AdministrativoModule,
     ClienteModule,
