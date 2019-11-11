@@ -16,6 +16,7 @@ switch ($method) {
     break;
   case 'POST':
     $estabelecimento = new Estabelecimento(
+      '',
       $_POST["razaoSocial"],
       $_POST["nomeFantasia"],
       $_POST["cnpj"],
