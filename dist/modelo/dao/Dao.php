@@ -94,9 +94,12 @@ class Dao extends Conexao {
     parent::executar("
       CREATE TABLE PRODUTO (
         IDPRODUTO INT NOT NULL AUTO_INCREMENT,
+        IDESTABELECIMENTO INT NOT NULL,
         DESCRICAO VARCHAR(255) NOT NULL,
         VALOR FLOAT NOT NULL,
-        PRIMARY KEY (IDPRODUTO)
+        PRIMARY KEY (IDPRODUTO),
+        FOREIGN KEY (IDESTABELECIMENTO)
+          REFERENCES ESTABELECIMENTO(IDESTABELECIMENTO)
       );
     ");
 
@@ -159,7 +162,7 @@ class Dao extends Conexao {
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Lanches', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Salada', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
 
-    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `DESCRICAO`, `VALOR`) VALUES (NULL, 'Marmitex churrasco 500g, coca cola 1', '39.10')");
+    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `DESCRICAO`, `VALOR`) VALUES (NULL, 1, 'Marmitex churrasco 500g, coca cola 1', '39.10')");
     parent::executar("INSERT INTO `componente` (`IDPRODUTO`, `IDCOMPONENTE`, `DESCRICAO`, `QUANTIDADE`) VALUES ('1', NULL, 'Escolha sua carne', '2')");
     parent::executar("INSERT INTO `componenteitem` (`IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', NULL, 'Lombo de porco', '0')");
     parent::executar("INSERT INTO `componenteitem` (`IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', NULL, 'Linguiça de churrasco', '0')");
