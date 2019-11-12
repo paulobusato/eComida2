@@ -1,0 +1,19 @@
+:host {
+  position: fixed;
+  height: 81px;
+  width: 100%;
+  bottom: 0;
+}
+
+mat-toolbar {
+  height: 100%;
+
+  button {
+    height: 100%;
+
+    mat-icon {
+      font-size: 32px;
+    }
+  }
+}
+
