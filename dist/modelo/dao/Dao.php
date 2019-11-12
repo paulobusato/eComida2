@@ -49,6 +49,8 @@ class Dao extends Conexao {
         NOMEFANTASIA VARCHAR(255) NOT NULL,
         CNPJ VARCHAR(255) NOT NULL,
         STATUS VARCHAR(255) NOT NULL,
+        RATING INT NOT NULL,
+        IMGURL VARCHAR(255) NOT NULL,
         EMAIL VARCHAR(255) NOT NULL,
         SENHA VARCHAR(255) NOT NULL,
         TELEFONE VARCHAR(255) NOT NULL,
@@ -97,6 +99,7 @@ class Dao extends Conexao {
         IDESTABELECIMENTO INT NOT NULL,
         DESCRICAO VARCHAR(255) NOT NULL,
         VALOR FLOAT NOT NULL,
+        IMGURL VARCHAR(255) NOT NULL,
         PRIMARY KEY (IDPRODUTO),
         FOREIGN KEY (IDESTABELECIMENTO)
           REFERENCES ESTABELECIMENTO(IDESTABELECIMENTO)
@@ -157,12 +160,12 @@ class Dao extends Conexao {
       );
     ");
 
-    parent::executar("INSERT INTO `estabelecimento` (`IDESTABELECIMENTO`, `RAZAOSOCIAL`, `NOMEFANTASIA`, `CNPJ`, `STATUS`, `EMAIL`, `SENHA`, `TELEFONE`, `CEP`, `LOGRADOURO`, `NUMERO`, `BAIRRO`, `CIDADE`, `UF`) VALUES (NULL, 'eComida', 'eComida', '99999999999999', 'P', 'paulo@paulo.com', '123', '28999999999', '84520369', 'Av Francisco Mardegan', '02', 'Boa Vista', 'Cachoeiro de Itapemirim', 'ES')");
+    parent::executar("INSERT INTO `estabelecimento` (`IDESTABELECIMENTO`, `RAZAOSOCIAL`, `NOMEFANTASIA`, `CNPJ`, `STATUS`, `RATING`, `IMGURL`, `EMAIL`, `SENHA`, `TELEFONE`, `CEP`, `LOGRADOURO`, `NUMERO`, `BAIRRO`, `CIDADE`, `UF`) VALUES (NULL, 'eComida', 'eComida', '99999999999999', 'P', '4', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg', 'paulo@paulo.com', '123', '28999999999', '84520369', 'Av Francisco Mardegan', '02', 'Boa Vista', 'Cachoeiro de Itapemirim', 'ES')");
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Acai', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Lanches', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Salada', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
 
-    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `DESCRICAO`, `VALOR`) VALUES (NULL, 1, 'Marmitex churrasco 500g, coca cola 1', '39.10')");
+    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `DESCRICAO`, `VALOR`, `IMGURL`) VALUES (NULL, 1, 'Marmitex churrasco 500g, coca cola 1', '39.10', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
     parent::executar("INSERT INTO `componente` (`IDPRODUTO`, `IDCOMPONENTE`, `DESCRICAO`, `QUANTIDADE`) VALUES ('1', NULL, 'Escolha sua carne', '2')");
     parent::executar("INSERT INTO `componenteitem` (`IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', NULL, 'Lombo de porco', '0')");
     parent::executar("INSERT INTO `componenteitem` (`IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', NULL, 'Linguiça de churrasco', '0')");
