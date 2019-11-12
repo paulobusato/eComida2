@@ -26,6 +26,8 @@ class EstabelecimentoDao {
         $db_estabelecimento->NOMEFANTASIA,
         $db_estabelecimento->CNPJ,
         $db_estabelecimento->STATUS,
+        $db_estabelecimento->RATING,
+        $db_estabelecimento->IMGURL,
         $db_estabelecimento->EMAIL,
         $db_estabelecimento->SENHA,
         $db_estabelecimento->TELEFONE,

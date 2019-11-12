@@ -27,7 +27,8 @@ class ProdutoDao {
         EstabelecimentoDao::consultar($db_produto->IDESTABELECIMENTO),
         ComponenteDao::consultar($db_produto->IDPRODUTO),
         $db_produto->DESCRICAO,
-        $db_produto->VALOR
+        $db_produto->VALOR,
+        $db_produto->IMGURL
       );
       array_push($produtos, $produto);
     }
