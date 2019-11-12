@@ -18,11 +18,14 @@ class ProdutoDao {
       ";
     }
 
+    $componentes = ComponenteDao::consultar($idProduto);
+
     $db_produtos = Dao::consultar($sql);
     foreach ($db_produtos as $db_produto) {
       $produto = new Produto(
         $db_produto->IDPRODUTO,
         EstabelecimentoDao::consultar($db_produto->IDESTABELECIMENTO),
+        ComponenteDao::consultar($idProduto),
         $db_produto->DESCRICAO,
         $db_produto->VALOR
       );
