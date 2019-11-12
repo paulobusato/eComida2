@@ -20,9 +20,6 @@ class ProdutoDao {
       ";
     }
 
-    var_dump($sql);
-    exit;
-
     $db_produtos = Dao::consultar($sql);
     foreach ($db_produtos as $db_produto) {
       $produto = new Produto(
