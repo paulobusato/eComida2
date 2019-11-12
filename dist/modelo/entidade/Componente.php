@@ -2,31 +2,18 @@
 
 class Componente
 {
-    private $idComponente;
-    private $descricao;
-    private $valor;
+    public $idComponente;
+    public $produto;
+    public $descricao;
+    public $valor;
 
 
-    public function __construct($idComponente = '', $descricao = '', $valor = '')
+    public function __construct($idComponente = '', $produto = '', $descricao = '', $valor = '')
     {
         $this->idComponente = $idComponente;
+        $this->produto = $produto;
         $this->descricao = $descricao;
         $this->valor = $valor;
-    }
-
-    public function getIdComponente()
-    {
-        return $this->idComponente;
-    }
-
-    public function getDescricao()
-    {
-        return $this->descricao;
-    }
-
-    public function getValor()
-    {
-        return $this->valor;
     }
 }
 
