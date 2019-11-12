@@ -22,9 +22,4 @@ export class ClienteComponent implements OnInit {
     this.categorias$ = this.clienteService.obterCategorias();
     this.estabelecimentos$ = this.clienteService.obterEstabelecimentos();
   }
-
-  onClickRecomendacao() {
-    this.router.navigate(['/cliente/produto-lista']);
-  }
-
 }

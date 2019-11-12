@@ -10,7 +10,7 @@
 
     <h3>Estabelecimentos recomendados para você</h3>
     <section>
-        <mat-card *ngFor="let estabelecimento of (estabelecimentos$ | async)" (click)="onClickRecomendacao()">
+        <mat-card *ngFor="let estabelecimento of (estabelecimentos$ | async)" [routerLink]="['/cliente/produto-lista/', estabelecimento.idEstabelecimento]">
           <img mat-card-image [src]="estabelecimento.imgUrl">
           <mat-card-title>{{estabelecimento.nomeFantasia}}</mat-card-title>
         </mat-card>
@@ -18,7 +18,7 @@
 
     <h3>Estabelecimentos</h3>
     <section class="estabelecimentos">
-        <mat-card *ngFor="let estabelecimento of (estabelecimentos$ | async)">
+        <mat-card *ngFor="let estabelecimento of (estabelecimentos$ | async)" [routerLink]="['/cliente/produto-lista/', estabelecimento.idEstabelecimento]">
           <img mat-card-image [src]="estabelecimento.imgUrl">
           <mat-card-title>{{estabelecimento.nomeFantasia}}</mat-card-title>
           <mat-card-content>
