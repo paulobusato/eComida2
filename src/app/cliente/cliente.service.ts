@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ClienteService {
+  produtoAtivado: Produto;
 
   constructor(
     private http: HttpClient

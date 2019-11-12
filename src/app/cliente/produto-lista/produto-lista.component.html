@@ -2,9 +2,9 @@
 <main>
   <h3>Destaque</h3>
   <section>
-    <mat-card *ngFor="let produto of produtos" (click)="onClickProduto()">
+    <mat-card *ngFor="let produto of (produtos$ | async)" (click)="onClickProduto(produto)">
       <img mat-card-image [src]="produto.imgUrl">
-      <mat-card-title>{{produto.titulo}}</mat-card-title>
+      <mat-card-title>{{produto.descricao}}</mat-card-title>
       <mat-card-content>
         <p class="descricao">{{produto.descricao}}</p>
         <p class="valor">R$ {{produto.valor}}</p>
@@ -14,9 +14,9 @@
 
   <h3>Novidades</h3>
   <section>
-    <mat-card *ngFor="let produto of produtos">
+    <mat-card *ngFor="let produto of (produtos$ | async)" (click)="onClickProduto(produto)">
       <img mat-card-image [src]="produto.imgUrl">
-      <mat-card-title>{{produto.titulo}}</mat-card-title>
+      <mat-card-title>{{produto.descricao}}</mat-card-title>
       <mat-card-content>
         <p class="descricao">{{produto.descricao}}</p>
         <p class="valor">R$ {{produto.valor}}</p>

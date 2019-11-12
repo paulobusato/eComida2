@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from '../cliente.type';
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-produto-editar',
@@ -35,9 +36,13 @@ export class ProdutoEditarComponent implements OnInit {
   };
   quantidade = 1;
 
-  constructor() { }
+  constructor(
+    private clienteService: ClienteService,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.clienteService.produtoAtivado);
+  }
 
   onAdd(): void {
     this.quantidade++;

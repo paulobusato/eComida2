@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Produto } from '../cliente.type';
+import { ClienteService } from '../cliente.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-produto-lista',
@@ -8,35 +10,21 @@ import { Produto } from '../cliente.type';
   styleUrls: ['./produto-lista.component.scss']
 })
 export class ProdutoListaComponent implements OnInit {
-  produtos: any = [
-    {
-      imgUrl: 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg',
-      titulo: 'Combo p - indicamos para 1 a 2 pessoas',
-      descricao: 'Caixa p + 1 acompanhamento + 1 molho',
-      valor: 27.99,
-    },
-    {
-      imgUrl: 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg',
-      titulo: 'Combo p - indicamos para 1 a 2 pessoas',
-      descricao: 'Caixa p + 1 acompanhamento + 1 molho',
-      valor: 27.99,
-    },
-    {
-      imgUrl: 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg',
-      titulo: 'Combo p - indicamos para 1 a 2 pessoas',
-      descricao: 'Caixa p + 1 acompanhamento + 1 molho',
-      valor: 27.99,
-    },
-  ];
+  produtos$: Observable<Produto[]>;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private clienteService: ClienteService,
   ) { }
 
   ngOnInit() {
+    const idEstabelecimento = +this.route.snapshot.paramMap.get('idEstabelecimento');
+    this.produtos$ = this.clienteService.obterProdutos(idEstabelecimento);
   }
 
-  onClickProduto(): void {
+  onClickProduto(produto: Produto): void {
+    this.clienteService.produtoAtivado = produto;
     this.router.navigate(['/cliente/produto-editar']);
   }
 }
