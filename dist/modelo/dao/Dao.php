@@ -165,7 +165,7 @@ class Dao extends Conexao {
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Lanches', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Salada', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
 
-    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `DESCRICAO`, `VALOR`, `IMGURL`) VALUES (NULL, 1, 'Marmitex churrasco 500g, coca cola 1', '39.10', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
+    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `DESCRICAO`, `VALOR`, `IMGURL`) VALUES (NULL, 1, 'Marmitex churrasco 500g, coca cola 1', '39.10', 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg')");
     parent::executar("INSERT INTO `componente` (`IDPRODUTO`, `IDCOMPONENTE`, `DESCRICAO`, `QUANTIDADE`) VALUES ('1', NULL, 'Escolha sua carne', '2')");
     parent::executar("INSERT INTO `componenteitem` (`IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', NULL, 'Lombo de porco', '0')");
     parent::executar("INSERT INTO `componenteitem` (`IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', NULL, 'Linguiça de churrasco', '0')");
