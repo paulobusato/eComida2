@@ -2,10 +2,10 @@
 
 class ComponenteDao {
 
-  public static function consultar($idProduto, $idComponente) {
+  public static function consultar($idProduto, $idComponente = '') {
     $componentes = array();
 
-    if (isset($idComponente)) {
+    if ($idComponente != '') {
       $sql = "
         SELECT *
         FROM COMPONENTE C

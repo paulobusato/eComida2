@@ -2,10 +2,10 @@
 
 class ProdutoDao {
 
-  public static function consultar($idEstabelecimento, $idProduto) {
+  public static function consultar($idEstabelecimento, $idProduto = '') {
     $produtos = array();
 
-    if (isset($idProduto)) {
+    if ($idProduto != '') {
       $sql = "
         SELECT *
         FROM PRODUTO P
