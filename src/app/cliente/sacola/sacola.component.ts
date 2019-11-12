@@ -7,7 +7,7 @@ import { Pedido } from '../cliente.type';
   styleUrls: ['./sacola.component.scss']
 })
 export class SacolaComponent implements OnInit {
-  pedido: Pedido = {
+  pedido: any = {
     estabelecimento: {
       bairro: 'Cachoeiro',
       distancia: 5.5,
