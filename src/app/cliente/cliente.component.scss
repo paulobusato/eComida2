@@ -1,5 +1,9 @@
 @import 'src/variables.scss';
 
+main {
+  margin-top: 100px;
+}
+
 h3 {
   color: mat-color($theme-app-primary);
   font-size: 2em;

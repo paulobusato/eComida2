@@ -1,5 +1,13 @@
-header {
+:host {
+  position: fixed;
   height: 81px;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+header {
+  height: 100%;
 
   mat-toolbar {
     height: 100%;
