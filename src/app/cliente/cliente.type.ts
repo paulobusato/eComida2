@@ -3,6 +3,11 @@ export interface Recomendacoes {
   imgUrl: string;
 }
 
+export interface Categoria {
+  descricao: string;
+  imagemUrl: string;
+}
+
 export interface Estabelecimento {
   idEstabelecimento: number;
   razaoSocial: string;
