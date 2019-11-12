@@ -10,20 +10,20 @@
 
     <h3>Estabelecimentos recomendados para você</h3>
     <section>
-        <mat-card *ngFor="let recomendado of recomendacoes" (click)="onClickRecomendacao()">
-          <img mat-card-image [src]="recomendado.imgUrl">
-          <mat-card-title>{{recomendado.nome}}</mat-card-title>
+        <mat-card *ngFor="let estabelecimento of (estabelecimentos$ | async)" (click)="onClickRecomendacao()">
+          <img mat-card-image [src]="estabelecimento.imgUrl">
+          <mat-card-title>{{estabelecimento.nomeFantasia}}</mat-card-title>
         </mat-card>
     </section>
 
     <h3>Estabelecimentos</h3>
     <section class="estabelecimentos">
-        <mat-card *ngFor="let estabelecimento of estabelecimentos">
+        <mat-card *ngFor="let estabelecimento of (estabelecimentos$ | async)">
           <img mat-card-image [src]="estabelecimento.imgUrl">
-          <mat-card-title>{{estabelecimento.nome}}</mat-card-title>
+          <mat-card-title>{{estabelecimento.nomeFantasia}}</mat-card-title>
           <mat-card-content>
-            <p>Distância: {{estabelecimento.distancia}}km - {{estabelecimento.bairro}}</p>
-            <p>Tempo Entrega: {{estabelecimento.tempoEspera}}</p>
+            <p>Distância: 0km - {{estabelecimento.bairro}}</p>
+            <p>Tempo Entrega: 20 minutos</p>
             <p>
               Rating: {{estabelecimento.rating}}
               <mat-icon>star</mat-icon>
