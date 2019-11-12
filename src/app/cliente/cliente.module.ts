@@ -7,19 +7,19 @@ import { ClienteLoginComponent } from './cliente-login/cliente-login.component';
 import { MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
 import { BottomNavigationComponent } from './bottom-navigation/bottom-navigation.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     ClienteComponent,
     ClienteLoginComponent,
-    BottomNavigationComponent
+    BottomNavigationComponent,
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
     ClienteRoutingModule,
-    SharedModule,
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
