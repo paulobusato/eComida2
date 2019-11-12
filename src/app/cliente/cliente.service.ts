@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Categoria, Estabelecimento } from './cliente.type';
+import { Categoria, Estabelecimento, Produto } from './cliente.type';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -18,6 +18,10 @@ export class ClienteService {
 
   obterEstabelecimentos(): Observable<Estabelecimento[]> {
     return this.http.get<Estabelecimento[]>('http://localhost/eComida2/dist/controle/estabelecimentoaction.php');
+  }
+
+  obterProdutos(idEstabelecimento: number): Observable<Produto[]> {
+    return this.http.get<Produto[]>(`http://localhost/eComida2/dist/controle/produtoaction.php?idEstabelecimento=${idEstabelecimento}`);
   }
 
   login(): void {
