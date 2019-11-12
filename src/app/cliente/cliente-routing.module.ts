@@ -11,7 +11,7 @@ import { SearchComponent } from './search/search.component';
 const routes: Routes = [
   {path: 'cliente', component: ClienteComponent},
   {path: 'cliente/login', component: ClienteLoginComponent},
-  {path: 'cliente/produto-lista', component: ProdutoListaComponent},
+  {path: 'cliente/produto-lista/:idEstabelecimento', component: ProdutoListaComponent},
   {path: 'cliente/produto-editar', component: ProdutoEditarComponent},
   {path: 'cliente/sacola', component: SacolaComponent},
   {path: 'cliente/search', component: SearchComponent},
