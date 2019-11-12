@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { SacolaComponent } from './sacola/sacola.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SacolaComponent } from './sacola/sacola.component';
     ProdutoListaComponent,
     ProdutoEditarComponent,
     SacolaComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
