@@ -8,8 +8,10 @@ class Estabelecimento extends Usuario
   public $nomeFantasia;
   public $cnpj;
   public $status;
+  public $rating;
+  public $imgUrl;
 
-  public function __construct($idEstabelecimento = '', $razaoSocial = '', $nomeFantasia = '', $cnpj = '', $status = '', $email = '', $senha = '', $telefone = '', $cep = '', $logradouro = '', $numero = '', $bairro = '', $cidade = '', $uf = '')
+  public function __construct($idEstabelecimento = '', $razaoSocial = '', $nomeFantasia = '', $cnpj = '', $status = '', $rating = '', $imgUrl = '', $email = '', $senha = '', $telefone = '', $cep = '', $logradouro = '', $numero = '', $bairro = '', $cidade = '', $uf = '')
   {
     parent::__construct($email, $senha, $telefone, $cep, $logradouro, $numero, $bairro, $cidade, $uf);
     $this->idEstabelecimento = $idEstabelecimento;
@@ -17,6 +19,8 @@ class Estabelecimento extends Usuario
     $this->nomeFantasia = $nomeFantasia;
     $this->cnpj = $cnpj;
     $this->status = $status;
+    $this->rating = $rating;
+    $this->imgUrl = $imgUrl;
   }
 }
 ?>
