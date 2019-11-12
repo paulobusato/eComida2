@@ -30,3 +30,8 @@ export interface Componente {
   quantidade: number;
   items: string[];
 }
+
+export interface Pedido {
+  estabelecimento: Estabelecimento;
+  produtos: Produto[];
+}

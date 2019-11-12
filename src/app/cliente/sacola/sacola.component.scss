@@ -3,4 +3,23 @@
 form {
   margin-top: 81px;
   margin-bottom: 100px;
+  background-color: mat-color($theme-app-light);
+  height: 100%;
+
+  h3 {
+    font-size: 32px;
+    text-align: center;
+    padding: 24px 0;
+    margin: 0;
+  }
+
+  > p {
+    text-align: center;
+  }
+
+  nav {
+    button {
+      margin: 12px;
+    }
+  }
 }
