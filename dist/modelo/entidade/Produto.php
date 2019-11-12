@@ -8,7 +8,7 @@ class Produto
     public $descricao;
     public $valor;
 
-    public function __construct($idProduto = '', $estabelecimento, $componentes, $descricao = '', $valor = '')
+    public function __construct($idProduto = '', $estabelecimento = '', $componentes = array(), $descricao = '', $valor = '')
     {
         $this->idProduto = $idProduto;
         $this->estabelecimento = $estabelecimento;
