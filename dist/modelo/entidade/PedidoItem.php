@@ -2,17 +2,16 @@
 
 class PedidoItem
 {
-    public $idPedido;
     public $idPedidoItem;
-    public $idProduto;
+    public $produto;
     public $quantidade;
     public $valor;
 
-    public function __construct($idPedido = '', $idPedidoItem = '', $idProduto = '', $quantidade = '', $valor = '')
+    public function __construct($idPedido = '', $idPedidoItem = '', $produto = '', $quantidade = '', $valor = '')
     {
         $this->idPedido = $idPedido;
         $this->idPedidoItem = $idPedidoItem;
-        $this->idProduto = $idProduto;
+        $this->produto = $produto;
         $this->quantidade = $quantidade;
         $this->valor = $valor;
     }

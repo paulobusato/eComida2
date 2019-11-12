@@ -84,12 +84,15 @@ class Dao extends Conexao {
     parent::executar("
       CREATE TABLE PEDIDO (
         IDPEDIDO INT NOT NULL AUTO_INCREMENT,
+        IDESTABELECIMENTO INT NOT NULL,
         IDCLIENTE INT NOT NULL,
         DATA DATETIME NOT NULL,
         VALOR FLOAT NOT NULL,
         PRIMARY KEY(IDPEDIDO),
         FOREIGN KEY (IDCLIENTE)
-          REFERENCES CLIENTE(IDCLIENTE)
+          REFERENCES CLIENTE(IDCLIENTE),
+        FOREIGN KEY (IDESTABELECIMENTO)
+          REFERENCES ESTABELECIMENTO(IDESTABELECIMENTO)
       );
     ");
 
@@ -160,6 +163,7 @@ class Dao extends Conexao {
       );
     ");
 
+    parent::executar("INSERT INTO `cliente` (`IDCLIENTE`, `NOME`, `CPF`, `EMAIL`, `SENHA`, `TELEFONE`, `CEP`, `LOGRADOURO`, `NUMERO`, `BAIRRO`, `CIDADE`, `UF`) VALUES (NULL, 'Paulo Henrique Busato', '32132412389', 'paulo@paulo.com', '123', '23432139988', '23854322', 'Logradouro', '10', 'Bairro', 'Cidade', 'UF')");
     parent::executar("INSERT INTO `estabelecimento` (`IDESTABELECIMENTO`, `RAZAOSOCIAL`, `NOMEFANTASIA`, `CNPJ`, `STATUS`, `RATING`, `IMGURL`, `EMAIL`, `SENHA`, `TELEFONE`, `CEP`, `LOGRADOURO`, `NUMERO`, `BAIRRO`, `CIDADE`, `UF`) VALUES (NULL, 'eComida', 'eComida', '99999999999999', 'P', '4', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThlFOqWox5fl0i82VmIvxAAuFUoQ9NqcIoH4EfwFnMbG6B8BynnA&s', 'paulo@paulo.com', '123', '28999999999', '84520369', 'Av Francisco Mardegan', '02', 'Boa Vista', 'Cachoeiro de Itapemirim', 'ES')");
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Acai', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Lanches', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
