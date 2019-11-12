@@ -30,7 +30,8 @@ class Dao extends Conexao {
       CREATE TABLE CATEGORIA (
         IDCATEGORIA INT NOT NULL AUTO_INCREMENT,
         DESCRICAO VARCHAR(255) NOT NULL,
-        PRIMARY KEY(IDCATEGORIA),
+        IMAGEMURL VARCHAR(255) NOT NULL,
+        PRIMARY KEY(IDCATEGORIA)
       );
     ");
 
@@ -122,6 +123,9 @@ class Dao extends Conexao {
     ");
 
     parent::executar("INSERT INTO `estabelecimento` (`IDESTABELECIMENTO`, `RAZAOSOCIAL`, `NOMEFANTASIA`, `CNPJ`, `STATUS`, `EMAIL`, `SENHA`, `TELEFONE`, `CEP`, `LOGRADOURO`, `NUMERO`, `BAIRRO`, `CIDADE`, `UF`) VALUES (NULL, \'eComida\', \'eComida\', \'99999999999999\', \'P\', \'paulo@paulo.com\', \'123\', \'28999999999\', \'84520369\', \'Av Francisco Mardegan\', \'02\', \'Boa Vista\', \'Cachoeiro de Itapemirim\', \'ES\')");
+    parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Acai', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
+    parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Lanches', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
+    parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Salada', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
   }
 }
 

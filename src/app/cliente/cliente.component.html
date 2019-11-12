@@ -2,8 +2,8 @@
 <main>
     <h3>Categorias</h3>
     <section>
-      <mat-card *ngFor="let categoria of categorias">
-        <img mat-card-image [src]="categoria.imgUrl">
+      <mat-card *ngFor="let categoria of (categorias$ | async)">
+        <img mat-card-image [src]="categoria.imagemUrl">
         <mat-card-title>{{categoria.descricao}}</mat-card-title>
       </mat-card>
     </section>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Categoria, Estabelecimento, Recomendacoes } from './cliente.type';
+import { Estabelecimento, Recomendacoes } from './cliente.type';
+import { Categoria, CategoriaService } from './categoria.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cliente',
@@ -8,20 +10,7 @@ import { Categoria, Estabelecimento, Recomendacoes } from './cliente.type';
   styleUrls: ['./cliente.component.scss']
 })
 export class ClienteComponent implements OnInit {
-  categorias: Categoria[] = [
-    {
-      descricao: 'Açai',
-      imgUrl: 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg',
-    },
-    {
-      descricao: 'Lanches',
-      imgUrl: 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg',
-    },
-    {
-      descricao: 'Salada',
-      imgUrl: 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg',
-    },
-  ];
+  categorias$: Observable<Categoria[]>;
   recomendacoes: Recomendacoes[] = [
     {
       nome: 'K-Skina',
@@ -64,11 +53,12 @@ export class ClienteComponent implements OnInit {
   ];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private categoriaService: CategoriaService,
   ) { }
 
   ngOnInit() {
-
+    this.categorias$ = this.categoriaService.obterCategorias();
   }
 
   onClickRecomendacao() {

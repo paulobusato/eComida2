@@ -6,11 +6,6 @@ export interface Produto {
   componentes?: Componente[];
 }
 
-export interface Categoria {
-  descricao: string;
-  imgUrl: string;
-}
-
 export interface Recomendacoes {
   nome: string;
   imgUrl: string;
