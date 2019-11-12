@@ -1,1 +1,11 @@
-<p>cliente-login works!</p>
+<app-header></app-header>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center">
+  <h1>Login</h1>
+  <mat-form-field>
+    <input type="email" matInput placeholder="Email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="password" matInput placeholder="Senha" formControlName="senha">
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">Entrar</button>
+</form>

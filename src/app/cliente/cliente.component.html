@@ -1,1 +1,50 @@
-<p>cliente works!</p>
+<app-header></app-header>
+<main>
+
+    <h3>Categorias</h3>
+    <section>
+      <mat-card *ngFor="let categoria of categorias">
+        <img mat-card-image [src]="categoria.imgUrl">
+        <mat-card-title>{{categoria.descricao}}</mat-card-title>
+      </mat-card>
+    </section>
+
+    <h3>Estabelecimentos recomendados para você</h3>
+    <section>
+        <mat-card *ngFor="let recomendado of recomendacoes">
+          <img mat-card-image [src]="recomendado.imgUrl">
+          <mat-card-title>{{recomendado.nome}}</mat-card-title>
+        </mat-card>
+    </section>
+
+    <h3>Estabelecimentos</h3>
+    <section class="estabelecimentos">
+        <mat-card *ngFor="let estabelecimento of estabelecimentos">
+          <img mat-card-image [src]="estabelecimento.imgUrl">
+          <mat-card-title>{{estabelecimento.nome}}</mat-card-title>
+          <mat-card-content>
+            <p>Distância: {{estabelecimento.distancia}}km - {{estabelecimento.bairro}}</p>
+            <p>Tempo Entrega: {{estabelecimento.tempoEspera}}</p>
+            <p>
+              Rating: {{estabelecimento.rating}}
+              <mat-icon>star</mat-icon>
+            </p>
+          </mat-card-content>
+        </mat-card>
+    </section>
+
+    <!-- <section class="estabelecimento-list">
+        <article class="estabelecimento-list__item">
+            <a class="estabelecimento__link" href="/visao/estabelecimento/estabelecimento.produto/estabelecimento.produtos.php">
+                <img class="estabelecimento__imagem" src="https://a0.muscache.com/im/pictures/6db93b37-3d4b-49c0-af00-c184a9dd6305.jpg?aki_policy=large" alt="">
+                <p class="estabelecimento__nome">Bobs</p>
+                <p class="estabelecimento__distancia">Distância: 5.5km - IBC</p>
+                <p class="estabelecimento__tempo-entrega">Tempo Entrega: 35 min</p>
+                <section class="estabelecimento__rating">
+                    <span class="estabelecimento__rating_label">4.6</span>
+                    <i class="material-icons estabelecimento__rating_icon">star</i>
+                </section>
+            </a>
+        </article>
+    </section> -->
+</main>

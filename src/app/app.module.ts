@@ -29,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     EstabelecimentoModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
