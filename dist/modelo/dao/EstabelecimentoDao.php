@@ -2,9 +2,21 @@
 
 class EstabelecimentoDao {
 
-  public static function consultar() {
+  public static function consultar($idEstabelecimento) {
     $estabelecimentos = array();
-    $sql = "SELECT * FROM ESTABELECIMENTO";
+
+    if (isset($idEstabelecimento)) {
+      $sql = "
+        SELECT *
+        FROM ESTABELECIMENTO E
+        WHERE E.IDESTABELECIMENTO = {$idEstabelecimento}
+      ";
+    } else {
+      $sql = "
+        SELECT *
+        FROM ESTABELECIMENTO
+      ";
+    }
 
     $db_estabelecimentos = Dao::consultar($sql);
     foreach ($db_estabelecimentos as $db_estabelecimento) {
@@ -15,7 +27,7 @@ class EstabelecimentoDao {
         $db_estabelecimento->CNPJ,
         $db_estabelecimento->STATUS,
         $db_estabelecimento->EMAIL,
-        "",
+        $db_estabelecimento->SENHA,
         $db_estabelecimento->TELEFONE,
         $db_estabelecimento->CEP,
         $db_estabelecimento->LOGRADOURO,
