@@ -1,2 +1,10 @@
 <app-header></app-header>
+<main>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Buscar">
+  </mat-form-field>
+  <section>
+    <p *ngFor="let estabelecimento of estabelecimentos">{{estabelecimento}}</p>
+  </section>
+</main>
 <app-bottom-navigation></app-bottom-navigation>
