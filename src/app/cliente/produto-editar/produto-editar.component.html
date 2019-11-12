@@ -1,15 +1,15 @@
 <app-header></app-header>
 <form fxLayout="column" fxLayoutAlign="start">
   <section class="titulo" fxLayout="column" fxLayoutAlign="start">
-    <p>{{produto.titulo}}</p>
+    <p>{{produto.descricao}}</p>
     <p>R$ {{produto.valor}}</p>
   </section>
   <section class="descricao" fxLayout="column" fxLayoutAlign="start" *ngFor="let componente of produto.componentes">
     <p>{{componente.descricao}}</p>
     <p>Escoha <b>{{componente.quantidade}}</b> opções</p>
       <section class="componentes">
-        <article *ngFor="let item of componente.items">
-          <mat-checkbox>{{item}}</mat-checkbox>
+        <article *ngFor="let componenteItem of componente.componenteItems">
+          <mat-checkbox>{{componenteItem.descricao}}</mat-checkbox>
         </article>
       </section>
   </section>

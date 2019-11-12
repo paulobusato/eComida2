@@ -31,7 +31,7 @@ export interface Componente {
   idComponente: number;
   descricao: string;
   quantidade: number;
-  itemsComponente: {
+  componenteItems: {
     idComponenteItem: number;
     descricao: string;
     valor: number;
