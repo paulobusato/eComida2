@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ClienteRoutingModule } from './cliente-routing.module';
 import { ClienteComponent } from './cliente.component';
 import { ClienteLoginComponent } from './cliente-login/cliente-login.component';
-import { MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule, MatCheckboxModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BottomNavigationComponent } from './bottom-navigation/bottom-navigation.component';
 import { HeaderComponent } from './header/header.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
+import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
     BottomNavigationComponent,
     HeaderComponent,
     ProdutoListaComponent,
+    ProdutoEditarComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
+    MatCheckboxModule,
   ]
 })
 export class ClienteModule { }

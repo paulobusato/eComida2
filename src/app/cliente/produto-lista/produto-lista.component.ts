@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Produto {
-  imgUrl: string;
-  titulo: string;
-  descricao: string;
-  valor: number;
-}
+import { Router } from '@angular/router';
+import { Produto } from '../cliente.type';
 
 @Component({
   selector: 'app-produto-lista',
@@ -34,9 +29,14 @@ export class ProdutoListaComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  onClickProduto(): void {
+    this.router.navigate(['/cliente/produto-editar']);
+  }
 }

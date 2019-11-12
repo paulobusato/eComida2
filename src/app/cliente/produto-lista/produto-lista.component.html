@@ -2,7 +2,7 @@
 <main>
   <h3>Destaque</h3>
   <section>
-    <mat-card *ngFor="let produto of produtos">
+    <mat-card *ngFor="let produto of produtos" (click)="onClickProduto()">
       <img mat-card-image [src]="produto.imgUrl">
       <mat-card-title>{{produto.titulo}}</mat-card-title>
       <mat-card-content>

@@ -1,0 +1,42 @@
+@import 'src/variables.scss';
+
+form {
+  margin-top: 81px;
+  margin-bottom: 100px;
+
+  section {
+
+    p {
+      margin: 12px;
+    }
+
+    .componentes {
+      padding: 24px;
+      background-color: mat-color($theme-app-background);
+
+      article {
+        height: 50px;
+      }
+    }
+  }
+
+  .titulo {
+    background-color: mat-color($theme-app-surface);
+  }
+
+  .descricao {
+    background-color: mat-color($theme-app-light);
+  }
+
+  nav {
+    span {
+      margin-left: 20px;
+      margin-right: 20px;
+      font-size: 1.2em;
+    }
+  }
+
+  button {
+    margin: 24px 0;
+  }
+}

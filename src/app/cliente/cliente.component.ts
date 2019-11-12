@@ -1,24 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-export interface Categoria {
-  descricao: string;
-  imgUrl: string;
-}
-
-export interface Recomendacoes {
-  nome: string;
-  imgUrl: string;
-}
-
-interface Estabelecimento {
-  nome: string;
-  distancia: number;
-  bairro: string;
-  tempoEspera: number;
-  rating: number;
-  imgUrl: string;
-}
+import { Categoria, Estabelecimento, Recomendacoes } from './cliente.type';
 
 @Component({
   selector: 'app-cliente',
