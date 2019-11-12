@@ -2,10 +2,10 @@
 
 class EstabelecimentoDao {
 
-  public static function consultar($idEstabelecimento) {
+  public static function consultar($idEstabelecimento = '') {
     $estabelecimentos = array();
 
-    if (isset($idEstabelecimento)) {
+    if ($idEstabelecimento != '') {
       $sql = "
         SELECT *
         FROM ESTABELECIMENTO E
