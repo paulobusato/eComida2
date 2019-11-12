@@ -15,10 +15,13 @@ class ProdutoDao {
     } else {
       $sql = "
         SELECT *
-        FROM PRODUTO
+        FROM PRODUTO P
         WHERE P.IDESTABELECIMENTO = {$idEstabelecimento}
       ";
     }
+
+    var_dump($sql);
+    exit;
 
     $db_produtos = Dao::consultar($sql);
     foreach ($db_produtos as $db_produto) {
