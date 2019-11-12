@@ -10,7 +10,7 @@
 
     <h3>Estabelecimentos recomendados para você</h3>
     <section>
-        <mat-card *ngFor="let recomendado of recomendacoes">
+        <mat-card *ngFor="let recomendado of recomendacoes" (click)="onClickRecomendacao()">
           <img mat-card-image [src]="recomendado.imgUrl">
           <mat-card-title>{{recomendado.nome}}</mat-card-title>
         </mat-card>

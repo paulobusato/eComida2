@@ -1,0 +1,45 @@
+@import 'src/variables.scss';
+
+main {
+  margin: 32px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+  h3 {
+    font-size: 32px;
+  }
+
+  section {
+    height: 370px;
+    white-space: nowrap;
+    overflow: auto;
+
+    mat-card {
+      display: inline-block;
+      max-width: 200px;
+      min-height: 300px;
+      max-height: 340px;
+      margin-right: 24px;
+
+      img {
+        background-size: cover;
+      }
+
+      mat-card-title, mat-card-content {
+        white-space: normal;
+      }
+
+      mat-card-content {
+
+        .valor {
+          color: mat-color($theme-app-primary);
+        }
+
+      }
+
+    }
+
+
+  }
+
+}

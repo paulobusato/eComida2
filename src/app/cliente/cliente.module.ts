@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BottomNavigationComponent } from './bottom-navigation/bottom-navigation.component';
 import { HeaderComponent } from './header/header.component';
+import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HeaderComponent } from './header/header.component';
     ClienteLoginComponent,
     BottomNavigationComponent,
     HeaderComponent,
+    ProdutoListaComponent,
   ],
   imports: [
     CommonModule,

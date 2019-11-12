@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface Categoria {
   descricao: string;
@@ -80,10 +81,16 @@ export class ClienteComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
 
+  }
+
+  onClickRecomendacao() {
+    this.router.navigate(['/cliente/produto-lista']);
   }
 
 }

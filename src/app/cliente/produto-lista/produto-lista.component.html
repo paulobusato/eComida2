@@ -1,0 +1,27 @@
+<app-header></app-header>
+<main>
+  <h3>Destaque</h3>
+  <section>
+    <mat-card *ngFor="let produto of produtos">
+      <img mat-card-image [src]="produto.imgUrl">
+      <mat-card-title>{{produto.titulo}}</mat-card-title>
+      <mat-card-content>
+        <p class="descricao">{{produto.descricao}}</p>
+        <p class="valor">R$ {{produto.valor}}</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <h3>Novidades</h3>
+  <section>
+    <mat-card *ngFor="let produto of produtos">
+      <img mat-card-image [src]="produto.imgUrl">
+      <mat-card-title>{{produto.titulo}}</mat-card-title>
+      <mat-card-content>
+        <p class="descricao">{{produto.descricao}}</p>
+        <p class="valor">R$ {{produto.valor}}</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</main>
+<app-bottom-navigation></app-bottom-navigation>
