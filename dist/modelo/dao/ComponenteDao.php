@@ -26,7 +26,7 @@ class ComponenteDao {
         $db_componente->IDCOMPONENTE,
         $db_componente->IDPRODUTO,
         $db_componente->DESCRICAO,
-        $db_componente->VALOR
+        $db_componente->QUANTIDADE
       );
       array_push($componentes, $componente);
     }
