@@ -26,7 +26,8 @@ class ComponenteDao {
         $db_componente->IDCOMPONENTE,
         $db_componente->IDPRODUTO,
         $db_componente->DESCRICAO,
-        $db_componente->QUANTIDADE
+        $db_componente->QUANTIDADE,
+        ComponenteItemDao::consultar($db_componente->IDCOMPONENTE, $db_componente->IDPRODUTO)
       );
       array_push($componentes, $componente);
     }
