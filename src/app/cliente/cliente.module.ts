@@ -11,6 +11,7 @@ import { BottomNavigationComponent } from './bottom-navigation/bottom-navigation
 import { HeaderComponent } from './header/header.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
+import { SacolaComponent } from './sacola/sacola.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ProdutoEditarComponent } from './produto-editar/produto-editar.componen
     HeaderComponent,
     ProdutoListaComponent,
     ProdutoEditarComponent,
+    SacolaComponent,
   ],
   imports: [
     CommonModule,
