@@ -17,6 +17,9 @@ export class ProdutoEditarComponent implements OnInit {
 
   ngOnInit() {
     this.produto = this.clienteService.produtoAtivado;
+    // this.clienteService.addPedido().subscribe(
+    //   (next) => console.log(next)
+    // );
   }
 
   onAdd(): void {

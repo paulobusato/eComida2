@@ -1,5 +1,9 @@
 <?php
 
+require_once('Dao.php');
+require_once('PedidoItemDao.php');
+
+
 class PedidoDao {
 
   public static function consultar($idPedido) {
@@ -22,19 +26,43 @@ class PedidoDao {
     }
   }
 
-  public static function inserir($pedido) {
-
+  public static function obterUltimoIDPedido($idEstabelecimento, $idCliente, $valor) {
     $sql = "
-      INSERT INTO `pedido` (`IDPEDIDO`, `IDESTABELECIMENTO`, `IDCLIENTE`, `DATA`, `VALOR`)
+    SELECT MAX(P.IDPEDIDO) AS IDPEDIDO
+    FROM PEDIDO P
+    WHERE P.IDESTABELECIMENTO = {$idEstabelecimento}
+      AND P.IDCLIENTE = {$idCliente}
+        AND P.VALOR = {$valor}
+    ";
+
+    $db_idpedidos = Dao::consultar($sql);
+    foreach ($db_idpedidos as $db_idpedido) {
+      return $db_idpedido->IDPEDIDO;
+    }
+  }
+
+  public static function inserir($idEstabelecimento, $idCliente, $valor, $pedidoItems) {
+    $sql = "
+      INSERT INTO `pedido` (`IDPEDIDO`, `IDESTABELECIMENTO`, `IDCLIENTE`, `VALOR`)
       VALUES (
         NULL,
-        {$pedido->estabelecimento->idEstabelecimento},
-        {$pedido->cliente->idCliente},
-        '',
-        {$pedido->valorTotal}
-      )
+        {$idEstabelecimento},
+        {$idCliente},
+        {$valor}
+      );
     ";
 
     Dao::executar($sql);
+
+    $idPedido = PedidoDao::obterUltimoIDPedido($idEstabelecimento, $idCliente, $valor);
+
+    foreach ($pedidoItems as $pedidoItem) {
+      PedidoItemDao::inserir(
+        $idPedido,
+        $pedidoItem->idProduto,
+        $pedidoItem->quantidade,
+        $pedidoItem->valor
+      );
+    }
   }
 }

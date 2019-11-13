@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Categoria, Estabelecimento, Produto, Pedido } from './cliente.type';
 import { Observable } from 'rxjs';
 
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ClienteService {
   produtoAtivado: Produto;
+  pedido: Pedido;
 
   constructor(
     private http: HttpClient
@@ -25,8 +26,28 @@ export class ClienteService {
     return this.http.get<Produto[]>(`http://localhost/eComida2/dist/controle/produtoaction.php?idEstabelecimento=${idEstabelecimento}`);
   }
 
-  addPedido(pedido: Pedido): Observable<Pedido> {
-    return;
+  addPedido(): Observable<any> {
+    return this.http.post(
+      'http://localhost/eComida2/dist/controle/pedidoaction.php',
+      JSON.stringify({
+        idEstabelecimento: 1,
+        idCliente: 1,
+        valor: 100,
+        pedidoItems: [{
+          idProduto: 1,
+          quantidade: 2,
+          valor: 50
+        },{
+          idProduto: 1,
+          quantidade: 5,
+          valor: 40
+        }]
+      }),
+      {
+        headers: new HttpHeaders()
+          .set('Content-Type', 'application/json')
+      }
+    );
   }
 
   login(): void {
