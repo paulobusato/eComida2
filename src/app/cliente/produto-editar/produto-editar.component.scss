@@ -39,4 +39,11 @@ form {
   button {
     margin: 24px 0;
   }
+
+  button[type="submit"] {
+    background-color: mat-color($theme-app-secundary);
+    position: fixed;
+    bottom: 85px;
+    right: 20px;
+  }
 }

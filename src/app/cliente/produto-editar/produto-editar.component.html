@@ -14,14 +14,17 @@
       </section>
   </section>
   <nav fxLayout fxLayoutAlign="center center">
-    <button mat-mini-fab color="primary" (click)="onAdd()">
-      <mat-icon>add</mat-icon>
-    </button>
-    <span>{{quantidade}}</span>
     <button mat-mini-fab color="warn" (click)="onRemove()">
       <mat-icon>remove</mat-icon>
     </button>
+    <span>{{quantidade}}</span>
+    <button mat-mini-fab color="primary" (click)="onAdd()">
+      <mat-icon>add</mat-icon>
+    </button>
   </nav>
-  <button type="submit" mat-raised-button color="primary">Adicionar</button>
+  <!-- <button type="submit" mat-raised-button color="primary">Adicionar</button> -->
+  <button type="submit" mat-fab>
+    <mat-icon>check</mat-icon>
+  </button>
 </form>
 <app-bottom-navigation></app-bottom-navigation>
