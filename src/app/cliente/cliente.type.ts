@@ -27,15 +27,17 @@ export interface Estabelecimento {
   uf: string;
 }
 
+export interface ComponenteItem {
+  idComponenteItem: number;
+  descricao: string;
+  valor: number;
+}
+
 export interface Componente {
   idComponente: number;
   descricao: string;
   quantidade: number;
-  componenteItems: {
-    idComponenteItem: number;
-    descricao: string;
-    valor: number;
-  };
+  componenteItems: ComponenteItem[];
 }
 
 export interface Pedido {
