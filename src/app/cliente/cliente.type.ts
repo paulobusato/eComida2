@@ -41,7 +41,6 @@ export interface Componente {
 }
 
 export interface Pedido {
-  estabelecimento: Estabelecimento;
   produtos: Produto[];
 }
 

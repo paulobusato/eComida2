@@ -9,7 +9,7 @@
     <p>Escoha <b>{{componente.quantidade}}</b> opções</p>
       <section class="componentes">
         <article *ngFor="let componenteItem of componente.componenteItems">
-          <mat-checkbox>{{componenteItem.descricao}}</mat-checkbox>
+          <mat-checkbox (change)="onChangeCheckbox($event, componente, componenteItem)">{{componenteItem.descricao}}</mat-checkbox>
         </article>
       </section>
   </section>
@@ -23,7 +23,7 @@
     </button>
   </nav>
   <!-- <button type="submit" mat-raised-button color="primary">Adicionar</button> -->
-  <button type="submit" mat-fab>
+  <button type="submit" mat-fab (click)="onSubmit()">
     <mat-icon>check</mat-icon>
   </button>
 </form>

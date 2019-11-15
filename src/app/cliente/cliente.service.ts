@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class ClienteService {
   produtoAtivado: Produto;
-  pedido: Pedido;
+  pedido: Pedido = {
+    produtos: [],
+  };
 
   constructor(
     private http: HttpClient
