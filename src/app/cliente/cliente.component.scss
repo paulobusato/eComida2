@@ -11,20 +11,19 @@ h3 {
 }
 
 section {
-  min-height: 160px;
-  max-height: 160px;
+  height: 220px;
   padding: 24px;
   white-space: nowrap;
-  overflow: auto;
+  overflow-x: auto;
 
   mat-card {
     display: inline-block;
-    width: 100px;
-    height: 100%;
     margin-right: 24px;
 
     img {
       background-size: cover;
+      width: 200px;
+      height: 150px;
     }
 
     mat-card-title {
@@ -35,13 +34,7 @@ section {
 }
 
 .estabelecimentos {
-  min-height: 300px;
-  max-height: 300px;
-
-  mat-card {
-    width: 150px;
-  }
-
+  height: 320px;
   margin-bottom: 100px;
 }
 
