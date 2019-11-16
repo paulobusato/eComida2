@@ -37,6 +37,7 @@ export interface Componente {
   idComponente: number;
   descricao: string;
   quantidade: number;
+  obrigatorio: boolean;
   componenteItems: ComponenteItem[];
 }
 
@@ -47,6 +48,7 @@ export interface Pedido {
 export interface Produto {
   idProduto: number;
   estabelecimento: Estabelecimento;
+  titulo: string;
   descricao: string;
   valor: number;
   imgUrl?: string;

@@ -27,6 +27,7 @@ class ComponenteDao {
         $db_componente->IDPRODUTO,
         $db_componente->DESCRICAO,
         $db_componente->QUANTIDADE,
+        $db_componente->OBRIGATORIO == 'S' ? true : false,
         ComponenteItemDao::consultar($db_componente->IDCOMPONENTE, $db_componente->IDPRODUTO)
       );
       array_push($componentes, $componente);
