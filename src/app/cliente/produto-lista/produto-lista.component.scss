@@ -10,36 +10,33 @@ main {
   }
 
   section {
-    height: 370px;
+    height: 320px;
     white-space: nowrap;
     overflow: auto;
 
     mat-card {
       display: inline-block;
-      max-width: 200px;
-      min-height: 300px;
-      max-height: 340px;
+      height: 260px;
+      width: 200px;
       margin-right: 24px;
 
       img {
         background-size: cover;
       }
 
-      mat-card-title, mat-card-content {
+      mat-card-title, mat-card-subtitle, mat-card-content {
         white-space: normal;
       }
 
-      mat-card-content {
-
-        .valor {
-          color: mat-color($theme-app-primary);
-        }
-
+      mat-card-title {
+        font-size: 1em;
       }
 
+      mat-card-content {
+        position: absolute;
+        bottom: 10px;
+        color: mat-color($theme-app-primary);
+      }
     }
-
-
   }
-
 }

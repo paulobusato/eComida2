@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LimiteCaracteresPipe } from './limite-caracteres.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [LimiteCaracteresPipe],
   imports: [
     CommonModule,
   ],

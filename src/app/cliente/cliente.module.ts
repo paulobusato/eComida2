@@ -13,6 +13,7 @@ import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { SacolaComponent } from './sacola/sacola.component';
 import { SearchComponent } from './search/search.component';
+import { LimiteCaracteresPipe } from '../shared/limite-caracteres.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SearchComponent } from './search/search.component';
     ProdutoEditarComponent,
     SacolaComponent,
     SearchComponent,
+    LimiteCaracteresPipe,
   ],
   imports: [
     CommonModule,

@@ -4,11 +4,9 @@
   <section>
     <mat-card *ngFor="let produto of (produtos$ | async)" (click)="onClickProduto(produto)">
       <img mat-card-image [src]="produto.imgUrl">
-      <mat-card-title>{{produto.descricao}}</mat-card-title>
-      <mat-card-content>
-        <p class="descricao">{{produto.descricao}}</p>
-        <p class="valor">R$ {{produto.valor}}</p>
-      </mat-card-content>
+      <mat-card-title>{{'Caixa p + 1 acompanhamento + 1 molho Caixa p + 1 acompanhamento + 1 molho' | limiteCaracteres:'30'}}</mat-card-title>
+      <mat-card-subtitle>{{produto.descricao | limiteCaracteres:'50'}}</mat-card-subtitle>
+      <mat-card-content>R$ {{produto.valor}}</mat-card-content>
     </mat-card>
   </section>
 
@@ -16,11 +14,9 @@
   <section>
     <mat-card *ngFor="let produto of (produtos$ | async)" (click)="onClickProduto(produto)">
       <img mat-card-image [src]="produto.imgUrl">
-      <mat-card-title>{{produto.descricao}}</mat-card-title>
-      <mat-card-content>
-        <p class="descricao">{{produto.descricao}}</p>
-        <p class="valor">R$ {{produto.valor}}</p>
-      </mat-card-content>
+      <mat-card-title>{{'Caixa p + 1 acompanhamento + 1 molho' | limiteCaracteres:'30'}}</mat-card-title>
+      <mat-card-subtitle>{{produto.descricao | limiteCaracteres:'50'}}</mat-card-subtitle>
+      <mat-card-content>R$ {{produto.valor}}</mat-card-content>
     </mat-card>
   </section>
 </main>
