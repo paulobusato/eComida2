@@ -7,7 +7,7 @@ class ComponenteItemDao {
     $sql = "
       SELECT *
       FROM COMPONENTEITEM CI
-      WHERE CI.IDPRODUTO = ${$idProduto}
+      WHERE CI.IDPRODUTO = {$idProduto}
         AND CI.IDCOMPONENTE = {$idComponente}
     ";
 
