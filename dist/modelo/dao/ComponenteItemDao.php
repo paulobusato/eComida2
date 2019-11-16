@@ -2,12 +2,13 @@
 
 class ComponenteItemDao {
 
-  public static function consultar($idComponente, $idProduto) {
+  public static function consultar($idProduto, $idComponente) {
     $componenteItems = array();
     $sql = "
       SELECT *
       FROM COMPONENTEITEM CI
-      WHERE CI.IDCOMPONENTE = {$idComponente}
+      WHERE CI.IDPRODUTO = ${$idProduto}
+        AND CI.IDCOMPONENTE = {$idComponente}
     ";
 
     $db_componenteItems = Dao::consultar($sql);

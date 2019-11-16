@@ -23,6 +23,7 @@ export class ProdutoEditarComponent implements OnInit {
       ...this.produto,
       componentes: []
     };
+    console.log(this.produto);
   }
 
   onAdd(): void {
