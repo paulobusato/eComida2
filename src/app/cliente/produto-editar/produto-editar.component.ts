@@ -47,31 +47,32 @@ export class ProdutoEditarComponent implements OnInit {
     this.location.back();
   }
 
-  onChangeCheckbox(checkboxChange: MatCheckboxChange, _componente: Componente, _componenteItem: ComponenteItem): void {
+  onChangeCheckbox(checkboxChange: MatCheckboxChange, componente: Componente, componenteItem: ComponenteItem): void {
     if (checkboxChange.checked) {
-      const componenteExiste = this.novoProduto.componentes.findIndex(e => e.idComponente == _componente.idComponente) == -1 ? false : true;
+      const componenteExiste = this.novoProduto.componentes
+        .findIndex(e => e.idComponente === componente.idComponente) === -1 ? false : true;
 
       if (componenteExiste) {
         this.novoProduto.componentes
-          .find(e => e.idComponente == _componente.idComponente)
+          .find(e => e.idComponente === componente.idComponente)
           .componenteItems
-          .push(_componenteItem);
+          .push(componenteItem);
       } else {
         this.novoProduto.componentes.push({
-          ..._componente,
-          componenteItems: [_componenteItem],
+          ...componente,
+          componenteItems: [componenteItem],
         });
       }
     } else {
-      const componente = this.novoProduto.componentes
-      .find(e => e.idComponente == _componente.idComponente);
+      const componenteEncontrado = this.novoProduto.componentes
+        .find(e => e.idComponente === componente.idComponente);
 
-      componente.componenteItems = componente.componenteItems
-        .filter(e => e.idComponenteItem != _componenteItem.idComponenteItem);
+      componenteEncontrado.componenteItems = componenteEncontrado.componenteItems
+        .filter(e => e.idComponenteItem !== componenteItem.idComponenteItem);
 
-      if (!componente.componenteItems.length) {
+      if (componenteEncontrado.componenteItems.length === 0) {
         this.novoProduto.componentes = this.novoProduto.componentes
-          .filter(e => e.idComponente != _componente.idComponente);
+          .filter(e => e.idComponente !== componenteEncontrado.idComponente);
       }
     }
   }
