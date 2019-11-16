@@ -30,7 +30,9 @@ export class ProdutoEditarComponent implements OnInit {
   }
 
   onRemove(): void {
-    this.quantidade--;
+    if (this.quantidade > 1) {
+      this.quantidade--;
+    }
   }
 
   onSubmit(): void {
