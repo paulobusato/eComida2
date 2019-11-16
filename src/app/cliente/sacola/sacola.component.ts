@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from '../cliente.type';
+import { ClienteService } from '../cliente.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sacola',
@@ -7,48 +9,21 @@ import { Pedido } from '../cliente.type';
   styleUrls: ['./sacola.component.scss']
 })
 export class SacolaComponent implements OnInit {
-  pedido: any = {
-    estabelecimento: {
-      bairro: 'Cachoeiro',
-      distancia: 5.5,
-      imgUrl: '',
-      nome: 'Bobs',
-      rating: 4.3,
-      tempoEspera: 20,
-    },
-    produtos: [
-      {
-        imgUrl: 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg',
-        titulo: 'Marmitex churrasco 500g, coca cola 1',
-        descricao: 'Caixa p + 1 acompanhamento + 1 molho',
-        valor: 39.10,
-        componentes: [
-          {
-            descricao: 'Escolha sua carne',
-            quantidade: 2,
-            items: [
-              'Lombo de porco',
-              'Linguiça de churrasco',
-              'Carne de Boi',
-            ]
-          },
-          {
-            descricao: 'Escolha sua carne',
-            quantidade: 2,
-            items: [
-              'Lombo de porco',
-              'Linguiça de churrasco',
-              'Carne de Boi',
-            ]
-          },
-        ],
-      }
-    ]
-  };
+  pedido: Pedido;
 
-  constructor() { }
+  constructor(
+    private clienteService: ClienteService,
+    private location: Location
+  ) { }
 
   ngOnInit() {
+    this.pedido = this.clienteService.pedido;
+    console.log(this.pedido.produtos[0]);
+  }
+
+  onCancelar(): void {
+    this.clienteService.pedido = {produtos: []};
+    this.location.back();
   }
 
 }

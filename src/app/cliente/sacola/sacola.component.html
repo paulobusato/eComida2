@@ -1,17 +1,23 @@
 <app-header></app-header>
 <form>
-  <h3>{{pedido.estabelecimento.nome}}</h3>
-  <p>Tempo de Espera: {{pedido.estabelecimento.tempoEspera}} minutos</p>
-  <section>
-    <article *ngFor="let produto of pedido.produtos" fxLayout="column" fxLayoutAlign="center center">
-      <p>{{produto.titulo}}</p>
-      <p>{{produto.descricao}}</p>
-      <p>R$ {{produto.valor}}</p>
-    </article>
+  <main fxLayout="column" fxLayoutAlign="center center" *ngIf="pedido.produtos.length > 0">
+    <h3>{{pedido.produtos[0].estabelecimento.razaoSocial}}</h3>
+    <p>Tempo de Espera: 20 minutos</p>
+    <section>
+      <article *ngFor="let produto of pedido.produtos" fxLayout="column" fxLayoutAlign="center center">
+        <p>{{produto.titulo}}</p>
+        <p>{{produto.descricao}}</p>
+        <p>R$ {{produto.valor}}</p>
+      </article>
+    </section>
+    <nav fxLayout fxLayoutAlign="center center">
+      <button type="button" mat-raised-button color="warn" (click)="onCancelar()">Cancelar</button>
+      <button type="button" mat-raised-button color="primary">Confirmar</button>
+    </nav>
+  </main>
+  <section fxLayout="column" fxLayoutAlign="center center" *ngIf="pedido.produtos.length == 0">
+    <h2>Sacola vazia :(</h2>
+    <button type="button" mat-stroked-button [routerLink]="['/cliente']">Escolher uma comida</button>
   </section>
-  <nav fxLayout fxLayoutAlign="center center">
-    <button type="button" mat-raised-button color="warn">Cancelar</button>
-    <button type="button" mat-raised-button color="primary">Confirmar</button>
-  </nav>
 </form>
 <app-bottom-navigation></app-bottom-navigation>

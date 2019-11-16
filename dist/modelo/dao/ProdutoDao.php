@@ -24,7 +24,7 @@ class ProdutoDao {
     foreach ($db_produtos as $db_produto) {
       $produto = new Produto(
         $db_produto->IDPRODUTO,
-        EstabelecimentoDao::consultar($db_produto->IDESTABELECIMENTO),
+        EstabelecimentoDao::consultar($db_produto->IDESTABELECIMENTO)[0],
         ComponenteDao::consultar($db_produto->IDPRODUTO),
         $db_produto->TITULO,
         $db_produto->DESCRICAO,
