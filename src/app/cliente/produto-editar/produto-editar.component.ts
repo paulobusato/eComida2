@@ -23,7 +23,6 @@ export class ProdutoEditarComponent implements OnInit {
       ...this.produto,
       componentes: []
     };
-    console.log(this.produto);
   }
 
   onAdd(): void {
@@ -41,8 +40,6 @@ export class ProdutoEditarComponent implements OnInit {
         this.novoProduto,
       ],
     };
-    
-    console.log(this.clienteService.pedido);
   }
 
   onChangeCheckbox(checkboxChange: MatCheckboxChange, _componente: Componente, _componenteItem: ComponenteItem): void {

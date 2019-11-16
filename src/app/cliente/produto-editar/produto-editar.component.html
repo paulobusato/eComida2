@@ -6,12 +6,15 @@
   </section>
   <section class="descricao" fxLayout="column" fxLayoutAlign="start" *ngFor="let componente of produto.componentes">
     <p>{{componente.descricao}}</p>
-    <p>Escoha <b>{{componente.quantidade}}</b> opções</p>
-      <section class="componentes">
-        <article *ngFor="let componenteItem of componente.componenteItems">
-          <mat-checkbox (change)="onChangeCheckbox($event, componente, componenteItem)">{{componenteItem.descricao}}</mat-checkbox>
-        </article>
-      </section>
+    <p fxLayout fxLayoutAlign="space-between">
+      <span>Escoha <b>{{componente.quantidade}}</b> opções</span>
+      <span class="obrigatorio">{{componente.obrigatorio ? 'OBRIGATORIO' : ''}}</span>
+    </p>
+    <section class="componentes">
+      <article *ngFor="let componenteItem of componente.componenteItems">
+        <mat-checkbox (change)="onChangeCheckbox($event, componente, componenteItem)">{{componenteItem.descricao}}</mat-checkbox>
+      </article>
+    </section>
   </section>
   <nav fxLayout fxLayoutAlign="center center">
     <button mat-mini-fab color="warn" (click)="onRemove()">

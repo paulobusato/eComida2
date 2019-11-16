@@ -26,6 +26,12 @@ form {
 
   .descricao {
     background-color: mat-color($theme-app-light);
+
+    .obrigatorio {
+      background-color: mat-color($theme-app-secundary);
+      padding: 6px;
+      border-radius: 4px;
+    }
   }
 
   nav {
