@@ -10,22 +10,16 @@ main {
   }
 
   section {
-    height: 320px;
-    white-space: nowrap;
+    height: 330px;
     overflow: auto;
 
     mat-card {
       display: inline-block;
-      height: 260px;
-      width: 200px;
+      height: 300px;
       margin-right: 24px;
 
       img {
         background-size: cover;
-      }
-
-      mat-card-title, mat-card-subtitle, mat-card-content {
-        white-space: normal;
       }
 
       mat-card-title {
@@ -34,7 +28,7 @@ main {
 
       mat-card-content {
         position: absolute;
-        bottom: 10px;
+        bottom: 15px;
         color: mat-color($theme-app-primary);
       }
     }

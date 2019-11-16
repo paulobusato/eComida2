@@ -1,20 +1,20 @@
 <app-header></app-header>
 <main>
   <h3>Destaque</h3>
-  <section>
-    <mat-card *ngFor="let produto of (produtos$ | async)" (click)="onClickProduto(produto)">
+  <section fxLayout fxLayoutGap="24px">
+    <mat-card *ngFor="let produto of (produtos$ | async)" (click)="onClickProduto(produto)" fxFlex="1 1 240px">
       <img mat-card-image [src]="produto.imgUrl">
-      <mat-card-title>{{'Caixa p + 1 acompanhamento + 1 molho Caixa p + 1 acompanhamento + 1 molho' | limiteCaracteres:'30'}}</mat-card-title>
+      <mat-card-title>{{produto.titulo | limiteCaracteres:'30'}}</mat-card-title>
       <mat-card-subtitle>{{produto.descricao | limiteCaracteres:'50'}}</mat-card-subtitle>
       <mat-card-content>R$ {{produto.valor}}</mat-card-content>
     </mat-card>
   </section>
 
   <h3>Novidades</h3>
-  <section>
-    <mat-card *ngFor="let produto of (produtos$ | async)" (click)="onClickProduto(produto)">
+  <section fxLayout fxLayoutGap="24px">
+    <mat-card *ngFor="let produto of (produtos$ | async)" (click)="onClickProduto(produto)" fxFlex="1 1 240px">
       <img mat-card-image [src]="produto.imgUrl">
-      <mat-card-title>{{'Caixa p + 1 acompanhamento + 1 molho' | limiteCaracteres:'30'}}</mat-card-title>
+      <mat-card-title>{{produto.titulo | limiteCaracteres:'30'}}</mat-card-title>
       <mat-card-subtitle>{{produto.descricao | limiteCaracteres:'50'}}</mat-card-subtitle>
       <mat-card-content>R$ {{produto.valor}}</mat-card-content>
     </mat-card>
