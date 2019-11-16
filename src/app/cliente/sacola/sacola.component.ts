@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Pedido } from '../cliente.type';
+import { Pedido, Produto } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sacola',
@@ -13,12 +14,22 @@ export class SacolaComponent implements OnInit {
 
   constructor(
     private clienteService: ClienteService,
-    private location: Location
+    private location: Location,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.pedido = this.clienteService.pedido;
-    console.log(this.pedido.produtos[0]);
+  }
+
+  onExcluirPedido(produto: Produto): void {
+    this.clienteService.pedido.produtos = this.clienteService.pedido.produtos
+      .filter(e => e.idProduto !== produto.idProduto);
+  }
+
+  onEditarPedido(produto: Produto): void {
+    this.clienteService.produtoAtivado = produto;
+    this.router.navigate(['/cliente/produto-editar']);
   }
 
   onCancelar(): void {

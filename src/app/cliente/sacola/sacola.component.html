@@ -3,12 +3,16 @@
   <main fxLayout="column" fxLayoutAlign="center center" *ngIf="pedido.produtos.length > 0">
     <h3>{{pedido.produtos[0].estabelecimento.razaoSocial}}</h3>
     <p>Tempo de Espera: 20 minutos</p>
-    <section>
-      <article *ngFor="let produto of pedido.produtos" fxLayout="column" fxLayoutAlign="center center">
-        <p>{{produto.titulo}}</p>
-        <p>{{produto.descricao}}</p>
-        <p>R$ {{produto.valor}}</p>
-      </article>
+    <section fxLayout="column" fxLayoutGap="12px">
+      <mat-card *ngFor="let produto of pedido.produtos">
+          <mat-card-title>{{produto.titulo}}</mat-card-title>
+          <mat-card-subtitle>{{produto.descricao}}</mat-card-subtitle>
+          <mat-card-content>R$ {{produto.valor}}</mat-card-content>
+          <mat-card-actions>
+            <button type="button" mat-stroked-button color="danger" (click)="onExcluirPedido(produto)">Excluir</button>
+            <button type="button" mat-stroked-button color="warn" (click)="onEditarPedido(produto)">Editar</button>
+          </mat-card-actions>
+      </mat-card>
     </section>
     <nav fxLayout fxLayoutAlign="center center">
       <button type="button" mat-raised-button color="warn" (click)="onCancelar()">Cancelar</button>

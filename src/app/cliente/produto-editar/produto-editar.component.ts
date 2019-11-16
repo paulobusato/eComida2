@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Produto, Componente, ComponenteItem } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { MatCheckboxChange } from '@angular/material';
@@ -12,7 +12,6 @@ import { Location } from '@angular/common';
 export class ProdutoEditarComponent implements OnInit {
   produto: Produto;
   quantidade = 1;
-  novoProduto: Produto;
 
   constructor(
     private clienteService: ClienteService,
@@ -20,11 +19,7 @@ export class ProdutoEditarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.produto = this.clienteService.produtoAtivado;
-    this.novoProduto = {
-      ...this.produto,
-      componentes: []
-    };
+    this.produto = {...this.clienteService.produtoAtivado};
   }
 
   onAdd(): void {
@@ -38,42 +33,38 @@ export class ProdutoEditarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.clienteService.pedido = {
-      produtos: [
-        ...this.clienteService.pedido.produtos,
-        this.novoProduto,
-      ],
-    };
+    const produtoEmEdicao = this.clienteService.pedido.produtos
+      .find(e => e.idProduto === this.produto.idProduto);
+
+    if (produtoEmEdicao) {
+      produtoEmEdicao.componentes = [
+        ...this.produto.componentes
+      ];
+    } else {
+      this.clienteService.pedido = {
+        produtos: [
+          ...this.clienteService.pedido.produtos,
+          {...this.produto},
+        ],
+      };
+    }
+    
     this.location.back();
   }
 
   onChangeCheckbox(checkboxChange: MatCheckboxChange, componente: Componente, componenteItem: ComponenteItem): void {
     if (checkboxChange.checked) {
-      const componenteExiste = this.novoProduto.componentes
-        .findIndex(e => e.idComponente === componente.idComponente) === -1 ? false : true;
-
-      if (componenteExiste) {
-        this.novoProduto.componentes
-          .find(e => e.idComponente === componente.idComponente)
-          .componenteItems
-          .push(componenteItem);
-      } else {
-        this.novoProduto.componentes.push({
-          ...componente,
-          componenteItems: [componenteItem],
-        });
-      }
+      componente.selecionado = true;
+      componenteItem.selecionado = true;
     } else {
-      const componenteEncontrado = this.novoProduto.componentes
-        .find(e => e.idComponente === componente.idComponente);
+      const componenteItensSelecionados = componente.componenteItems
+        .filter(e => e.selecionado === true).length;
 
-      componenteEncontrado.componenteItems = componenteEncontrado.componenteItems
-        .filter(e => e.idComponenteItem !== componenteItem.idComponenteItem);
-
-      if (componenteEncontrado.componenteItems.length === 0) {
-        this.novoProduto.componentes = this.novoProduto.componentes
-          .filter(e => e.idComponente !== componenteEncontrado.idComponente);
+      if (componenteItensSelecionados === 1) {
+        componente.selecionado = false;  
       }
+      
+      componenteItem.selecionado = false;
     }
   }
 }

@@ -31,6 +31,7 @@ export interface ComponenteItem {
   idComponenteItem: number;
   descricao: string;
   valor: number;
+  selecionado?: boolean;
 }
 
 export interface Componente {
@@ -39,6 +40,7 @@ export interface Componente {
   quantidade: number;
   obrigatorio: boolean;
   componenteItems: ComponenteItem[];
+  selecionado?: boolean;
 }
 
 export interface Pedido {

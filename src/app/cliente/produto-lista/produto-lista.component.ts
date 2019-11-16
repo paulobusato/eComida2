@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Produto } from '../cliente.type';
+import { Produto, Componente } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { Observable } from 'rxjs';
 
@@ -24,7 +24,20 @@ export class ProdutoListaComponent implements OnInit {
   }
 
   onClickProduto(produto: Produto): void {
-    this.clienteService.produtoAtivado = produto;
+    const componenteItens: Componente[] = [...produto.componentes]
+      .map(e => {
+        return {
+          ...e,
+          componenteItems: e.componenteItems
+            .map(e => { return { ...e, selecionado: false } }),
+          selecionado: false,
+        };
+      });
+    
+    this.clienteService.produtoAtivado = {
+      ...produto,
+      componentes: componenteItens
+    };
     this.router.navigate(['/cliente/produto-editar']);
   }
 }

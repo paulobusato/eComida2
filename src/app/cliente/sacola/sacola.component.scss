@@ -3,19 +3,34 @@
 form {
   padding-top: 81px;
   padding-bottom: 81px;
-
   background-color: mat-color($theme-app-light);
   height: calc(100% - 243px);
 
-  h3 {
-    font-size: 32px;
-    text-align: center;
-    padding: 24px 0;
-    margin: 0;
-  }
+  main {
+    h3 {
+      font-size: 32px;
+      text-align: center;
+      padding: 24px 0;
+      margin: 0;
+    }
 
-  > p {
-    text-align: center;
+    p {
+      text-align: center;
+    }
+
+    section {
+      mat-card {
+        background-color: mat-color($theme-app-background);
+      }
+    }
+
+    nav {
+      margin-top: 24px;
+
+      button {
+        margin: 12px;
+      }
+    }
   }
 
   > section {
@@ -23,12 +38,6 @@ form {
 
     button {
       background-color: mat-color($theme-app-secundary);
-    }
-  }
-
-  nav {
-    button {
-      margin: 12px;
     }
   }
 }
