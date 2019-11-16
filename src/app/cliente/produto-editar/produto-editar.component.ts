@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Produto, Componente, ComponenteItem } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { MatCheckboxChange } from '@angular/material';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-produto-editar',
@@ -15,6 +16,7 @@ export class ProdutoEditarComponent implements OnInit {
 
   constructor(
     private clienteService: ClienteService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class ProdutoEditarComponent implements OnInit {
         this.novoProduto,
       ],
     };
+    this.location.back();
   }
 
   onChangeCheckbox(checkboxChange: MatCheckboxChange, _componente: Componente, _componenteItem: ComponenteItem): void {
