@@ -10,7 +10,7 @@ import { ClienteModule } from './cliente/cliente.module';
 import { EstabelecimentoModule } from './estabelecimento/estabelecimento.module';
 import { LandingComponent } from './landing/landing.component';
 
-import { MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -29,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     EstabelecimentoModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
