@@ -29,6 +29,7 @@ class ProdutoDao {
         $db_produto->TITULO,
         $db_produto->DESCRICAO,
         $db_produto->VALOR,
+        $db_produto->QUANTIDADE,
         $db_produto->IMGURL
       );
       array_push($produtos, $produto);

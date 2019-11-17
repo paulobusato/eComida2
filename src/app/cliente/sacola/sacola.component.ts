@@ -37,4 +37,10 @@ export class SacolaComponent implements OnInit {
     this.location.back();
   }
 
+  onSubmit(): void {
+    this.clienteService.addPedido().subscribe(
+      next => console.log(next),
+      error => console.log(error),
+    );
+  }
 }

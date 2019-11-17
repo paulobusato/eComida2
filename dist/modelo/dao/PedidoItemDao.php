@@ -25,18 +25,17 @@ class PedidoItemDao {
     return $pedidoItems;
   }
 
-  public static function inserir($idPedido, $idProduto, $quantidade, $valor) {
+  public static function inserir($idPedido, $idProduto, $quantidade, $valor, $componenteItens) {
     $sql = "
       INSERT INTO `pedidoitem` (`IDPEDIDO`, `IDPEDIDOITEM`, `IDPRODUTO`, `QUANTIDADE`, `VALOR`)
       VALUES (
-        {$idPedido},
+        '{$idPedido}',
         NULL,
-        {$idProduto},
-        {$quantidade},
-        {$valor}
-      )
+        '{$idProduto}',
+        '{$quantidade}',
+        '{$valor}'
+      );
     ";
-
     Dao::executar($sql);
   }
 }

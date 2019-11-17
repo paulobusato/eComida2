@@ -31,20 +31,7 @@ export class ClienteService {
   addPedido(): Observable<any> {
     return this.http.post(
       'http://localhost/eComida2/dist/controle/pedidoaction.php',
-      JSON.stringify({
-        idEstabelecimento: 1,
-        idCliente: 1,
-        valor: 100,
-        pedidoItems: [{
-          idProduto: 1,
-          quantidade: 2,
-          valor: 50
-        },{
-          idProduto: 1,
-          quantidade: 5,
-          valor: 40
-        }]
-      }),
+      JSON.stringify(this.pedido),
       {
         headers: new HttpHeaders()
           .set('Content-Type', 'application/json')

@@ -16,7 +16,7 @@
     </section>
     <nav fxLayout fxLayoutAlign="center center">
       <button type="button" mat-raised-button color="warn" (click)="onCancelar()">Cancelar</button>
-      <button type="button" mat-raised-button color="primary">Confirmar</button>
+      <button type="button" mat-raised-button color="primary" (click)="onSubmit()">Confirmar</button>
     </nav>
   </main>
   <section fxLayout="column" fxLayoutAlign="center center" *ngIf="pedido.produtos.length == 0">
