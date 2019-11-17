@@ -4,7 +4,15 @@ import { CommonModule } from '@angular/common';
 import { ClienteRoutingModule } from './cliente-routing.module';
 import { ClienteComponent } from './cliente.component';
 import { ClienteLoginComponent } from './cliente-login/cliente-login.component';
-import { MatInputModule, MatFormFieldModule, MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule, MatCheckboxModule } from '@angular/material';
+import {
+  MatInputModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatIconModule,
+  MatCardModule,
+  MatToolbarModule,
+  MatCheckboxModule
+} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BottomNavigationComponent } from './bottom-navigation/bottom-navigation.component';
@@ -13,7 +21,7 @@ import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { SacolaComponent } from './sacola/sacola.component';
 import { SearchComponent } from './search/search.component';
-import { LimiteCaracteresPipe } from '../shared/limite-caracteres.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +33,6 @@ import { LimiteCaracteresPipe } from '../shared/limite-caracteres.pipe';
     ProdutoEditarComponent,
     SacolaComponent,
     SearchComponent,
-    LimiteCaracteresPipe,
   ],
   imports: [
     CommonModule,
@@ -35,6 +42,7 @@ import { LimiteCaracteresPipe } from '../shared/limite-caracteres.pipe';
     MatFormFieldModule,
     FlexLayoutModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,

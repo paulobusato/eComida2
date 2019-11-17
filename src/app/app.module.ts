@@ -12,6 +12,7 @@ import { LandingComponent } from './landing/landing.component';
 
 import { MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     FlexLayoutModule,
     AdministrativoModule,
     ClienteModule,
+    SharedModule,
     EstabelecimentoModule,
     MatToolbarModule,
     MatButtonModule,

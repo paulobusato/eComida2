@@ -6,6 +6,7 @@ import { EstabelecimentoComponent } from './estabelecimento.component';
 import { MatToolbarModule, MatIconModule, MatFormFieldModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EstabelecimentoRoutingModule,
     FlexLayoutModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,

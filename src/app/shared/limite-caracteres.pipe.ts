@@ -12,5 +12,5 @@ export class LimiteCaracteresPipe implements PipeTransform {
       return value;
     }
   }
-  
+
 }
