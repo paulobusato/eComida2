@@ -4,7 +4,7 @@
     <mat-icon [routerLink]="['/cliente/login']">account_circle</mat-icon>
   </mat-toolbar>
 </header>
-<main>
+<main gdColumns="100%" gdGap="24px">
   <section class="frase" fxLayout fxLayoutAlign="center center">
     <h1>eComida</h1>
   </section>
@@ -17,7 +17,7 @@
       </mat-card>
     </section>
   </section>
-  <section class="estabelecimento" gdColumns="100%" gdRows="130px 100px 49px" gdRows.lg="100px 80px 49px">
+  <section class="estabelecimento" gdColumns="100%" gdRows="130px 100px 49px" gdRows.gt-sm="100px 80px 49px">
       <h2>A sua fome de crescer ta no eComida</h2>
       <p>Cadastre seu restaurante e cresça até 50% no mês.</p>
       <a mat-raised-button [routerLink]="['/estabelecimento']">Cadastre seu estabelecimento</a>
