@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EstabelecimentoService } from './estabelecimento.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-estabelecimento',
@@ -12,7 +13,8 @@ export class EstabelecimentoComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private estabelecimentoService: EstabelecimentoService
+    private estabelecimentoService: EstabelecimentoService,
+    private location: Location,
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,10 @@ export class EstabelecimentoComponent implements OnInit {
       cidade: [''],
       uf: [''],
     });
+  }
+
+  onBack(): void {
+    this.location.back();
   }
 
   onSubmit(): void {
