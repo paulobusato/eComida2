@@ -1,3 +1,5 @@
+@import 'src/variables.scss';
+
 form {
   height: 100%;
   padding-left: 10%;
@@ -5,6 +7,10 @@ form {
 
   mat-form-field {
     width: 100%;
+
+    @media #{$break-lg-screen} {
+      width: 300px;
+    }
   }
 
   button {
