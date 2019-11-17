@@ -1,5 +1,7 @@
 <?php
 
+require_once 'PedidoItemComponenteDao.php';
+
 class PedidoItemDao {
 
   public static function consultar($idPedido) {
@@ -25,7 +27,20 @@ class PedidoItemDao {
     return $pedidoItems;
   }
 
-  public static function inserir($idPedido, $idProduto, $quantidade, $valor, $componenteItens) {
+  public static function obterUltimoIdItemPedido($idPedido, $idProduto, $quantidade, $valor) {
+    $sql = "
+      SELECT MAX(PI.IDPEDIDOITEM) AS IDPEDIDOITEM
+      FROM PEDIDOITEM PI
+      WHERE PI.IDPEDIDO = '{$idPedido}'
+        AND PI.IDPRODUTO = '{$idProduto}'
+        AND PI.QUANTIDADE = '{$quantidade}'
+        AND PI.VALOR = '{$valor}'
+    ";
+    $db_idPedidoItem = Dao::consultar($sql);
+    return $db_idPedidoItem[0]->IDPEDIDOITEM;
+  }
+
+  public static function inserir($idPedido, $idProduto, $quantidade, $valor, $componentes) {
     $sql = "
       INSERT INTO `pedidoitem` (`IDPEDIDO`, `IDPEDIDOITEM`, `IDPRODUTO`, `QUANTIDADE`, `VALOR`)
       VALUES (
@@ -37,5 +52,16 @@ class PedidoItemDao {
       );
     ";
     Dao::executar($sql);
+
+    $ultimoIdItemPedido = PedidoItemDao::obterUltimoIdItemPedido($idPedido, $idProduto, $quantidade, $valor);
+
+    foreach ($componentes as $componente) {
+      foreach ($componente->componenteItems as $componenteItem) {
+        if ($componenteItem->selecionado == true) {
+          PedidoItemComponenteDao::inserir($idPedido, $ultimoIdItemPedido, $componente->idComponente, $componenteItem->idComponenteItem);
+        }
+      }
+    }
+
   }
 }
