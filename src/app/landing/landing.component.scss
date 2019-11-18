@@ -45,13 +45,22 @@ main {
   }
 
   .depoimentos {
+    padding: 24px;
+
+    @media #{$break-lg-screen} {
+      padding: 0;
+    }
+
+    section {
+      overflow-x: auto;
+      padding: 24px 0;
+    }
 
     h2 {
       color: mat-color($theme-app-primary);
     }
 
     mat-card {
-      height: 300px;
       background-color: mat-color($theme-app-background);
 
       mat-card-title {

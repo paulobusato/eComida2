@@ -8,9 +8,9 @@
   <section class="frase" fxLayout fxLayoutAlign="center center">
     <h1>eComida</h1>
   </section>
-  <section class="depoimentos" fxLayout="column" fxLayoutAlign="start center">
+  <section class="depoimentos" fxLayout="column">
     <h2>Depoimentos</h2>
-    <section fxLayout fxLayoutGap="24px">
+    <section fxLayout="row nowrap" fxLayoutGap="24px">
       <mat-card *ngFor="let depoimento of depoimentos" fxLayout="column" fxLayoutAlign="center center">
         <mat-card-title>"{{depoimento.mensagem}}"</mat-card-title>
         <mat-card-subtitle>{{depoimento.estabelecimentoNomeFantasia}}</mat-card-subtitle>
