@@ -1,11 +1,9 @@
 @import 'src/variables.scss';
 
 main {
-  margin-top: 81px;
-  margin-bottom: 100px;
+  padding: 81px 48px;
   background-color: mat-color($theme-app-light);
-  height: 100%;
-  padding: 10%;
+  height: calc(100% - 243px);
 
   mat-form-field {
     width: 100%;
