@@ -25,9 +25,9 @@
       <mat-icon>add</mat-icon>
     </button>
   </nav>
-  <!-- <button type="submit" mat-raised-button color="primary">Adicionar</button> -->
   <button type="submit" mat-fab (click)="onSubmit()">
     <mat-icon>check</mat-icon>
   </button>
 </form>
-<app-bottom-navigation></app-bottom-navigation>
+<app-bottom-navigation fxShow fxHide.gt-sm></app-bottom-navigation>
+<app-footer fxHide fxShow.gt-sm></app-footer>
