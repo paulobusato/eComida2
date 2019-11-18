@@ -12,6 +12,10 @@ header {
   mat-toolbar {
     height: 100%;
 
+    h1 {
+      text-align: center;
+    }
+
     h1, mat-icon {
       font-size: 48px;
       cursor: pointer;
