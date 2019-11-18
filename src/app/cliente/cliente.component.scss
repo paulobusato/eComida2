@@ -2,8 +2,11 @@
 
 main {
   margin-top: 100px;
-  margin-left: 100px;
-  margin-right: 100px;
+
+  @media #{$break-lg-screen} {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
 }
 
 h3 {
