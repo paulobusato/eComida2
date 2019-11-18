@@ -15,30 +15,13 @@ export class EstabelecimentoService {
     return this.http.get<Estabelecimento[]>(this.url);
   }
 
-  addEstabelecimento(estabelecimento: Estabelecimento) {
-    const { razaoSocial, nomeFantasia, cnpj, status, email, senha, telefone, cep, logradouro,
-            numero, bairro, cidade, uf } = estabelecimento;
-    console.log(nomeFantasia);
-    return this.http.post<Estabelecimento>(this.url,
-        new HttpParams()
-          .set('razaoSocial', razaoSocial)
-          .set('nomeFantasia', nomeFantasia)
-          .set('cnpj', cnpj.toString())
-          .set('status', status)
-          .set('email', email)
-          .set('senha', senha)
-          .set('telefone', telefone.toString())
-          .set('cep', cep.toString())
-          .set('logradouro', logradouro)
-          .set('numero', numero.toString())
-          .set('bairro', bairro)
-          .set('cidade', cidade)
-          .set('uf', uf)
-          .toString(),
-          {
-            headers: new HttpHeaders()
-              .set('Content-Type', 'application/x-www-form-urlencoded')
-          }
-      );
+  addEstabelecimento(estabelecimento: Estabelecimento): Observable<any> {
+    return this.http.post(
+      this.url,
+      JSON.stringify(estabelecimento),
+      {
+        headers: new HttpHeaders().set('Content-Type', 'application/json'),
+      },
+    );
   }
 }

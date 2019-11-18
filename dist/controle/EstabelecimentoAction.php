@@ -1,13 +1,19 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: *');
+header('Access-Control-Request-Headers: *');
+header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: GET,PUT,POST,DELETE,PATCH,OPTIONS');
+
 require_once '../modelo/dao/Dao.php';
 require_once '../modelo/entidade/Estabelecimento.php';
 require_once '../modelo/dao/EstabelecimentoDao.php';
 
-header('Access-Control-Allow-Origin: http://localhost:4200');
-header('Content-type: application/json');
-
 $method = $_SERVER["REQUEST_METHOD"];
+
+$json_str = file_get_contents('php://input');
+$json_obj = json_decode($json_str);
 
 switch ($method) {
   case 'GET':
@@ -17,19 +23,21 @@ switch ($method) {
   case 'POST':
     $estabelecimento = new Estabelecimento(
       '',
-      $_POST["razaoSocial"],
-      $_POST["nomeFantasia"],
-      $_POST["cnpj"],
-      $_POST["status"],
-      $_POST["email"],
-      $_POST["senha"],
-      $_POST["telefone"],
-      $_POST["cep"],
-      $_POST["logradouro"],
-      $_POST["numero"],
-      $_POST["bairro"],
-      $_POST["cidade"],
-      $_POST["uf"]
+      $json_obj->razaoSocial,
+      $json_obj->nomeFantasia,
+      $json_obj->cnpj,
+      $json_obj->status,
+      '0',
+      '',
+      $json_obj->email,
+      $json_obj->senha,
+      $json_obj->telefone,
+      $json_obj->cep,
+      $json_obj->logradouro,
+      $json_obj->numero,
+      $json_obj->bairro,
+      $json_obj->cidade,
+      $json_obj->uf
     );
     EstabelecimentoDao::inserir($estabelecimento);
     echo json_encode("true");

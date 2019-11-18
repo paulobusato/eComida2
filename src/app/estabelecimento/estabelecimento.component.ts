@@ -40,7 +40,7 @@ export class EstabelecimentoComponent implements OnInit {
 
   onSubmit(): void {
     this.estabelecimentoService.addEstabelecimento({ ...this.estabelecimentoForm.value , status: 'P' }).subscribe(
-      () => console.log('Cadastrado com successo'),
+      next => console.log(next),
       error => console.log(error)
     );
   }

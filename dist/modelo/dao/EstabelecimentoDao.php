@@ -46,12 +46,14 @@ class EstabelecimentoDao {
 
   public static function inserir($estabelecimento) {
     $sql = "
-      INSERT INTO `estabelecimento` (`RAZAOSOCIAL`, `NOMEFANTASIA`, `CNPJ`, `STATUS`, `EMAIL`, `SENHA`, `TELEFONE`, `CEP`, `LOGRADOURO`, `NUMERO`, `BAIRRO`, `CIDADE`, `UF`)
+      INSERT INTO `estabelecimento` (`RAZAOSOCIAL`, `NOMEFANTASIA`, `CNPJ`, `STATUS`, `RATING`, `IMGURL`, `EMAIL`, `SENHA`, `TELEFONE`, `CEP`, `LOGRADOURO`, `NUMERO`, `BAIRRO`, `CIDADE`, `UF`)
       VALUES (
         '$estabelecimento->razaoSocial',
         '$estabelecimento->nomeFantasia',
         '$estabelecimento->cnpj',
         '$estabelecimento->status',
+        '$estabelecimento->rating',
+        '$estabelecimento->imgUrl',
         '$estabelecimento->email',
         '$estabelecimento->senha',
         '$estabelecimento->telefone',
