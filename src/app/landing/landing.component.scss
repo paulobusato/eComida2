@@ -64,6 +64,7 @@ main {
     background-color: #4caf50;
     height: 279px;
     padding: 24px;
+    margin-bottom: 30px;
 
     @media #{$break-lg-screen} {
       height: 250px;
