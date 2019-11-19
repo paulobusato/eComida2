@@ -4,10 +4,20 @@
     <h1 [routerLink]="['/landing']">eComida</h1>
   </mat-toolbar>
 </header>
-<main fxLayout fxLayoutAlign="center start">
+<main fxLayout="column" fxLayoutAlign="start center">
+  <form id="form-login" [formGroup]="estabelecimentoLoginForm" (ngSubmit)="onLogin()">
+    <h2>Já possui um cadastro?</h2>
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Senha" formControlName="senha">
+    </mat-form-field>
+    <button type="submit" mat-stroked-button color="primary">Entrar</button>
+  </form>
+
   <form [formGroup]="estabelecimentoForm" (ngSubmit)="onSubmit()"
-        fxLayout.xs="column" fxLayoutAlign.xs="start center" fxFlex.xs="300px"
-        gdColumns.lg="repeat(2, 400px)" gdGap.lg="24px" fxLayoutAlign.lg="center"
+        gdColumns.gt-sm="repeat(2, 400px)" gdGap.gt-sm="24px" fxLayoutAlign.gt-sm="center"
   >
     <h2 gdColumn.lg="1 / 3">Cadastro</h2>
     <div gdColumn.lg="1">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EstabelecimentoService } from './estabelecimento.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-estabelecimento',
@@ -10,11 +11,13 @@ import { Location } from '@angular/common';
 })
 export class EstabelecimentoComponent implements OnInit {
   estabelecimentoForm: FormGroup;
+  estabelecimentoLoginForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private estabelecimentoService: EstabelecimentoService,
     private location: Location,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -32,6 +35,11 @@ export class EstabelecimentoComponent implements OnInit {
       cidade: [''],
       uf: [''],
     });
+
+    this.estabelecimentoLoginForm = this.fb.group({
+      email: [''],
+      senha: [''],
+    });
   }
 
   onBack(): void {
@@ -43,6 +51,10 @@ export class EstabelecimentoComponent implements OnInit {
       next => console.log(next),
       error => console.log(error)
     );
+  }
+
+  onLogin(): void {
+    this.router.navigate(['/administrativo']);
   }
 
 }
