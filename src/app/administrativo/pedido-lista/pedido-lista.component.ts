@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Observable } from 'rxjs';
+import { Pedido } from 'src/app/cliente/cliente.type';
+import { AdministrativoService } from '../administrativo.service';
 
 interface PedidoLista {
   nomeCliente: string;
@@ -37,17 +40,25 @@ const PEDIDOS: PedidoLista[] = [
 export class PedidoListaComponent implements OnInit {
   colunaNomes: string[] = ['nomeCliente', 'logradouro', 'numero', 'bairro', 'cidade', 'status'];
   fonteDados: MatTableDataSource<PedidoLista>;
+  pedidos$: Observable<Pedido[]>;
 
   @ViewChild(MatPaginator, {static: true}) paginador: MatPaginator;
   @ViewChild(MatSort, {static: true}) ordenacao: MatSort;
 
-  constructor() {
+  constructor(
+    private administrativoService: AdministrativoService,
+  ) {
     this.fonteDados = new MatTableDataSource(PEDIDOS);
   }
 
   ngOnInit() {
     this.fonteDados.paginator = this.paginador;
     this.fonteDados.sort = this.ordenacao;
+
+    this.administrativoService.obterPedidos(1).subscribe(
+      next => console.log(next),
+      error => console.log(error)
+    );
   }
 
   aplicarFiltro(valor: string) {
