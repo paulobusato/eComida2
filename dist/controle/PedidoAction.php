@@ -22,20 +22,20 @@ $method = $_SERVER["REQUEST_METHOD"];
 $json_str = file_get_contents('php://input');
 $json_obj = json_decode($json_str);
 
-$form = [
-  "idEstabelecimento" => $json_obj->produtos[0]->estabelecimento->idEstabelecimento,
-  "idCliente" => 1,
-  "pedidoItens" => $json_obj->produtos,
-];
+// $form = [
+//   "idEstabelecimento" => $json_obj->produtos[0]->estabelecimento->idEstabelecimento,
+//   "idCliente" => 1,
+//   "pedidoItens" => $json_obj->produtos,
+// ];
 
 switch ($method) {
   case 'GET':
     break;
   case 'POST':
     PedidoDao::inserir(
-      $form["idEstabelecimento"],
-      $form["idCliente"],
-      $form["pedidoItens"]
+      $json_obj->produtos[0]->estabelecimento->idEstabelecimento,
+      1,
+      $json_obj->produtos
     );
     break;
   default:
