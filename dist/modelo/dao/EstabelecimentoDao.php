@@ -1,5 +1,7 @@
 <?php
 
+require_once '../modelo/entidade/Estabelecimento.php';
+
 class EstabelecimentoDao {
 
   public static function consultar($idEstabelecimento = '') {
