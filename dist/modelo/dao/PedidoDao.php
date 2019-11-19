@@ -1,29 +1,60 @@
 <?php
 
-require_once('Dao.php');
-require_once('PedidoItemDao.php');
+require_once 'Dao.php';
+require_once '../modelo/entidade/Pedido.php';
+require_once 'PedidoItemDao.php';
+require_once 'ClienteDao.php';
+require_once 'EstabelecimentoDao.php';
 
 
 class PedidoDao {
 
-  public static function consultar($idPedido) {
-    $sql = "
-      SELECT *
-      FROM PEDIDO P
-      WHERE P.IDPEDIDO = {$idPedido}
-    ";
+  public static function consultar($idEstabelecimento = '', $idPedido = '') {
+    $pedidos = array();
+
+    if ($idEstabelecimento != '') {
+      $sql = "
+        SELECT *
+        FROM PEDIDO P
+        WHERE P.IDESTABELECIMENTO = {$idEstabelecimento}
+      ";
+    } else if ($idPedido != '') {
+      $sql = "
+        SELECT *
+        FROM PEDIDO P
+        WHERE P.IDPEDIDO = {$idPedido}
+      ";
+    } else {
+      $sql = "
+        SELECT *
+        FROM PEDIDO P
+      ";
+    }
 
     $db_pedidos = Dao::consultar($sql);
     foreach ($db_pedidos as $db_pedido) {
-      return new Pedido(
-        $db_pedido->IDPEDIDO,
-        EstabelecimentoDao::consultar($db_pedido->estabelecimento->idEstabelecimento),
-        ClienteDao::consultar($db_pedido->cliente->idCliente),
-        '',
-        $db_pedido->DATA,
-        $db_pedido->VALOR
-      );
+      if ($idPedido != '') {
+        return new Pedido(
+          $db_pedido->IDPEDIDO,
+          EstabelecimentoDao::consultar($db_pedido->IDESTABELECIMENTO),
+          ClienteDao::consultar($db_pedido->IDCLIENTE),
+          '',
+          $db_pedido->DATA,
+          $db_pedido->VALOR
+        );
+      } else {
+        array_push($pedidos, new Pedido(
+          $db_pedido->IDPEDIDO,
+          EstabelecimentoDao::consultar($db_pedido->IDESTABELECIMENTO),
+          ClienteDao::consultar($db_pedido->IDCLIENTE),
+          '',
+          $db_pedido->DATA,
+          $db_pedido->VALOR
+        ));
+      }
     }
+
+    return $pedidos;
   }
 
   public static function obterUltimoIDPedido($idEstabelecimento, $idCliente, $valor) {
