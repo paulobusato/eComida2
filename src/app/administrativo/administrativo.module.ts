@@ -9,8 +9,9 @@ import { EstabelecimentoCadastroComponent } from './estabelecimento-cadastro/est
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { EstabelecimentoHeaderComponent } from './estabelecimento-header/estabelecimento-header.component';
-import { MatToolbarModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,8 +28,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     AdministrativoRoutingModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
   ]
 })
 export class AdministrativoModule { }

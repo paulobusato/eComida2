@@ -17,8 +17,11 @@ $json_obj = json_decode($json_str);
 
 switch ($method) {
   case 'GET':
-    $estabelecimentos = EstabelecimentoDao::consultar();
-    echo json_encode($estabelecimentos);
+    if (isset($_GET["idEstabelecimento"])) {
+      echo json_encode(EstabelecimentoDao::consultar($_GET["idEstabelecimento"]));
+    } else {
+      echo json_encode(EstabelecimentoDao::consultar());
+    }
     break;
   case 'POST':
     $estabelecimento = new Estabelecimento(

@@ -1,2 +1,51 @@
 <app-estabelecimento-header></app-estabelecimento-header>
-<p>estabelecimento-cadastro works!</p>
+<form [formGroup]="estabelecimentoForm" gdColumns="repeat(2, 500px)">
+    <h2 gdColumn="1 / 3"
+        fxLayout
+        fxLayoutAlign="center center"
+    >Dados Cadastrais</h2>
+  <section fxLayout="column" fxLayoutAlign="start center">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Razão Social" formControlName="razaoSocial">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Nome Fantasia" formControlName="nomeFantasia">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="CNPJ" formControlName="cnpj">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Senha" formControlName="senha">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Telefone" formControlName="telefone">
+    </mat-form-field>
+  </section>
+  <section fxLayout="column" fxLayoutAlign="start center">
+    <mat-form-field>
+      <input type="number" matInput placeholder="CEP" formControlName="cep">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Logradouro" formControlName="logradouro">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Numero" formControlName="numero">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Bairro" formControlName="bairro">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Cidade" formControlName="cidade">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="UF" formControlName="uf">
+    </mat-form-field>
+  </section>
+  <nav gdColumn="1 / 3" fxLayout fxLayoutAlign="center" fxLayoutGap="24px">
+    <button type="button" mat-stroked-button color="warn">Cancelar</button>
+    <button type="submit" mat-stroked-button color="primary">Atualizar</button>
+  </nav>
+</form>
