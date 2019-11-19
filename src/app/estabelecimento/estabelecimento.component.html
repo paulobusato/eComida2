@@ -19,8 +19,8 @@
   <form [formGroup]="estabelecimentoForm" (ngSubmit)="onSubmit()"
         gdColumns.gt-sm="repeat(2, 400px)" gdGap.gt-sm="24px" fxLayoutAlign.gt-sm="center"
   >
-    <h2 gdColumn.lg="1 / 3">Cadastro</h2>
-    <div gdColumn.lg="1">
+    <h2 gdColumn.gt-sm="1 / 3">Cadastro</h2>
+    <div gdColumn.gt-sm="1">
       <mat-form-field>
         <input type="text" matInput placeholder="Razão Social" formControlName="razaoSocial">
       </mat-form-field>
@@ -40,7 +40,7 @@
         <input type="number" matInput placeholder="Telefone" formControlName="telefone">
       </mat-form-field>
     </div>
-    <div gdColumn.lg="2">
+    <div gdColumn.gt-sm="2">
       <mat-form-field>
         <input type="number" matInput placeholder="CEP" formControlName="cep">
       </mat-form-field>
@@ -60,7 +60,7 @@
         <input type="text" matInput placeholder="UF" formControlName="uf">
       </mat-form-field>
     </div>
-    <button type="submit" mat-stroked-button color="primary" gdColumn.lg="1 / 3">Cadastrar</button>
+    <button type="submit" mat-stroked-button color="primary" gdColumn.gt-sm="1 / 3">Cadastrar</button>
   </form>
 </main>
 <app-footer></app-footer>
