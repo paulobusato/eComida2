@@ -8,13 +8,27 @@ import { PedidoEditarComponent } from './pedido-editar/pedido-editar.component';
 import { EstabelecimentoCadastroComponent } from './estabelecimento-cadastro/estabelecimento-cadastro.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
+import { EstabelecimentoHeaderComponent } from './estabelecimento-header/estabelecimento-header.component';
+import { MatToolbarModule, MatButtonModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
-  declarations: [AdministrativoComponent, PedidoListaComponent, PedidoEditarComponent, EstabelecimentoCadastroComponent, ProdutoListaComponent, ProdutoEditarComponent],
+  declarations: [
+    AdministrativoComponent,
+    PedidoListaComponent,
+    PedidoEditarComponent,
+    EstabelecimentoCadastroComponent,
+    ProdutoListaComponent,
+    ProdutoEditarComponent,
+    EstabelecimentoHeaderComponent
+  ],
   imports: [
     CommonModule,
-    AdministrativoRoutingModule
+    AdministrativoRoutingModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
   ]
 })
 export class AdministrativoModule { }

@@ -1,0 +1,10 @@
+<header>
+  <mat-toolbar color="primary">
+      <h1 [routerLink]="['/administrativo']">eComida</h1>
+      <nav fxLayout fxLayoutAlign="space-between">
+        <button type="button" mat-button [routerLink]="['/administrativo/pedido']">PEDIDOS</button>
+        <button type="button" mat-button [routerLink]="['/administrativo/produto']">PRODUTOS</button>
+        <button type="button" mat-button [routerLink]="['/administrativo/estabelecimento']">ESTABELECIMENTO</button>
+      </nav>
+  </mat-toolbar>
+</header>
