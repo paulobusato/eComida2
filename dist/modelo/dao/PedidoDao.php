@@ -38,8 +38,8 @@ class PedidoDao {
           $db_pedido->IDPEDIDO,
           EstabelecimentoDao::consultar($db_pedido->IDESTABELECIMENTO),
           ClienteDao::consultar($db_pedido->IDCLIENTE),
-          '',
           $db_pedido->DATA,
+          PedidoItemDao::consultar($db_pedido->IDPEDIDO),
           $db_pedido->VALOR
         );
       } else {
@@ -47,8 +47,8 @@ class PedidoDao {
           $db_pedido->IDPEDIDO,
           EstabelecimentoDao::consultar($db_pedido->IDESTABELECIMENTO),
           ClienteDao::consultar($db_pedido->IDCLIENTE),
-          '',
           $db_pedido->DATA,
+          PedidoItemDao::consultar($db_pedido->IDPEDIDO),
           $db_pedido->VALOR
         ));
       }

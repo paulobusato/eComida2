@@ -1,6 +1,7 @@
 <?php
 
 require_once 'PedidoItemComponenteDao.php';
+require_once '../modelo/entidade/PedidoItem.php';
 
 class PedidoItemDao {
 
