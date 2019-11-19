@@ -9,7 +9,7 @@ import { EstabelecimentoCadastroComponent } from './estabelecimento-cadastro/est
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { EstabelecimentoHeaderComponent } from './estabelecimento-header/estabelecimento-header.component';
-import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSelectModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -37,6 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSelectModule,
   ]
 })
 export class AdministrativoModule { }
