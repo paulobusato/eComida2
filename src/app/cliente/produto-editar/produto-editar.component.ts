@@ -36,7 +36,7 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
   onAdd(): void {
     this.pedidoItem = {
       ...this.pedidoItem,
-      quantidade: this.pedidoItem.quantidade + 1,
+      quantidade: +this.pedidoItem.quantidade + 1,
     };
   }
 
@@ -44,7 +44,7 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
     if (this.pedidoItem.quantidade > 1) {
       this.pedidoItem = {
         ...this.pedidoItem,
-        quantidade: this.pedidoItem.quantidade - 1,
+        quantidade: +this.pedidoItem.quantidade - 1,
       };
     }
   }
@@ -81,8 +81,6 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
         };
       }
     }
-
-    console.log(this.clienteService.pedido);
 
     this.location.back();
   }
