@@ -3,6 +3,7 @@ import { Produto, Componente, ComponenteItem, PedidoItem } from '../cliente.type
 import { ClienteService } from '../cliente.service';
 import { MatCheckboxChange } from '@angular/material';
 import { Location } from '@angular/common';
+import * as cloneDeep from 'lodash.clonedeep';
 
 @Component({
   selector: 'app-produto-editar',
@@ -52,10 +53,10 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (!this.clienteService.pedido) {
       this.clienteService.pedido = {
-        estabelecimento: this.clienteService.estabelecimentoAtivo,
-        cliente: this.clienteService.clienteAtivo,
+        estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
+        cliente: cloneDeep(this.clienteService.clienteAtivo),
         data: new Date(),
-        pedidoItens: [ { ...this.pedidoItem } ],
+        pedidoItens: [ { ...cloneDeep(this.pedidoItem) } ],
         valor: 1000,
       };
     } else {
