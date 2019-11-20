@@ -9,7 +9,8 @@ export interface Categoria {
 }
 
 export interface Estabelecimento {
-  idEstabelecimento: number;
+  idEstabelecimento?: number;
+  produtos: Produto[];
   razaoSocial: string;
   nomeFantasia: string;
   cnpj: number;
@@ -28,14 +29,14 @@ export interface Estabelecimento {
 }
 
 export interface ComponenteItem {
-  idComponenteItem: number;
+  idComponenteItem?: number;
   descricao: string;
   valor: number;
   selecionado?: boolean;
 }
 
 export interface Componente {
-  idComponente: number;
+  idComponente?: number;
   descricao: string;
   quantidade: number;
   obrigatorio: boolean;
@@ -44,11 +45,38 @@ export interface Componente {
 }
 
 export interface Pedido {
-  produtos: Produto[];
+  idPedido?: number;
+  estabelecimento: Estabelecimento;
+  cliente: Cliente;
+  data: Date;
+  pedidoItens: PedidoItem[];
+  valor: number;
+}
+
+export interface PedidoItem {
+  idPedidoItem?: number;
+  produto: Produto;
+  quantidade: number;
+  valor: number;
+}
+
+export interface Cliente {
+  idCliente?: number;
+  nome: string;
+  cpf: string;
+  email: string;
+  senha: string;
+  telefone: string;
+  cep: string;
+  logradouro: string;
+  numero: number;
+  bairro: string;
+  cidade: string;
+  uf: string;
 }
 
 export interface Produto {
-  idProduto: number;
+  idProduto?: number;
   estabelecimento: Estabelecimento;
   titulo: string;
   descricao: string;

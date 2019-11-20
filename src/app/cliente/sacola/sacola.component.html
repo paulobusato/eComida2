@@ -1,16 +1,16 @@
 <app-header></app-header>
 <form>
-  <main fxLayout="column" fxLayoutAlign="center center" *ngIf="pedido.produtos.length > 0">
-    <h3>{{pedido.produtos[0].estabelecimento.razaoSocial}}</h3>
+  <main fxLayout="column" fxLayoutAlign="center center" *ngIf="!!pedido?.pedidoItens">
+    <h3>{{pedido.estabelecimento.razaoSocial}}</h3>
     <p>Tempo de Espera: 20 minutos</p>
     <section fxLayout="column" fxLayoutGap="12px">
-      <mat-card *ngFor="let produto of pedido.produtos">
-          <mat-card-title>{{produto.titulo}}</mat-card-title>
-          <mat-card-subtitle>{{produto.descricao}}</mat-card-subtitle>
-          <mat-card-content>R$ {{produto.valor}}</mat-card-content>
+      <mat-card *ngFor="let pedidoItem of pedido.pedidoItens">
+          <mat-card-title>{{pedidoItem.produto.titulo}}</mat-card-title>
+          <mat-card-subtitle>{{pedidoItem.produto.descricao}}</mat-card-subtitle>
+          <mat-card-content>R$ {{pedidoItem.produto.valor}}</mat-card-content>
           <mat-card-actions>
-            <button type="button" mat-stroked-button color="danger" (click)="onExcluirPedido(produto)">Excluir</button>
-            <button type="button" mat-stroked-button color="warn" (click)="onEditarPedido(produto)">Editar</button>
+            <button type="button" mat-stroked-button color="danger" (click)="onExcluirPedido(pedidoItem)">Excluir</button>
+            <button type="button" mat-stroked-button color="warn" (click)="onEditarPedido(pedidoItem)">Editar</button>
           </mat-card-actions>
       </mat-card>
     </section>
@@ -19,7 +19,7 @@
       <button type="button" mat-raised-button color="primary" (click)="onSubmit()">Confirmar</button>
     </nav>
   </main>
-  <section fxLayout="column" fxLayoutAlign="center center" *ngIf="pedido.produtos.length == 0">
+  <section fxLayout="column" fxLayoutAlign="center center" *ngIf="!!!pedido?.pedidoItens">
     <h2>Sacola vazia :(</h2>
     <button type="button" mat-stroked-button [routerLink]="['/cliente']">Escolher uma comida</button>
   </section>

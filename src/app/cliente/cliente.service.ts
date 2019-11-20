@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Categoria, Estabelecimento, Produto, Pedido } from './cliente.type';
+import { Categoria, Estabelecimento, Produto, Pedido, Cliente } from './cliente.type';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 })
 export class ClienteService {
   produtoAtivado: Produto;
-  pedido: Pedido = {
-    produtos: [],
-  };
+  estabelecimentoAtivo: Estabelecimento;
+  clienteAtivo: Cliente;
+  pedido: Pedido;
 
   constructor(
     private http: HttpClient
@@ -20,11 +20,17 @@ export class ClienteService {
     return this.http.get<Categoria[]>('http://localhost/eComida2/dist/controle/categoriaaction.php');
   }
 
-  obterEstabelecimentos(): Observable<Estabelecimento[]> {
-    return this.http.get<Estabelecimento[]>('http://localhost/eComida2/dist/controle/estabelecimentoaction.php');
+  obterEstabelecimentos(idEstabelecimento?: number): Observable<Estabelecimento[]> {
+    if (idEstabelecimento) {
+      return this.http.get<Estabelecimento[]>(
+        `http://localhost/eComida2/dist/controle/estabelecimentoaction.php?idEstabelecimento=${idEstabelecimento}`
+      );
+    } else {
+      return this.http.get<Estabelecimento[]>('http://localhost/eComida2/dist/controle/estabelecimentoaction.php');
+    }
   }
 
-  obterProdutos(idEstabelecimento: number): Observable<Produto[]> {
+  obterProdutos(idEstabelecimento?: number): Observable<Produto[]> {
     return this.http.get<Produto[]>(`http://localhost/eComida2/dist/controle/produtoaction.php?idEstabelecimento=${idEstabelecimento}`);
   }
 

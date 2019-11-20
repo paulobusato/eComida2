@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pedido, Produto } from '../cliente.type';
+import { Pedido, Produto, PedidoItem } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -22,18 +22,18 @@ export class SacolaComponent implements OnInit {
     this.pedido = this.clienteService.pedido;
   }
 
-  onExcluirPedido(produto: Produto): void {
-    this.clienteService.pedido.produtos = this.clienteService.pedido.produtos
-      .filter(e => e.idProduto !== produto.idProduto);
+  onExcluirPedido(pedidoItem: PedidoItem): void {
+    this.clienteService.pedido.pedidoItens = this.clienteService.pedido.pedidoItens
+      .filter(e => e.idPedidoItem !== pedidoItem.idPedidoItem);
   }
 
-  onEditarPedido(produto: Produto): void {
-    this.clienteService.produtoAtivado = produto;
+  onEditarPedido(pedidoItem: PedidoItem): void {
+    this.clienteService.produtoAtivado = pedidoItem.produto;
     this.router.navigate(['/cliente/produto-editar']);
   }
 
   onCancelar(): void {
-    this.clienteService.pedido = {produtos: []};
+    this.clienteService.pedido = null;
     this.location.back();
   }
 

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Produto, Componente, ComponenteItem } from '../cliente.type';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Produto, Componente, ComponenteItem, PedidoItem } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { MatCheckboxChange } from '@angular/material';
 import { Location } from '@angular/common';
@@ -9,9 +9,8 @@ import { Location } from '@angular/common';
   templateUrl: './produto-editar.component.html',
   styleUrls: ['./produto-editar.component.scss']
 })
-export class ProdutoEditarComponent implements OnInit {
-  produto: Produto;
-  quantidade = 1;
+export class ProdutoEditarComponent implements OnInit, OnDestroy {
+  pedidoItem: PedidoItem;
 
   constructor(
     private clienteService: ClienteService,
@@ -19,36 +18,72 @@ export class ProdutoEditarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.produto = {...this.clienteService.produtoAtivado};
+    if (this.clienteService.pedido && this.clienteService.pedido.pedidoItens) {
+      this.pedidoItem = {
+        produto: { ...this.clienteService.produtoAtivado },
+        quantidade: this.clienteService.produtoAtivado.quantidade,
+        valor: this.clienteService.produtoAtivado.valor,
+      };
+    } else {
+      this.pedidoItem = {
+        produto: { ...this.clienteService.produtoAtivado },
+        quantidade: 1,
+        valor: 100,
+      };
+    }
   }
 
   onAdd(): void {
-    this.quantidade++;
+    this.pedidoItem = {
+      ...this.pedidoItem,
+      quantidade: this.pedidoItem.quantidade + 1,
+    };
   }
 
   onRemove(): void {
-    if (this.quantidade > 1) {
-      this.quantidade--;
+    if (this.pedidoItem.quantidade > 1) {
+      this.pedidoItem = {
+        ...this.pedidoItem,
+        quantidade: this.pedidoItem.quantidade - 1,
+      };
     }
   }
 
   onSubmit(): void {
-    const produtoEmEdicao = this.clienteService.pedido.produtos
-      .find(e => e.idProduto === this.produto.idProduto);
-
-    if (produtoEmEdicao) {
-      produtoEmEdicao.componentes = [
-        ...this.produto.componentes
-      ];
-    } else {
+    if (!this.clienteService.pedido) {
       this.clienteService.pedido = {
-        produtos: [
-          ...this.clienteService.pedido.produtos,
-          {...this.produto},
-        ],
+        estabelecimento: this.clienteService.estabelecimentoAtivo,
+        cliente: this.clienteService.clienteAtivo,
+        data: new Date(),
+        pedidoItens: [ { ...this.pedidoItem } ],
+        valor: 1000,
       };
+    } else {
+      const modoEdicao = !!this.clienteService.pedido.pedidoItens
+        .filter(e => e.idPedidoItem === this.pedidoItem.idPedidoItem);
+
+      if (modoEdicao) {
+        this.clienteService.pedido = {
+          ...this.clienteService.pedido,
+          pedidoItens: [
+            ...this.clienteService.pedido.pedidoItens
+                .filter(e => e.idPedidoItem !== this.pedidoItem.idPedidoItem),
+            { ...this.pedidoItem },
+          ],
+        };
+      } else {
+        this.clienteService.pedido = {
+          ...this.clienteService.pedido,
+          pedidoItens: [
+            ...this.clienteService.pedido.pedidoItens,
+            { ... this.pedidoItem },
+          ],
+        };
+      }
     }
-    
+
+    console.log(this.clienteService.pedido);
+
     this.location.back();
   }
 
@@ -61,10 +96,14 @@ export class ProdutoEditarComponent implements OnInit {
         .filter(e => e.selecionado === true).length;
 
       if (componenteItensSelecionados === 1) {
-        componente.selecionado = false;  
+        componente.selecionado = false;
       }
-      
+
       componenteItem.selecionado = false;
     }
+  }
+
+  ngOnDestroy() {
+    this.clienteService.estabelecimentoAtivo = null;
   }
 }
