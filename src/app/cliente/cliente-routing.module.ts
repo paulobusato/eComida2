@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'cliente', component: ClienteComponent},
   {path: 'cliente/login', component: ClienteLoginComponent},
   {path: 'cliente/produto-lista/:idEstabelecimento', component: ProdutoListaComponent},
-  {path: 'cliente/produto-editar', component: ProdutoEditarComponent, canActivate: [ProdutoAtivoGuard]},
+  {path: 'cliente/produto-editar/:idxProduto', component: ProdutoEditarComponent, canActivate: [ProdutoAtivoGuard]},
   {path: 'cliente/sacola', component: SacolaComponent},
   {path: 'cliente/search', component: SearchComponent},
 ];
