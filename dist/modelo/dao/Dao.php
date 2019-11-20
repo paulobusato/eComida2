@@ -103,7 +103,6 @@ class Dao extends Conexao {
         TITULO VARCHAR(255) NOT NULL,
         DESCRICAO VARCHAR(255),
         VALOR FLOAT NOT NULL,
-        QUANTIDADE INT NOT NULL,
         IMGURL VARCHAR(255) NOT NULL,
         PRIMARY KEY (IDPRODUTO),
         FOREIGN KEY (IDESTABELECIMENTO)
@@ -182,7 +181,7 @@ class Dao extends Conexao {
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Lanches', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
     parent::executar("INSERT INTO `categoria` (`IDCATEGORIA`, `DESCRICAO`, `IMAGEMURL`) VALUES (NULL, 'Salada', 'https://p2.trrsf.com/image/fget/cf/940/0/images.terra.com/2018/04/21/salada.jpg')");
 
-    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `TITULO`, `DESCRICAO`, `QUANTIDADE`, `VALOR`, `IMGURL`) VALUES (NULL, 1, 'Combo p - indicamos para 1 a 2 pessoas', 'Caixa p + 1 acompanhamento + 1 molho', '39.10', '3', 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg')");
+    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `TITULO`, `DESCRICAO`, `VALOR`, `IMGURL`) VALUES (NULL, 1, 'Combo p - indicamos para 1 a 2 pessoas', 'Caixa p + 1 acompanhamento + 1 molho', '39.10', 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg')");
     parent::executar("INSERT INTO `componente` (`IDPRODUTO`, `IDCOMPONENTE`, `DESCRICAO`, `QUANTIDADE`, `OBRIGATORIO`) VALUES ('1', NULL, 'Escolha seu frango frito crocante', '1', 'S')");
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', '1', NULL, 'Tiras de filé de coxa e sobrecoxa', '0')");
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', '1', NULL, 'Peito + drumet', '0')");
@@ -195,7 +194,7 @@ class Dao extends Conexao {
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', '2', NULL, 'Onion rings g', '15.00')");
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('1', '2', NULL, 'Arroz branco g', '5.00')");
 
-    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `TITULO`, `DESCRICAO`, `QUANTIDADE`, `VALOR`, `IMGURL`) VALUES (NULL, 1, '4Combo p - indicamos para 1 a 2 pessoas', 'Caixa p + 1 acompanhamento + 1 molho, coca cola 1', '39.10', '3', 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg')");
+    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `TITULO`, `DESCRICAO`, `VALOR`, `IMGURL`) VALUES (NULL, 1, '4Combo p - indicamos para 1 a 2 pessoas', 'Caixa p + 1 acompanhamento + 1 molho, coca cola 1', '39.10', 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg')");
     parent::executar("INSERT INTO `componente` (`IDPRODUTO`, `IDCOMPONENTE`, `DESCRICAO`, `QUANTIDADE`, `OBRIGATORIO`) VALUES ('2', NULL, 'Escolha seu frango frito crocante', '1', 'S')");
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('2', '1', NULL, 'Tiras de filé de coxa e sobrecoxa', '0')");
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('2', '1', NULL, 'Peito + drumet', '0')");
@@ -208,7 +207,7 @@ class Dao extends Conexao {
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('2', '2', NULL, 'Onion rings g', '15.00')");
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('2', '2', NULL, 'Arroz branco g', '5.00')");
 
-    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `TITULO`, `DESCRICAO`, `QUANTIDADE`, `VALOR`, `IMGURL`) VALUES (NULL, 1, 'Super combo 2x burger', '2 burgers a sua escolha + 1 acompanhamento + refri', '39.10', '3', 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg')");
+    parent::executar("INSERT INTO `produto` (`IDPRODUTO`, `IDESTABELECIMENTO`, `TITULO`, `DESCRICAO`, `VALOR`, `IMGURL`) VALUES (NULL, 1, 'Super combo 2x burger', '2 burgers a sua escolha + 1 acompanhamento + refri', '39.10', 'https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/af7f7d95-85ad-4e08-a2bb-edbb3555fab1/201806062016_40603626.jpg')");
     parent::executar("INSERT INTO `componente` (`IDPRODUTO`, `IDCOMPONENTE`, `DESCRICAO`, `QUANTIDADE`, `OBRIGATORIO`) VALUES ('3', NULL, 'Escolha os 2 burger\'s da promoção', '2', 'S')");
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('3', '1', NULL, 'Raiz prime burger - com Catupiry', '0')");
     parent::executar("INSERT INTO `componenteitem` (`IDPRODUTO`, `IDCOMPONENTE`, `IDCOMPONENTEITEM`, `DESCRICAO`, `VALOR`) VALUES ('3', '1', NULL, 'Onion chicken burger', '0')");

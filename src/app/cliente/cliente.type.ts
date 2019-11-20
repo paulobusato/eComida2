@@ -81,7 +81,6 @@ export interface Produto {
   titulo: string;
   descricao: string;
   valor: number;
-  quantidade: number;
   imgUrl?: string;
   componentes: Componente[];
 }

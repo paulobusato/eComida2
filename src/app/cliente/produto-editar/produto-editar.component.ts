@@ -21,7 +21,7 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
     if (this.clienteService.pedido && this.clienteService.pedido.pedidoItens) {
       this.pedidoItem = {
         produto: { ...this.clienteService.produtoAtivado },
-        quantidade: this.clienteService.produtoAtivado.quantidade,
+        quantidade: 1,
         valor: this.clienteService.produtoAtivado.valor,
       };
     } else {
