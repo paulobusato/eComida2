@@ -55,7 +55,7 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
       estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
       cliente: cloneDeep(this.clienteService.clienteAtivo),
       data: new Date(),
-      pedidoItens: cloneDeep(this.pedidoItem),
+      pedidoItens: [cloneDeep(this.pedidoItem)],
       valor: 100,
     };
     
