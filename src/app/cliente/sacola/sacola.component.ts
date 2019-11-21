@@ -31,7 +31,7 @@ export class SacolaComponent implements OnInit {
     };
   }
 
-  onEditarPedido(pedidoItem: PedidoItem): void {
+  onEditarPedidoItem(pedidoItem: PedidoItem): void {
     this.clienteService.produtoAtivado = pedidoItem.produto;
     this.router.navigate(['/cliente/produto-editar']);
   }
