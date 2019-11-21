@@ -3,6 +3,7 @@ import { Pedido, Produto, PedidoItem } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import * as cloneDeep from 'lodash.clonedeep';
 
 @Component({
   selector: 'app-sacola',
@@ -19,12 +20,15 @@ export class SacolaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.pedido = this.clienteService.pedido;
+    this.pedido = cloneDeep(this.clienteService.pedido);
   }
 
-  onExcluirPedido(pedidoItem: PedidoItem): void {
-    this.clienteService.pedido.pedidoItens = this.clienteService.pedido.pedidoItens
-      .filter(e => e.idPedidoItem !== pedidoItem.idPedidoItem);
+  onExcluirPedidoItem(index: number): void {
+    this.pedido = {
+      ...cloneDeep(this.pedido),
+      pedidoItens: cloneDeep(this.pedido).pedidoItens
+        .filter((pedidoItem: PedidoItem, idx: number) => idx !== index),
+    };
   }
 
   onEditarPedido(pedidoItem: PedidoItem): void {
