@@ -31,9 +31,8 @@ export class SacolaComponent implements OnInit, OnDestroy {
     };
   }
 
-  onEditarPedidoItem(pedidoItem: PedidoItem): void {
-    this.clienteService.produtoAtivado = pedidoItem.produto;
-    this.router.navigate(['/cliente/produto-editar']);
+  onEditarPedidoItem(index: number): void {
+    this.router.navigate(['/cliente/produto-editar'], {queryParams: {idxPedidoItem: index}});
   }
 
   onCancelar(): void {
