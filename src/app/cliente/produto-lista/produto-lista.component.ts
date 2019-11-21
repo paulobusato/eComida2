@@ -26,6 +26,7 @@ export class ProdutoListaComponent implements OnInit {
       error => console.log(error),
     );
     this.clienteService.clienteAtivo = {
+      idCliente: 1,
       nome: 'Paulo Henrique',
       cpf: '321512312321',
       email: 'paulo@paulo.com',
