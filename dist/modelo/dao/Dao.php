@@ -230,4 +230,4 @@ class Dao extends Conexao    {
   }
 }
 
-Dao::resetarDB();
+// Dao::resetarDB();
