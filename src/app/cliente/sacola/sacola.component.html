@@ -1,6 +1,6 @@
 <app-header></app-header>
 <form>
-  <main fxLayout="column" fxLayoutAlign="center center" *ngIf="!!pedido?.pedidoItens">
+  <main fxLayout="column" fxLayoutAlign="center center" *ngIf="pedido?.pedidoItens?.length !== 0">
     <h3>{{pedido.estabelecimento.razaoSocial}}</h3>
     <p>Tempo de Espera: 20 minutos</p>
     <section fxLayout="column" fxLayoutGap="12px">
@@ -19,7 +19,7 @@
       <button type="button" mat-raised-button color="primary" (click)="onSubmit()">Confirmar</button>
     </nav>
   </main>
-  <section fxLayout="column" fxLayoutAlign="center center" *ngIf="!!!pedido?.pedidoItens">
+  <section fxLayout="column" fxLayoutAlign="center center" *ngIf="pedido?.pedidoItens?.length === 0">
     <h2>Sacola vazia :(</h2>
     <button type="button" mat-stroked-button [routerLink]="['/cliente']">Escolher uma comida</button>
   </section>
