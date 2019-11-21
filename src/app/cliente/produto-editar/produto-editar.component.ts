@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Produto, Componente, ComponenteItem, PedidoItem } from '../cliente.type';
+import { Produto, Componente, ComponenteItem, PedidoItem, Pedido } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { MatCheckboxChange } from '@angular/material';
 import { Location } from '@angular/common';
@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProdutoEditarComponent implements OnInit, OnDestroy {
   pedidoItem: PedidoItem;
+  idxPedidoItem: string;
 
   constructor(
     private clienteService: ClienteService,
@@ -21,11 +22,11 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    const idxPedidoItem: string = this.route.snapshot.queryParamMap.get('idxPedidoItem');
+    this.idxPedidoItem = this.route.snapshot.queryParamMap.get('idxPedidoItem');
 
-    if (idxPedidoItem) {
+    if (this.idxPedidoItem) {
       const pedidoItem: PedidoItem = this.clienteService.pedido.pedidoItens
-        .find((value: PedidoItem, idx: number) => idx === +idxPedidoItem);
+        .find((value: PedidoItem, idx: number) => idx === +this.idxPedidoItem);
 
       this.pedidoItem = cloneDeep(pedidoItem);
     } else {
@@ -55,46 +56,25 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.clienteService.pedido = {
-      estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
-      cliente: cloneDeep(this.clienteService.clienteAtivo),
-      data: new Date(),
-      pedidoItens: [cloneDeep(this.pedidoItem)],
-      valor: 100,
-    };
+    if (this.idxPedidoItem) {
+      const pedido: Pedido = cloneDeep(this.clienteService.pedido);
+      const pedidoItem: PedidoItem = cloneDeep(this.pedidoItem);
 
-    // if (!this.clienteService.pedido) {
-    //   this.clienteService.pedido = {
-    //     estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
-    //     cliente: cloneDeep(this.clienteService.clienteAtivo),
-    //     data: new Date(),
-    //     pedidoItens: [ { ...cloneDeep(this.pedidoItem) } ],
-    //     valor: 1000,
-    //   };
-    // } else {
-    //   const modoEdicao = !!this.clienteService.pedido.pedidoItens
-    //     .filter(e => e.idPedidoItem === this.pedidoItem.idPedidoItem);
-
-    //   if (modoEdicao) {
-    //     this.clienteService.pedido = {
-    //       ...this.clienteService.pedido,
-    //       pedidoItens: [
-    //         ...this.clienteService.pedido.pedidoItens
-    //             .filter(e => e.idPedidoItem !== this.pedidoItem.idPedidoItem),
-    //         { ...this.pedidoItem },
-    //       ],
-    //     };
-    //   } else {
-    //     this.clienteService.pedido = {
-    //       ...this.clienteService.pedido,
-    //       pedidoItens: [
-    //         ...this.clienteService.pedido.pedidoItens,
-    //         { ... this.pedidoItem },
-    //       ],
-    //     };
-    //   }
-    // }
-
+      this.clienteService.pedido = {
+        ...pedido,
+        pedidoItens: pedido.pedidoItens.map((value: PedidoItem, idx: number) => {
+          return idx === +this.idxPedidoItem ? pedidoItem : value;
+        }),
+      };
+    } else {
+      this.clienteService.pedido = {
+        estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
+        cliente: cloneDeep(this.clienteService.clienteAtivo),
+        data: new Date(),
+        pedidoItens: [cloneDeep(this.pedidoItem)],
+        valor: 100,
+      };
+    }
     this.location.back();
   }
 
