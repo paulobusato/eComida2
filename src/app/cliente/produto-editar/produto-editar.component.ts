@@ -66,6 +66,17 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
           return idx === +this.idxPedidoItem ? pedidoItem : value;
         }),
       };
+    } else if (this.clienteService.pedido) {
+      const pedido: Pedido = cloneDeep(this.clienteService.pedido);
+      const pedidoItem: PedidoItem = cloneDeep(this.pedidoItem);
+
+      this.clienteService.pedido = {
+        ...pedido,
+        pedidoItens: [
+          ...pedido.pedidoItens,
+          pedidoItem,
+        ],
+      };
     } else {
       this.clienteService.pedido = {
         estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
