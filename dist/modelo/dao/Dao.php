@@ -2,7 +2,7 @@
 
 require_once 'Conexao.php';
 
-class Dao extends Conexao {
+class Dao extends Conexao    {
 
   public static function resetarDB() {
 
