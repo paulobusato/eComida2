@@ -18,9 +18,6 @@ $method = $_SERVER["REQUEST_METHOD"];
 $json_str = file_get_contents('php://input');
 $json_obj = json_decode($json_str);
 
-// echo json_encode($json_obj);
-// exit;
-
 switch ($method) {
   case 'GET':
     if (isset($_GET["idEstabelecimento"])) {
@@ -33,6 +30,7 @@ switch ($method) {
     PedidoDao::inserir(
       $json_obj->estabelecimento->idEstabelecimento,
       $json_obj->cliente->idCliente,
+      $json_obj->valor,
       $json_obj->pedidoItens
     );
     break;

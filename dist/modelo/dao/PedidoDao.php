@@ -72,18 +72,7 @@ class PedidoDao {
     }
   }
 
-  public static function inserir($idEstabelecimento, $idCliente, $pedidoItens) {
-    $valor = 0;
-    foreach ($pedidoItens as $pedidoItem) {
-      $valor += $pedidoItem->valor;
-
-      foreach ($pedidoItem->componentes as $componente) {
-        foreach ($componente->componenteItems as $componenteItem) {
-          $valor += $componenteItem->valor;
-        }
-      }
-    }
-
+  public static function inserir($idEstabelecimento, $idCliente, $valor, $pedidoItens) {
     $sql = "
       INSERT INTO `pedido` (`IDPEDIDO`, `IDESTABELECIMENTO`, `IDCLIENTE`, `VALOR`)
       VALUES (
@@ -101,10 +90,10 @@ class PedidoDao {
     foreach ($pedidoItens as $pedidoItem) {
       PedidoItemDao::inserir(
         $idPedido,
-        $pedidoItem->idProduto,
+        $pedidoItem->produto->idProduto,
         $pedidoItem->quantidade,
-        $pedidoItem->valor,
-        $pedidoItem->componentes
+        $pedidoItem->produto->valor,
+        $pedidoItem->produto->componentes
       );
     }
   }
