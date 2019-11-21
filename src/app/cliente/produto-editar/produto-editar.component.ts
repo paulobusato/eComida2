@@ -4,6 +4,7 @@ import { ClienteService } from '../cliente.service';
 import { MatCheckboxChange } from '@angular/material';
 import { Location } from '@angular/common';
 import * as cloneDeep from 'lodash.clonedeep';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-produto-editar',
@@ -15,21 +16,24 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
 
   constructor(
     private clienteService: ClienteService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    if (this.clienteService.pedido && this.clienteService.pedido.pedidoItens) {
-      this.pedidoItem = {
-        produto: { ...this.clienteService.produtoAtivado },
-        quantidade: 1,
-        valor: this.clienteService.produtoAtivado.valor,
-      };
+    const idxPedidoItem: string = this.route.snapshot.queryParamMap.get('idxPedidoItem');
+
+    if (idxPedidoItem) {
+      const pedidoItem: PedidoItem = this.clienteService.pedido.pedidoItens
+        .find((value: PedidoItem, idx: number) => idx === +idxPedidoItem);
+
+      this.pedidoItem = cloneDeep(pedidoItem);
     } else {
+      const produto: Produto = cloneDeep(this.clienteService.produtoAtivado);
       this.pedidoItem = {
-        produto: { ...this.clienteService.produtoAtivado },
+        produto: { ...produto },
         quantidade: 1,
-        valor: this.clienteService.produtoAtivado.valor,
+        valor: produto.valor,
       };
     }
   }
@@ -58,7 +62,7 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
       pedidoItens: [cloneDeep(this.pedidoItem)],
       valor: 100,
     };
-    
+
     // if (!this.clienteService.pedido) {
     //   this.clienteService.pedido = {
     //     estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
