@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Pedido, Produto, PedidoItem } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { Location } from '@angular/common';
@@ -10,7 +10,7 @@ import * as cloneDeep from 'lodash.clonedeep';
   templateUrl: './sacola.component.html',
   styleUrls: ['./sacola.component.scss']
 })
-export class SacolaComponent implements OnInit {
+export class SacolaComponent implements OnInit, OnDestroy {
   pedido: Pedido;
 
   constructor(
@@ -27,7 +27,7 @@ export class SacolaComponent implements OnInit {
     this.pedido = {
       ...cloneDeep(this.pedido),
       pedidoItens: cloneDeep(this.pedido).pedidoItens
-        .filter((pedidoItem: PedidoItem, idx: number) => idx !== index),
+      .filter((pedidoItem: PedidoItem, idx: number) => idx !== index),
     };
   }
 
@@ -46,5 +46,9 @@ export class SacolaComponent implements OnInit {
       next => console.log(next),
       error => console.log(error),
     );
+  }
+
+  ngOnDestroy() {
+    this.clienteService.pedido = cloneDeep(this.pedido);
   }
 }
