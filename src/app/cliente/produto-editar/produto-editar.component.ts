@@ -51,37 +51,45 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    if (!this.clienteService.pedido) {
-      this.clienteService.pedido = {
-        estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
-        cliente: cloneDeep(this.clienteService.clienteAtivo),
-        data: new Date(),
-        pedidoItens: [ { ...cloneDeep(this.pedidoItem) } ],
-        valor: 1000,
-      };
-    } else {
-      const modoEdicao = !!this.clienteService.pedido.pedidoItens
-        .filter(e => e.idPedidoItem === this.pedidoItem.idPedidoItem);
+    this.clienteService.pedido = {
+      estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
+      cliente: cloneDeep(this.clienteService.clienteAtivo),
+      data: new Date(),
+      pedidoItens: cloneDeep(this.pedidoItem),
+      valor: 100,
+    };
+    
+    // if (!this.clienteService.pedido) {
+    //   this.clienteService.pedido = {
+    //     estabelecimento: cloneDeep(this.clienteService.estabelecimentoAtivo),
+    //     cliente: cloneDeep(this.clienteService.clienteAtivo),
+    //     data: new Date(),
+    //     pedidoItens: [ { ...cloneDeep(this.pedidoItem) } ],
+    //     valor: 1000,
+    //   };
+    // } else {
+    //   const modoEdicao = !!this.clienteService.pedido.pedidoItens
+    //     .filter(e => e.idPedidoItem === this.pedidoItem.idPedidoItem);
 
-      if (modoEdicao) {
-        this.clienteService.pedido = {
-          ...this.clienteService.pedido,
-          pedidoItens: [
-            ...this.clienteService.pedido.pedidoItens
-                .filter(e => e.idPedidoItem !== this.pedidoItem.idPedidoItem),
-            { ...this.pedidoItem },
-          ],
-        };
-      } else {
-        this.clienteService.pedido = {
-          ...this.clienteService.pedido,
-          pedidoItens: [
-            ...this.clienteService.pedido.pedidoItens,
-            { ... this.pedidoItem },
-          ],
-        };
-      }
-    }
+    //   if (modoEdicao) {
+    //     this.clienteService.pedido = {
+    //       ...this.clienteService.pedido,
+    //       pedidoItens: [
+    //         ...this.clienteService.pedido.pedidoItens
+    //             .filter(e => e.idPedidoItem !== this.pedidoItem.idPedidoItem),
+    //         { ...this.pedidoItem },
+    //       ],
+    //     };
+    //   } else {
+    //     this.clienteService.pedido = {
+    //       ...this.clienteService.pedido,
+    //       pedidoItens: [
+    //         ...this.clienteService.pedido.pedidoItens,
+    //         { ... this.pedidoItem },
+    //       ],
+    //     };
+    //   }
+    // }
 
     this.location.back();
   }
