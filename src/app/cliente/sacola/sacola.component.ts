@@ -42,7 +42,9 @@ export class SacolaComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.clienteService.addPedido().subscribe(
-      next => console.log(next),
+      () => {
+        this.pedido = null;
+      },
       error => console.log(error),
     );
   }
