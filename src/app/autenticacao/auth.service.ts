@@ -7,6 +7,8 @@ interface LoginResposta {
   tipoUsuario: string;
   idEstabelecimento?: string;
   idCliente?: string;
+  status: string;
+  mensagem: string;
 }
 
 export interface Login {
