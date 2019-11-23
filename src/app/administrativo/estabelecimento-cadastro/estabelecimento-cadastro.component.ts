@@ -31,7 +31,7 @@ export class EstabelecimentoCadastroComponent implements OnInit {
       uf: [''],
     });
 
-    this.administrativoService.obterEstabelecimento(1).subscribe(
+    this.administrativoService.obterEstabelecimento().subscribe(
       next => {
         this.estabelecimentoForm.setValue({
           razaoSocial: [next.razaoSocial],
