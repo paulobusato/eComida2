@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { EstabelecimentoService } from './estabelecimento.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService, Login } from '../autenticacao/auth.service';
 
 @Component({
   selector: 'app-estabelecimento',
@@ -18,6 +19,7 @@ export class EstabelecimentoComponent implements OnInit {
     private estabelecimentoService: EstabelecimentoService,
     private location: Location,
     private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -54,7 +56,21 @@ export class EstabelecimentoComponent implements OnInit {
   }
 
   onLogin(): void {
-    this.router.navigate(['/administrativo']);
+    const login: Login = {
+      ...this.estabelecimentoLoginForm.value,
+      tipoUsuario: 'E',
+    };
+
+    this.authService.login(login).subscribe(
+      response => {
+        if (response.status === 'sucesso') {
+          this.authService.definirUsuario(response);
+          this.router.navigate(['/administrativo']);
+        }
+      },
+      error => console.log(error),
+    );
+
   }
 
 }
