@@ -108,7 +108,13 @@ class EstabelecimentoDao {
       WHERE E.EMAIL = '{$email}'
         AND E.SENHA = '{$senha}'
     ";
+    
+    $db_login = Dao::consultar($sql);
 
-    return Dao::consultar($sql)[0]->IDESTABELECIMENTO;
+    if ($db_login) {
+      return Dao::consultar($sql)[0]->IDESTABELECIMENTO;
+    } else {
+      return false;
+    }
   }
 }
