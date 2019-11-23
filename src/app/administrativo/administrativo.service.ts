@@ -14,17 +14,17 @@ export class AdministrativoService {
     private http: HttpClient,
   ) { }
 
-  obterEstabelecimento(idEstabelecimento: number): Observable<Estabelecimento> {
+  obterEstabelecimento(): Observable<Estabelecimento> {
     return this.http.get<Estabelecimento[]>(
-      `http://localhost/eComida2/dist/controle/estabelecimentoaction.php?idEstabelecimento=${idEstabelecimento}`
+      `http://localhost/eComida2/dist/controle/estabelecimentoaction.php`
     ).pipe(
       map(e => e[0])
     );
   }
 
-  obterPedidos(idEstabelecimento: number): Observable<Pedido[]> {
+  obterPedidos(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(
-      `http://localhost/eComida2/dist/controle/pedidoaction.php?idEstabelecimento=${idEstabelecimento}`
+      `http://localhost/eComida2/dist/controle/pedidoaction.php`
     );
   }
 }
