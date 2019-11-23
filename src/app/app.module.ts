@@ -14,6 +14,8 @@ import { MatToolbarModule, MatButtonModule, MatIconModule, MatCardModule } from 
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 
+import { JwtModule } from '@auth0/angular-jwt';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,15 @@ import { SharedModule } from './shared/shared.module';
     ClienteModule,
     SharedModule,
     EstabelecimentoModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        },
+        whitelistedDomains: ['localhost'],
+        blacklistedRoutes: ['localhost/auth/login'],
+      },
+    }),
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
