@@ -43,7 +43,6 @@ if ($tipoUsuario == 'E') {
 
     $dados_inserido = array(
       "token" => $jwt,
-      "idEstabelecimento" => $idEstabelecimento,
       "status" => "sucesso",
       "mensagem" => "Logado com sucesso"
     );
