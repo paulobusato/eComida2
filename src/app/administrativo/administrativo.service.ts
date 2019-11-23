@@ -15,10 +15,8 @@ export class AdministrativoService {
   ) { }
 
   obterEstabelecimento(): Observable<Estabelecimento> {
-    return this.http.get<Estabelecimento[]>(
+    return this.http.get<Estabelecimento>(
       `http://localhost/eComida2/dist/controle/estabelecimentoaction.php`
-    ).pipe(
-      map(e => e[0])
     );
   }
 
