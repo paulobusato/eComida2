@@ -2,6 +2,8 @@
 
 header('Access-Control-Allow-Origin: http://localhost:4200');
 header('Content-type: application/json');
+header('Access-Control-Allow-Headers: *');
+header('Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS, DELETE');
 
 require_once '../modelo/dao/EstabelecimentoDao.php';
 require_once('../vendor/autoload.php');
