@@ -1,4 +1,8 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Content-type: application/json');
+header('Access-Control-Allow-Headers: *');
+header('Access-Control-Allow-Methods: *');
 
 require_once '../modelo/dao/Dao.php';
 require_once '../modelo/entidade/Produto.php';
@@ -9,9 +13,6 @@ require_once '../modelo/dao/ProdutoDao.php';
 require_once '../modelo/dao/ComponenteDao.php';
 require_once '../modelo/dao/ComponenteItemDao.php';
 require_once '../modelo/dao/EstabelecimentoDao.php';
-
-header('Access-Control-Allow-Origin: http://localhost:4200');
-header('Content-type: application/json');
 
 $method = $_SERVER["REQUEST_METHOD"];
 

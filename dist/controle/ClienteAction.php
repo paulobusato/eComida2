@@ -1,11 +1,12 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Content-type: application/json');
+header('Access-Control-Allow-Headers: *');
+header('Access-Control-Allow-Methods: *');
 
 require_once '../modelo/dao/Dao.php';
 require_once '../modelo/entidade/Cliente.php';
 require_once '../modelo/dao/ClienteDao.php';
-
-header('Access-Control-Allow-Origin: http://localhost:4200');
-header('Content-type: application/json');
 
 $method = $_SERVER["REQUEST_METHOD"];
 

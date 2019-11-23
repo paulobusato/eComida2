@@ -1,10 +1,8 @@
 <?php
-
 header('Access-Control-Allow-Origin: *');
+header('Content-type: application/json');
 header('Access-Control-Allow-Headers: *');
-header('Access-Control-Request-Headers: *');
-header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: GET,PUT,POST,DELETE,PATCH,OPTIONS');
+header('Access-Control-Allow-Methods: *');
 
 require_once '../modelo/dao/Dao.php';
 require_once '../modelo/dao/ProdutoDao.php';
