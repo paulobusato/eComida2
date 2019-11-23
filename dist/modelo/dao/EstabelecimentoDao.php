@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Dao.php';
 require_once '../modelo/entidade/Estabelecimento.php';
 
 class EstabelecimentoDao {
@@ -98,5 +99,16 @@ class EstabelecimentoDao {
     ";
 
     return Dao::executar($sql);
+  }
+
+  public static function login($email, $senha) {
+    $sql = "
+      SELECT E.IDESTABELECIMENTO
+      FROM ESTABELECIMENTO E
+      WHERE E.EMAIL = '{$email}'
+        AND E.SENHA = '{$senha}'
+    ";
+
+    return Dao::consultar($sql)[0]->IDESTABELECIMENTO;
   }
 }
