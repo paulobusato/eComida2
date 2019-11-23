@@ -55,7 +55,7 @@ export class PedidoListaComponent implements OnInit {
     this.fonteDados.paginator = this.paginador;
     this.fonteDados.sort = this.ordenacao;
 
-    this.administrativoService.obterPedidos(1).subscribe(
+    this.administrativoService.obterPedidos().subscribe(
       next => console.log(next),
       error => console.log(error)
     );
