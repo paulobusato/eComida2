@@ -3,9 +3,12 @@
   <h1>Login</h1>
   <mat-form-field>
     <input type="email" matInput placeholder="Email" formControlName="email">
+    <mat-error>O campo e-mail é obrigatório</mat-error>
   </mat-form-field>
   <mat-form-field>
     <input type="password" matInput placeholder="Senha" formControlName="senha">
+    <mat-error>O campo senha é obrigatório</mat-error>
   </mat-form-field>
+  <p *ngIf="this.loginForm.valid && error?.status === 'invalido'">{{error.mensagem}}</p>
   <button type="submit" mat-raised-button color="primary">Entrar</button>
 </form>

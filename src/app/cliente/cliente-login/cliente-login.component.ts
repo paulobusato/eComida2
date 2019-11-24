@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, Login } from 'src/app/autenticacao/auth.service';
 
@@ -10,6 +10,7 @@ import { AuthService, Login } from 'src/app/autenticacao/auth.service';
 })
 export class ClienteLoginComponent implements OnInit {
   loginForm: FormGroup;
+  error: {status: string, mensagem: string};
 
   constructor(
     private fb: FormBuilder,
@@ -19,8 +20,8 @@ export class ClienteLoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: [''],
-      senha: [''],
+      email: ['', Validators.required],
+      senha: ['', Validators.required],
     });
   }
 
@@ -34,6 +35,8 @@ export class ClienteLoginComponent implements OnInit {
         if (response.status === 'sucesso') {
           this.authService.definirUsuario(response);
           this.router.navigate(['/cliente']);
+        } else {
+          this.error = response;
         }
       },
       error => console.log(error),
