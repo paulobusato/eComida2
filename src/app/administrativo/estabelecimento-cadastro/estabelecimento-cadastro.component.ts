@@ -34,22 +34,25 @@ export class EstabelecimentoCadastroComponent implements OnInit {
     this.administrativoService.obterEstabelecimento().subscribe(
       next => {
         this.estabelecimentoForm.setValue({
-          razaoSocial: [next.razaoSocial],
-          nomeFantasia: [next.nomeFantasia],
-          cnpj: [next.cnpj],
-          email: [next.email],
-          senha: [''],
-          telefone: [next.telefone],
-          cep: [next.cep],
-          logradouro: [next.logradouro],
-          numero: [next.numero],
-          bairro: [next.bairro],
-          cidade: [next.cidade],
-          uf: [next.uf],
+          razaoSocial: next.razaoSocial,
+          nomeFantasia: next.nomeFantasia,
+          cnpj: next.cnpj,
+          email: next.email,
+          senha: '',
+          telefone: next.telefone,
+          cep: next.cep,
+          logradouro: next.logradouro,
+          numero: next.numero,
+          bairro: next.bairro,
+          cidade: next.cidade,
+          uf: next.uf,
         });
       },
       error => console.log(error),
     );
   }
 
+  onAtualizarCadastro(): void {
+    this.administrativoService.atualizarCadastroEstabelecimento(this.estabelecimentoForm.value).subscribe();
+  }
 }
