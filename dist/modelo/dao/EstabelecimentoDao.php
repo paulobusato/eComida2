@@ -113,7 +113,7 @@ class EstabelecimentoDao {
     if ($db_login) {
       return Dao::consultar($sql)[0]->IDESTABELECIMENTO;
     } else {
-      return false;
+      return null;
     }
   }
 }

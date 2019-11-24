@@ -73,7 +73,7 @@ class ClienteDao {
     if ($db_login) {
       return Dao::consultar($sql)[0]->IDCLIENTE;
     } else {
-      return false;
+      return null;
     }
   }
 }
