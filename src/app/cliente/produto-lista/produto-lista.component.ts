@@ -20,25 +20,14 @@ export class ProdutoListaComponent implements OnInit {
 
   ngOnInit() {
     const idEstabelecimento = +this.route.snapshot.paramMap.get('idEstabelecimento');
+
     this.produtos$ = this.clienteService.obterProdutos(idEstabelecimento);
-    this.clienteService.obterEstabelecimentos(idEstabelecimento).subscribe(
-      next => this.clienteService.estabelecimentoAtivo = next[0],
-      error => console.log(error),
+    this.clienteService.obterCliente().subscribe(
+      response => this.clienteService.clienteAtivo = response,
     );
-    this.clienteService.clienteAtivo = {
-      idCliente: 1,
-      nome: 'Paulo Henrique',
-      cpf: '321512312321',
-      email: 'paulo@paulo.com',
-      senha: '123',
-      telefone: '31242341',
-      cep: '32141213',
-      logradouro: 'Logradouro Paulo',
-      numero: 2,
-      bairro: 'Bairro Cidade',
-      cidade: 'Cidade Paulo',
-      uf: 'MG',
-    };
+    this.clienteService.obterEstabelecimentos().subscribe(
+      next => this.clienteService.estabelecimentoAtivo = next[0],
+    );
   }
 
   onClickProduto(produto: Produto): void {
