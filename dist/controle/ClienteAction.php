@@ -1,51 +1,43 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header('Content-type: application/json');
-header('Access-Control-Allow-Headers: *');
-header('Access-Control-Allow-Methods: *');
-
-require_once '../modelo/dao/Dao.php';
-require_once '../modelo/entidade/Cliente.php';
+require_once 'cors/cors.php';
 require_once '../modelo/dao/ClienteDao.php';
+require_once '../vendor/autoload.php';
+use \Firebase\JWT\JWT;
 
-$method = $_SERVER["REQUEST_METHOD"];
+$jwt = substr(apache_request_headers()["Authorization"], 7);
 
-switch ($method) {
-  case 'GET':
-    $estabelecimentos = ClienteDao::consultar();
-    echo json_encode($estabelecimentos);
+define('SECRET_KEY', 'Super-Secret-Key');
+define('ALGORITHM', 'HS256');
+
+
+try {
+  JWT::$leeway = 10;
+  $decoded = JWT::decode($jwt, SECRET_KEY, array(ALGORITHM));
+  $idCliente = $decoded->data->idCliente;
+
+  http_response_code(200);
+
+  $json_str = file_get_contents('php://input');
+  $json_obj = json_decode($json_str);
+  $method = $_SERVER["REQUEST_METHOD"];
+
+  switch ($method) {
+    case 'GET':
+      $response = ClienteDao::consultar($idCliente);
     break;
-  case 'POST':
-    $estabelecimento = new Estabelecimento(
-      '',
-      $_POST["razaoSocial"],
-      $_POST["nomeFantasia"],
-      $_POST["cnpj"],
-      $_POST["status"],
-      $_POST["email"],
-      $_POST["senha"],
-      $_POST["telefone"],
-      $_POST["cep"],
-      $_POST["logradouro"],
-      $_POST["numero"],
-      $_POST["bairro"],
-      $_POST["cidade"],
-      $_POST["uf"]
-    );
-    ClienteDao::inserir($estabelecimento);
-    echo json_encode("true");
+    default:
+      $response = 'Não existe';
     break;
-  case 'PUT':
-    ClienteDao::alterar($estabelecimento);
-    echo json_encode("true");
-    break;
-  case 'DELETE':
-    ClienteDao::excluir($estabelecimento->idEstabelecimento);
-    echo json_encode("true");
-    break;
-  default:
-    echo 'Não existe';
-    break;
+  }
+
+} catch (Exception $e) {
+  http_response_code(401);
+
+  $response = array(
+    "jwt" => $jwt,
+    "status" => "error",
+    "mensagem" => $e->getMessage()
+  );
 }
 
-
+echo json_encode($response);
