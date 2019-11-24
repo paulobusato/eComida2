@@ -41,7 +41,8 @@ export class PedidoListaComponent implements OnInit {
   }
 
   onSelectionChange(idPedido: number, selectionChange: MatSelectChange): void {
-    console.log(idPedido, selectionChange);
+    this.administrativoService
+      .alterarStatusPedido(idPedido, selectionChange.value).subscribe();
   }
 
 }
