@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ClienteService {
   urlEstabelecimento = 'http://localhost/eComida2/dist/controle/estabelecimentoaction.php';
+  urlCliente = 'http://localhost/eComida2/dist/controle/clienteaction.php';
   produtoAtivado: Produto;
   estabelecimentoAtivo: Estabelecimento;
   clienteAtivo: Cliente;
@@ -40,6 +41,7 @@ export class ClienteService {
     );
   }
 
-  login(): void {
+  obterCliente(): Observable<Cliente> {
+    return this.http.get<Cliente>(this.urlCliente);
   }
 }
