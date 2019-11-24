@@ -61,6 +61,12 @@ try {
           $response = PedidoDao::consultar($idEstabelecimento);
         }
       break;
+      case 'PUT':
+        if (isset($json_obj->idPedido) && isset($json_obj->novoStatus)) {
+          PedidoDao::alterarStatusPedido($json_obj->idPedido, $json_obj->novoStatus);
+          $response = 'true';
+        }
+      break;
       default:
         $response = 'Não existe';
       break;
