@@ -38,9 +38,11 @@ export class AdministrativoService {
   }
 
   alterarStatusPedido(idPedido: number, novoStatus: string): Observable<void> {
+    const body = {idPedido, novoStatus};
+
     return this.http.put<void>(
-      `${this.urlPedido}?idPedido=${idPedido}`,
-      novoStatus,
+      `${this.urlPedido}`,
+      body,
       this.httpOpcoes
     );
   }
