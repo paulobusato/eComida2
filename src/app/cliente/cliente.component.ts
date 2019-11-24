@@ -11,7 +11,7 @@ import { ClienteService } from './cliente.service';
 })
 export class ClienteComponent implements OnInit {
   categorias$: Observable<Categoria[]>;
-  estabelecimentos$: Observable<Estabelecimento[]>;
+  estabelecimentos$: Observable<Estabelecimento[] | Estabelecimento>;
 
   constructor(
     private router: Router,
