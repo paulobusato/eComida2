@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatSelectChange } from '@angular/material';
 import { Observable } from 'rxjs';
 import { Pedido } from 'src/app/cliente/cliente.type';
 import { AdministrativoService } from '../administrativo.service';
@@ -38,6 +38,10 @@ export class PedidoListaComponent implements OnInit {
     if (this.fonteDados.paginator) {
       this.fonteDados.paginator.firstPage();
     }
+  }
+
+  onSelectionChange(idPedido: number, selectionChange: MatSelectChange): void {
+    console.log(idPedido, selectionChange);
   }
 
 }
