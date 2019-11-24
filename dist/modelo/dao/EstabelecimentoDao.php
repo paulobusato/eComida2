@@ -72,23 +72,22 @@ class EstabelecimentoDao {
     return Dao::executar($sql);
   }
 
-  public static function alterar($estabelecimento) {
+  public static function alterar($idEstabelecimento, $estabelecimento) {
     $sql = "
       UPDATE ESTABELECIMENTO
-      SET RAZAOSOCIAL = {$estabelecimento->razaoSocial},
-          NOMEFANTASIA = {$estabelecimento->nomeFantasia},
-          CNPJ = {$estabelecimento->cnpj},
-          STATUS = {$estabelecimento->status},
-          TELEFONE = {$estabelecimento->telefone},
-          CEP = {$estabelecimento->cep},
-          LOGRADOURO = {$estabelecimento->logradouro},
-          NUMERO = {$estabelecimento->numero},
-          BAIRRO = {$estabelecimento->bairro},
-          CIDADE = {$estabelecimento->cidade},
-          UF = {$estabelecimento->uf}
-      WHERE IDESTABELECIMENTO = {$estabelecimento->idEstabelecimento};
+      SET RAZAOSOCIAL = '{$estabelecimento->razaoSocial}',
+          NOMEFANTASIA = '{$estabelecimento->nomeFantasia}',
+          CNPJ = '{$estabelecimento->cnpj}',
+          TELEFONE = '{$estabelecimento->telefone}',
+          CEP = '{$estabelecimento->cep}',
+          LOGRADOURO = '{$estabelecimento->logradouro}',
+          NUMERO = '{$estabelecimento->numero}',
+          BAIRRO = '{$estabelecimento->bairro}',
+          CIDADE = '{$estabelecimento->cidade}',
+          UF = '{$estabelecimento->uf}'
+      WHERE IDESTABELECIMENTO = '{$idEstabelecimento}';
     ";
-
+    
     return Dao::executar($sql);
   }
 
