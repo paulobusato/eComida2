@@ -29,8 +29,12 @@ export class AdministrativoService {
     return this.http.put<void>(this.urlEstabelecimento, estabelecimento, this.httpOpcoes);
   }
 
-  obterPedidos(): Observable<Pedido[]> {
-    return this.http.get<Pedido[]>(this.urlPedido);
+  obterPedidos(idPedido?: number): Observable<Pedido[] | Pedido> {
+    if (idPedido) {
+      return this.http.get<Pedido>(`${this.urlPedido}?idPedido=${idPedido}`);
+    } else {
+      return this.http.get<Pedido[]>(this.urlPedido);
+    }
   }
 
 }
