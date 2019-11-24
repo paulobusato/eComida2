@@ -20,14 +20,18 @@ $senha = $requisicao->senha;
 
 if ($tipoUsuario == 'E') {
   $idEstabelecimento = EstabelecimentoDao::login($email, $senha);
-  $data = array(
-    "idEstabelecimento" => $idEstabelecimento
-  );
+  if (isset($idEstabelecimento)) {
+    $data = array(
+      "idEstabelecimento" => $idEstabelecimento
+    );
+  }
 } else if ($tipoUsuario == 'C') {
   $idCliente = ClienteDao::login($email, $senha);
-  $data = array(
-    "idCliente" => $idCliente
-  );
+  if (isset($idCliente)) {
+    $data = array(
+      "idCliente" => $idCliente
+    );
+  }
 }
 
 if (isset($idEstabelecimento) || isset($idCliente)) {
@@ -43,7 +47,7 @@ if (isset($idEstabelecimento) || isset($idCliente)) {
     "exp" => $exp,
     "data" => $data
     );
-
+    
   http_response_code(200);
 
   $jwt = JWT::encode($token, SECRET_KEY);
