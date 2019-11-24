@@ -4,34 +4,6 @@ import { Observable } from 'rxjs';
 import { Pedido } from 'src/app/cliente/cliente.type';
 import { AdministrativoService } from '../administrativo.service';
 
-interface PedidoLista {
-  nomeCliente: string;
-  logradouro: string;
-  numero: number;
-  bairro: string;
-  cidade: string;
-  status: string;
-}
-
-const PEDIDOS: PedidoLista[] = [
-  {
-    nomeCliente: 'Paulo',
-    logradouro: 'Av Francisco',
-    numero: 3,
-    bairro: 'Boa',
-    cidade: 'Cachoeiro',
-    status: 'Pendente'
-  },
-  {
-    nomeCliente: 'Henrique',
-    logradouro: 'Av Mardegan',
-    numero: 51,
-    bairro: 'Vista',
-    cidade: 'Itapemirim',
-    status: 'Produzindo'
-  },
-];
-
 @Component({
   selector: 'app-pedido-lista',
   templateUrl: './pedido-lista.component.html',
@@ -39,7 +11,7 @@ const PEDIDOS: PedidoLista[] = [
 })
 export class PedidoListaComponent implements OnInit {
   colunaNomes: string[] = ['nomeCliente', 'logradouro', 'numero', 'bairro', 'cidade', 'status'];
-  fonteDados: MatTableDataSource<PedidoLista>;
+  fonteDados: MatTableDataSource<Pedido>;
   pedidos$: Observable<Pedido[]>;
 
   @ViewChild(MatPaginator, {static: true}) paginador: MatPaginator;
@@ -47,15 +19,17 @@ export class PedidoListaComponent implements OnInit {
 
   constructor(
     private administrativoService: AdministrativoService,
-  ) {
-    this.fonteDados = new MatTableDataSource(PEDIDOS);
-  }
+  ) { }
 
   ngOnInit() {
-    this.fonteDados.paginator = this.paginador;
-    this.fonteDados.sort = this.ordenacao;
-
-    this.administrativoService.obterPedidos().subscribe();
+    this.administrativoService.obterPedidos().subscribe(
+      (pedidos: Pedido[]) => {
+        this.fonteDados = new MatTableDataSource(pedidos);
+        this.fonteDados.paginator = this.paginador;
+        this.fonteDados.sort = this.ordenacao;
+      },
+      error => console.log(error),
+    );
   }
 
   aplicarFiltro(valor: string) {
