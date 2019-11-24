@@ -22,8 +22,12 @@ export class ClienteService {
     return this.http.get<Categoria[]>('http://localhost/eComida2/dist/controle/categoriaaction.php');
   }
 
-  obterEstabelecimentos(): Observable<Estabelecimento[]> {
-    return this.http.get<Estabelecimento[]>(this.urlEstabelecimento);
+  obterEstabelecimentos(idEstabelecimento?: number): Observable<Estabelecimento[] | Estabelecimento> {
+    if (idEstabelecimento) {
+      return this.http.get<Estabelecimento>(`${this.urlEstabelecimento}?idEstabelecimento=${idEstabelecimento}`);
+    } else {
+      return this.http.get<Estabelecimento[]>(this.urlEstabelecimento);
+    }
   }
 
   obterProdutos(idEstabelecimento?: number): Observable<Produto[]> {

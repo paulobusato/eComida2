@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Produto, Componente } from '../cliente.type';
+import { Produto, Componente, Estabelecimento } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { Observable } from 'rxjs';
 
@@ -25,8 +25,9 @@ export class ProdutoListaComponent implements OnInit {
     this.clienteService.obterCliente().subscribe(
       response => this.clienteService.clienteAtivo = response,
     );
-    this.clienteService.obterEstabelecimentos().subscribe(
-      next => this.clienteService.estabelecimentoAtivo = next[0],
+    this.clienteService.obterEstabelecimentos(idEstabelecimento).subscribe(
+      (estabelecimento: Estabelecimento) => this.clienteService.estabelecimentoAtivo = estabelecimento,
+      error => console.log(error),
     );
   }
 
