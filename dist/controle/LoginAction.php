@@ -60,7 +60,7 @@ if (isset($idEstabelecimento) || isset($idCliente)) {
 } else {
   $dados_inserido = array(
     "status" => "invalido",
-    "mensagem" => "Requisição Inválida"
+    "mensagem" => "Usuário ou Senha Invalida"
   ); 
 }
 
