@@ -25,9 +25,11 @@ try {
       $response = EstabelecimentoDao::consultar($idEstabelecimento)[0];
       break;
     case 'PUT':
-      EstabelecimentoDao::alterar($json_obj);
+      EstabelecimentoDao::alterar($idEstabelecimento, $json_obj);
+      $response = true;
+      break;
     default:
-      echo 'Não existe';
+      $response = 'Não existe';
     break;
   }  
 
