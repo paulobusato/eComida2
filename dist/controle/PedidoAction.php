@@ -19,6 +19,9 @@ try {
   if (isset($decoded->data->idEstabelecimento)) {
     $idEstabelecimento = $decoded->data->idEstabelecimento;
   }
+  if (isset($decoded->data->idCliente)) {
+    $idCliente = $decoded->data->idCliente;
+  }
 
   http_response_code(200);
 
@@ -26,7 +29,30 @@ try {
   $json_obj = json_decode($json_str);
   $method = $_SERVER["REQUEST_METHOD"];
 
-  if (isset($idEstabelecimento)) {
+  if (isset($idCliente)) {
+    switch ($method) {
+      case 'GET':
+      break;
+      case 'POST':
+        PedidoDao::inserir(
+          $json_obj->estabelecimento->idEstabelecimento,
+          $json_obj->cliente->idCliente,
+          $json_obj->valor,
+          $json_obj->pedidoItens,
+          'P'
+        );
+        $response = 'true';
+      break;
+      default:
+        $response = 'Não existe';
+      break;
+    }
+    if (isset($_GET["idEstabelecimento"])) {
+      $response = EstabelecimentoDao::consultar($_GET["idEstabelecimento"])[0];
+    } else {
+      $response = EstabelecimentoDao::consultar();
+    }
+  } else if (isset($idEstabelecimento)) {
     switch ($method) {
       case 'GET':
         if (isset($_GET["idPedido"])) {
@@ -34,14 +60,6 @@ try {
         } else {
           $response = PedidoDao::consultar($idEstabelecimento);
         }
-      break;
-      case 'POST':
-        PedidoDao::inserir(
-          $json_obj->estabelecimento->idEstabelecimento,
-          $json_obj->cliente->idCliente,
-          $json_obj->valor,
-          $json_obj->pedidoItens
-        );
       break;
       default:
         $response = 'Não existe';
@@ -61,5 +79,3 @@ try {
 }
 
 echo json_encode($response);
-
-exit;
