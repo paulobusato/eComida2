@@ -40,7 +40,8 @@ class PedidoDao {
           ClienteDao::consultar($db_pedido->IDCLIENTE),
           $db_pedido->DATA,
           PedidoItemDao::consultar($db_pedido->IDPEDIDO),
-          $db_pedido->VALOR
+          $db_pedido->VALOR,
+          $db_pedido->STATUS
         );
       } else {
         array_push($pedidos, new Pedido(
@@ -49,7 +50,8 @@ class PedidoDao {
           ClienteDao::consultar($db_pedido->IDCLIENTE),
           $db_pedido->DATA,
           PedidoItemDao::consultar($db_pedido->IDPEDIDO),
-          $db_pedido->VALOR
+          $db_pedido->VALOR,
+          $db_pedido->STATUS
         ));
       }
     }
@@ -77,9 +79,10 @@ class PedidoDao {
       INSERT INTO `pedido` (`IDPEDIDO`, `IDESTABELECIMENTO`, `IDCLIENTE`, `VALOR`)
       VALUES (
         NULL,
-        {$idEstabelecimento},
-        {$idCliente},
-        {$valor}
+        '{$idEstabelecimento}',
+        '{$idCliente}',
+        '{$valor}',
+        'P'
       );
     ";
 
