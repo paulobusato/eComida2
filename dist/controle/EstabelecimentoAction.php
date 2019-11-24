@@ -12,7 +12,13 @@ define('ALGORITHM', 'HS256');
 try {
   JWT::$leeway = 10;
   $decoded = JWT::decode($jwt, SECRET_KEY, array(ALGORITHM));
-  $idEstabelecimento = $decoded->data->idEstabelecimento;
+  if (isset($decoded->data->idEstabelecimento)) {
+    $idEstabelecimento = $decoded->data->idEstabelecimento;
+  }
+  if (isset($decoded->data->idCliente)) {
+    $idCliente = $decoded->data->idCliente;
+  }
+
 
   http_response_code(200);
 
@@ -20,18 +26,22 @@ try {
   $json_obj = json_decode($json_str);
   $method = $_SERVER["REQUEST_METHOD"];
 
-  switch ($method) {
-    case 'GET':
-      $response = EstabelecimentoDao::consultar($idEstabelecimento)[0];
+  if (isset($idCliente) && $method == 'GET') {
+    $response = EstabelecimentoDao::consultar();
+  } else if (isset($idEstabelecimento)) {
+    switch ($method) {
+      case 'GET':
+        $response = EstabelecimentoDao::consultar($idEstabelecimento)[0];
+        break;
+      case 'PUT':
+        EstabelecimentoDao::alterar($idEstabelecimento, $json_obj);
+        $response = true;
+        break;
+      default:
+        $response = 'Não existe';
       break;
-    case 'PUT':
-      EstabelecimentoDao::alterar($idEstabelecimento, $json_obj);
-      $response = true;
-      break;
-    default:
-      $response = 'Não existe';
-    break;
-  }  
+    }
+  }
 
 } catch (Exception $e) {
   
