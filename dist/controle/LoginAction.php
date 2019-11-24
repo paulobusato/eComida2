@@ -23,7 +23,7 @@ if ($tipoUsuario == 'E') {
   if ($idEstabelecimento) {
     $iat = time();
     $nbf = $iat + 10;
-    $exp = $iat + 60;
+    $exp = $iat + 86400;
 
     $token = array(
       "iss" => "http://example.org",
