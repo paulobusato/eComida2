@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Estabelecimento } from '../estabelecimento/estabelecimento.type';
-import { map } from 'rxjs/operators';
 import { Pedido } from '../cliente/cliente.type';
 
 @Injectable({
