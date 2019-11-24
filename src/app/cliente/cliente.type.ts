@@ -51,6 +51,7 @@ export interface Pedido {
   data: Date;
   pedidoItens: PedidoItem[];
   valor: number;
+  status?: string;
 }
 
 export interface PedidoItem {
