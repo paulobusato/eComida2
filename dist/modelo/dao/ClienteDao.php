@@ -62,16 +62,16 @@ class ClienteDao {
 
   public static function login($email, $senha) {
     $sql = "
-      SELECT 1 RESULTADO
+      SELECT C.IDCLIENTE
       FROM CLIENTE C
       WHERE C.EMAIL = '{$email}'
         AND C.SENHA = '{$senha}'
     ";
 
-    $db_cliente = Dao::consultar($sql);
+    $db_login = Dao::consultar($sql);
 
-    if ($db_cliente->RESULTADO === '1') {
-      return true;
+    if ($db_login) {
+      return Dao::consultar($sql)[0]->IDCLIENTE;
     } else {
       return false;
     }
