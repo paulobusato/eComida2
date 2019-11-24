@@ -27,7 +27,11 @@ try {
   $method = $_SERVER["REQUEST_METHOD"];
 
   if (isset($idCliente) && $method == 'GET') {
-    $response = EstabelecimentoDao::consultar();
+    if (isset($_GET["idEstabelecimento"])) {
+      $response = EstabelecimentoDao::consultar($_GET["idEstabelecimento"])[0];
+    } else {
+      $response = EstabelecimentoDao::consultar();
+    }
   } else if (isset($idEstabelecimento)) {
     switch ($method) {
       case 'GET':
