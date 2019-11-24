@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService, Login } from 'src/app/autenticacao/auth.service';
 
 @Component({
   selector: 'app-cliente-login',
@@ -12,7 +13,8 @@ export class ClienteLoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
@@ -23,6 +25,18 @@ export class ClienteLoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.router.navigate(['/cliente']);
+    const login: Login = {
+      ...this.loginForm.value,
+      tipoUsuario: 'C',
+    };
+    this.authService.login(login).subscribe(
+      response => {
+        if (response.status === 'sucesso') {
+          this.authService.definirUsuario(response);
+          this.router.navigate(['/cliente']);
+        }
+      },
+      error => console.log(error),
+    );
   }
 }
