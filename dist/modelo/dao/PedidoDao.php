@@ -82,7 +82,7 @@ class PedidoDao {
         {$idEstabelecimento},
         {$idCliente},
         {$valor},
-        'P'
+        'Pendente'
       );
     ";
 
@@ -99,5 +99,14 @@ class PedidoDao {
         $pedidoItem->produto->componentes
       );
     }
+  }
+
+  public static function alterarStatusPedido($idPedido, $novoStatus) {
+    $sql = "
+      UPDATE PEDIDO
+      SET STATUS = '{$novoStatus}'
+      WHERE IDPEDIDO = {$idPedido}
+    ";
+    Dao::executar($sql);
   }
 }
