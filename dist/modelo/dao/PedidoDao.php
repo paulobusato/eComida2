@@ -76,12 +76,12 @@ class PedidoDao {
 
   public static function inserir($idEstabelecimento, $idCliente, $valor, $pedidoItens) {
     $sql = "
-      INSERT INTO `pedido` (`IDPEDIDO`, `IDESTABELECIMENTO`, `IDCLIENTE`, `VALOR`)
+      INSERT INTO `pedido` (`IDPEDIDO`, `IDESTABELECIMENTO`, `IDCLIENTE`, `VALOR`, `STATUS`)
       VALUES (
         NULL,
-        '{$idEstabelecimento}',
-        '{$idCliente}',
-        '{$valor}',
+        {$idEstabelecimento},
+        {$idCliente},
+        {$valor},
         'P'
       );
     ";
