@@ -1,5 +1,10 @@
 <?php
 
+require_once 'Dao.php';
+require_once 'EstabelecimentoDao.php';
+require_once 'ComponenteDao.php';
+require_once '../modelo/entidade/Produto.php';
+
 class ProdutoDao {
 
   public static function consultar($idEstabelecimento, $idProduto = '') {

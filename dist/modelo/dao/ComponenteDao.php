@@ -1,4 +1,8 @@
 <?php
+require_once 'Dao.php';
+require_once 'ComponenteItemDao.php';
+require_once '../modelo/entidade/Componente.php';
+require_once '../modelo/entidade/ComponenteItem.php';
 
 class ComponenteDao {
 
