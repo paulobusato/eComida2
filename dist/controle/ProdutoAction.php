@@ -38,6 +38,13 @@ try {
         $response = 'Não existe';
       break;
     }
+  } else if (isset($idCliente)) {
+    switch ($method) {
+      case 'GET':
+        if (isset($_GET["idEstabelecimento"])) {
+          $response = ProdutoDao::consultar($_GET["idEstabelecimento"]);
+        }
+    }
   }
 
 } catch (Exception $e) {
