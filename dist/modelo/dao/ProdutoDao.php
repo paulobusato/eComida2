@@ -36,7 +36,13 @@ class ProdutoDao {
         $db_produto->VALOR,
         $db_produto->IMGURL
       );
-      array_push($produtos, $produto);
+
+      if ($idProduto != '') {
+        return $produto;
+      } else {
+        array_push($produtos, $produto);
+      }
+
     }
 
     return $produtos;
