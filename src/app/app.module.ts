@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 
 import { JwtModule } from '@auth0/angular-jwt';
+import { ProdutoEditarDialogComponent } from './administrativo/produto-editar/produto-editar-dialog/produto-editar-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     MatCardModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ProdutoEditarDialogComponent]
 })
 export class AppModule { }

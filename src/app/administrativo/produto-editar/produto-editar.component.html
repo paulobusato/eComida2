@@ -1,2 +1,26 @@
 <app-estabelecimento-header></app-estabelecimento-header>
-<p>produto-editar works!</p>
+<div class="container" gdColumns="100%" gdRows="81px auto">
+    <header>
+        <h1>Cadastro de Produto</h1>
+    </header>
+    <main gdColumns="repeat(2, 1fr)" fxLayoutGap="48px">
+        <div fxLayout="column">
+            <h2>Produto</h2>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Nome">
+            </mat-form-field>
+            <mat-form-field>
+                <textarea matInput name="" id="" cols="30" rows="3" placeholder="Descricao"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <input type="text" matInput placeholder="Valor">
+            </mat-form-field>
+        </div>
+        <div fxLayout="column">
+            <div fxLayout fxLayoutAlign="space-between center">
+                <h2>Componentes</h2>
+                <button mat-raised-button color="primary" (click)="openDialog()">Adicionar</button>
+            </div>
+        </div>
+    </main>
+</div>

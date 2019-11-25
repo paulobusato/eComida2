@@ -1,0 +1,21 @@
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    height: 100%;
+
+    header {
+        text-align: center;
+    }
+
+    main {
+        margin: 0 10%;
+    }
+
+    button {
+        height: 45px;
+    }
+}
