@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Estabelecimento } from '../estabelecimento/estabelecimento.type';
-import { Pedido } from '../cliente/cliente.type';
+import { Pedido, Produto } from '../cliente/cliente.type';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ import { Pedido } from '../cliente/cliente.type';
 export class AdministrativoService {
   urlEstabelecimento = `http://localhost/eComida2/dist/controle/estabelecimentoaction.php`;
   urlPedido = `http://localhost/eComida2/dist/controle/pedidoaction.php`;
+  urlProduto = `http://localhost/ecomida2/dist/controle/produtoaction.php`;
 
   constructor(
     private http: HttpClient,
@@ -37,6 +38,14 @@ export class AdministrativoService {
     }
   }
 
+  obterProdutos(idProduto?: number): Observable<Produto[] | Produto> {
+    if (idProduto) {
+      return this.http.get<Produto>(`${this.urlProduto}?idProduto=${idProduto}`);
+    } else {
+      return this.http.get<Produto[]>(this.urlProduto);
+    }
+  }
+
   alterarStatusPedido(idPedido: number, novoStatus: string): Observable<void> {
     const body = {idPedido, novoStatus};
 
@@ -46,5 +55,4 @@ export class AdministrativoService {
       this.httpOpcoes
     );
   }
-
 }
