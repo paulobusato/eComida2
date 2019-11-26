@@ -40,7 +40,7 @@ export interface Componente {
   descricao: string;
   quantidade: number;
   obrigatorio: boolean;
-  componenteItems: ComponenteItem[];
+  componenteItems?: ComponenteItem[];
   selecionado?: boolean;
 }
 
