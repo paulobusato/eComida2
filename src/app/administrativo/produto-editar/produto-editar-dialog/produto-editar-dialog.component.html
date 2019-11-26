@@ -1,12 +1,13 @@
-<main fxLayout="column" >
+<form [formGroup]="componenteForm" fxLayout="column" fxLayoutGap="4px">
     <mat-form-field>
-        <input type="text" matInput placeholder="Nome">
+        <input type="text" matInput placeholder="Descricao" formControlName="descricao">
     </mat-form-field>
     <mat-form-field>
-        <input type="text" matInput placeholder="Quantidade Maxima">
+        <input type="number" matInput placeholder="Quantidade Maxima" formControlName="quantidade">
     </mat-form-field>
-    <nav>
+    <mat-checkbox formControlName="obrigatorio">Obrigatório</mat-checkbox>
+    <nav fxLayout fxLayoutGap="12px">
         <button type="button" mat-raised-button color="warn">Cancelar</button>
-        <button type="submit" mat-raised-button color="primary">Cadastrar</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="this.componenteForm.value">Cadastrar</button>
     </nav>
-</main>
+</form>
