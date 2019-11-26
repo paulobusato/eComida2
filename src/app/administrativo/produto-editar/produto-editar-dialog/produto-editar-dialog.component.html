@@ -1,4 +1,4 @@
-<form [formGroup]="componenteForm" fxLayout="column" fxLayoutGap="4px">
+<form *ngIf="!data.componenteItem" [formGroup]="componenteForm" fxLayout="column" fxLayoutGap="4px">
     <mat-form-field>
         <input type="text" matInput placeholder="Descricao" formControlName="descricao">
     </mat-form-field>
@@ -9,5 +9,18 @@
     <nav fxLayout fxLayoutGap="12px">
         <button type="button" mat-raised-button color="warn">Cancelar</button>
         <button mat-raised-button color="primary" [mat-dialog-close]="this.componenteForm.value">Cadastrar</button>
+    </nav>
+</form>
+
+<form *ngIf="data.componenteItem" [formGroup]="componenteItemForm" fxLayout="column" fxLayoutGap="4px">
+    <mat-form-field>
+        <input type="text" matInput placeholder="Descricao" formControlName="descricao">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" matInput placeholder="Valor" formControlName="valor">
+    </mat-form-field>
+    <nav fxLayout fxLayoutGap="12px">
+        <button type="button" mat-raised-button color="warn">Cancelar</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="this.componenteItemForm.value">Cadastrar</button>
     </nav>
 </form>

@@ -10,18 +10,7 @@ import * as cloneDeep from 'lodash.clonedeep';
   styleUrls: ['./produto-editar.component.scss']
 })
 export class ProdutoEditarComponent implements OnInit {
-  componentes: Componente[] = [
-    {
-      descricao: 'Salada',
-      quantidade: 1,
-      obrigatorio: true,
-    },
-    {
-      descricao: 'Carne',
-      quantidade: 1,
-      obrigatorio: false,
-    },
-  ];
+  componentes: Componente[] = [];
 
   constructor(
     private dialog: MatDialog,
@@ -30,10 +19,11 @@ export class ProdutoEditarComponent implements OnInit {
   ngOnInit() {
   }
 
-  openDialog(): void {
+  openDialogComponente(): void {
     const dialogRef = this.dialog.open(ProdutoEditarDialogComponent, {
       width: '500px',
-      height: '350px'
+      height: '350px',
+      data: {componenteItem: false},
     });
 
     dialogRef.afterClosed().subscribe(
@@ -49,6 +39,47 @@ export class ProdutoEditarComponent implements OnInit {
           }
         }
       },
+    );
+  }
+
+  openDialogComponenteItem(idxComponente: number): void {
+    const dialogRef = this.dialog.open(ProdutoEditarDialogComponent, {
+      width: '500px',
+      height: '300px',
+      data: {componenteItem: true},
+    });
+
+    dialogRef.afterClosed().subscribe(
+      result => {
+        if (result) {
+          this.componentes = this.componentes.map(
+            (value: Componente, index) => {
+              if (index === idxComponente) {
+                if (value.componenteItems) {
+                  return {
+                    ...value,
+                    componenteItems: [
+                      ...value.componenteItems,
+                      {
+                        ...result,
+                      },
+                    ],
+                  };
+                } else {
+                  return {
+                    ...value,
+                    componenteItems: [{...result}],
+                  };
+                }
+              } else {
+                return {
+                  ...value,
+                };
+              }
+            }
+          );
+        }
+      }
     );
   }
 }

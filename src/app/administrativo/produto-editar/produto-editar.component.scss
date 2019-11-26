@@ -13,8 +13,13 @@
         text-align: center;
     }
 
-    main {
+    form {
         margin: 0 10%;
+    }
+
+    .componente_wrapper {
+        height: 600px;
+        overflow-y: auto;
     }
 
     button {
@@ -26,5 +31,9 @@
         border-radius: 4px;
         background-color: mat-color($theme-app-background);
         margin-bottom: 24px;
+    }
+
+    .componente-item {
+        margin: 18px 0;
     }
 }

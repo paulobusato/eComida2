@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-produto-editar-dialog',
@@ -8,9 +9,11 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class ProdutoEditarDialogComponent implements OnInit {
   componenteForm: FormGroup;
+  componenteItemForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: {componenteItem: boolean},
   ) { }
 
   ngOnInit() {
@@ -18,6 +21,11 @@ export class ProdutoEditarDialogComponent implements OnInit {
       descricao: [''],
       quantidade: [''],
       obrigatorio: [''],
+    });
+
+    this.componenteItemForm = this.fb.group({
+      descricao: [''],
+      valor: [''],
     });
   }
 
