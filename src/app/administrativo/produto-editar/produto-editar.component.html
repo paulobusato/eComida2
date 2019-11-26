@@ -21,6 +21,16 @@
                 <h2>Componentes</h2>
                 <button mat-raised-button color="primary" (click)="openDialog()">Adicionar</button>
             </div>
+            <section *ngFor="let componente of componentes">
+                <div gdColumns="repeat(3, 1fr)" gdRows="repeat(2, 50px)" gdAlignRows="between between" gdAlignColumns="center center">
+                    <h2>{{componente.descricao}}</h2>
+                    <span>{{componente.obrigatorio ? 'Obrigatorio' : ''}}</span>
+                    <button mat-mini-fab color="warn" gdGridAlign="end center" gdRow="1 / 3" gdColumn="3 / 4">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <span gdRow="2">Escolha ate <b>{{componente.quantidade}}</b> itens</span>
+                </div>
+            </section>
         </div>
     </main>
 </div>

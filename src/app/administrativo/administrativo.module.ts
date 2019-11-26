@@ -9,7 +9,7 @@ import { EstabelecimentoCadastroComponent } from './estabelecimento-cadastro/est
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { EstabelecimentoHeaderComponent } from './estabelecimento-header/estabelecimento-header.component';
-import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSelectModule, MatIconModule, MatDialogModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSelectModule, MatIconModule, MatDialogModule, MatCheckboxModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProdutoEditarDialogComponent } from './produto-editar/produto-editar-dialog/produto-editar-dialog.component';
@@ -42,6 +42,7 @@ import { ProdutoEditarDialogComponent } from './produto-editar/produto-editar-di
     MatSelectModule,
     MatIconModule,
     MatDialogModule,
+    MatCheckboxModule,
   ]
 })
 export class AdministrativoModule { }
