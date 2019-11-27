@@ -6,6 +6,7 @@ import * as cloneDeep from 'lodash.clonedeep';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdministrativoService } from '../administrativo.service';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-produto-editar',
@@ -22,6 +23,7 @@ export class ProdutoEditarComponent implements OnInit {
     private fb: FormBuilder,
     private administrativoService: AdministrativoService,
     private route: ActivatedRoute,
+    private location: Location,
   ) { }
 
   ngOnInit() {
@@ -53,11 +55,12 @@ export class ProdutoEditarComponent implements OnInit {
 
   onSubmit(): void {
     if (this.idProduto > 0) {
-      
+      this.administrativoService.editarProduto(this.idProduto, this.produtoForm.value).subscribe(
+        () => this.location.back(),
+      );
     } else {
       this.administrativoService.addProduto({ produto: this.produtoForm.value, componentes: this.componentes}).subscribe(
-        next => console.log(next),
-        error => console.log(error),
+        () => this.location.back(),
       );
     }
   }

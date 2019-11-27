@@ -50,6 +50,11 @@ try {
           }
           $response = true;
         }
+      case 'PUT':
+        if (isset($json_obj) && isset($_GET["idProduto"])) {
+          ProdutoDao::alterar($idEstabelecimento, $_GET["idProduto"], $json_obj);
+          $response = true;
+        }
       break;
       case 'DELETE':
         if (isset($_GET["idProduto"])) {

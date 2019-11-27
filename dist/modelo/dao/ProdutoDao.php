@@ -73,6 +73,19 @@ class ProdutoDao {
     return ProdutoDao::obterUltimoProduto($idEstabelecimento);
   }
 
+  public static function alterar($idEstabelecimento, $idProduto, $produto) {
+    $sql = "
+      UPDATE PRODUTO
+      SET TITULO = '{$produto->titulo}',
+          DESCRICAO = '{$produto->descricao}',
+          VALOR = '{$produto->valor}',
+          IMGURL = '{$produto->imgUrl}'
+      WHERE IDESTABELECIMENTO = {$idEstabelecimento}
+        AND IDPRODUTO = {$idProduto}
+    ";
+    Dao::executar($sql);
+  }
+
   public static function excluir($idEstabelecimento, $idProduto) {
     $sql = "
       DELETE FROM PRODUTO

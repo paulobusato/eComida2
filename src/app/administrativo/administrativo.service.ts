@@ -50,6 +50,10 @@ export class AdministrativoService {
     return this.http.post<void>(this.urlProduto, produto, this.httpOpcoes);
   }
 
+  editarProduto(idProduto: number, produto: Produto): Observable<void> {
+    return this.http.put<void>(`${this.urlProduto}?idProduto=${idProduto}`, produto, this.httpOpcoes);
+  }
+
   excluirProduto(idProduto: number): Observable<void> {
     return this.http.delete<void>(`${this.urlProduto}?idProduto=${idProduto}`);
   }
