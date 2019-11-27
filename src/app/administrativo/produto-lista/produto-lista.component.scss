@@ -13,7 +13,7 @@ main {
   }
 }
 
-button[type="button"] {
+.add-button {
   background-color: mat-color($theme-app-secundary);
   position: fixed;
   bottom: 40px;

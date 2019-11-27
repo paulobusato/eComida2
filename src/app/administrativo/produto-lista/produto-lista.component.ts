@@ -9,7 +9,7 @@ import { AdministrativoService } from '../administrativo.service';
   styleUrls: ['./produto-lista.component.scss']
 })
 export class ProdutoListaComponent implements OnInit {
-  colunaNomes: string[] = ['idProduto', 'titulo', 'descricao', 'valor'];
+  colunaNomes: string[] = ['idProduto', 'titulo', 'descricao', 'valor', 'acoes'];
   fonteDados: MatTableDataSource<Produto>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;

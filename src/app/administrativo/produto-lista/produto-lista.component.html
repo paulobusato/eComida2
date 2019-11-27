@@ -21,12 +21,19 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor</th>
                 <td mat-cell *matCellDef="let row">{{row.valor}}</td>
             </ng-container>
+            <ng-container matColumnDef="acoes">
+                <th mat-header-cell *matHeaderCellDef>Ações</th>
+                <td mat-cell *matCellDef="let row" fxLayout fxLayoutGap="12px">
+                    <button type="button" mat-raised-button color="primary">Editar</button>
+                    <button type="button" mat-raised-button color="warn">Excluir</button>
+                </td>
+            </ng-container>
             <tr mat-header-row *matHeaderRowDef="colunaNomes"></tr>
             <tr mat-row *matRowDef="let row; columns: colunaNomes;"></tr>
         </table>
         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
 </main>
-<button type="button" mat-fab [routerLink]="['/administrativo/produto/0']">
+<button class="add-button" type="button" mat-fab [routerLink]="['/administrativo/produto/0']">
     <mat-icon>add</mat-icon>
 </button>
