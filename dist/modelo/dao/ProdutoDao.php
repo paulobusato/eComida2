@@ -72,4 +72,13 @@ class ProdutoDao {
     Dao::executar($sql);
     return ProdutoDao::obterUltimoProduto($idEstabelecimento);
   }
+
+  public static function excluir($idEstabelecimento, $idProduto) {
+    $sql = "
+      DELETE FROM PRODUTO
+      WHERE IDESTABELECIMENTO = {$idEstabelecimento}
+        AND IDPRODUTO = {$idProduto}
+    ";
+    Dao::executar($sql);
+  }
 }

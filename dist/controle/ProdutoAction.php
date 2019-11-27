@@ -7,7 +7,6 @@ require_once '../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
 $jwt = substr(apache_request_headers()["Authorization"], 7);
-// $jwt = apache_request_headers()["authorization"];
 
 define('SECRET_KEY', 'Super-Secret-Key');
 define('ALGORITHM', 'HS256');
@@ -39,8 +38,6 @@ try {
         break;
       case 'POST':
         if (isset($json_obj)) {
-          // $codigoProduto = ProdutoDao::inserir($idEstabelecimento, $json_obj);
-          // $response = $json_obj;
           $idProduto = ProdutoDao::inserir($idEstabelecimento, $json_obj->produto);
 
           foreach ($json_obj->componentes as $componente) {
@@ -51,6 +48,12 @@ try {
               ComponenteItemDao::inserir($idProduto, $idComponente, $componenteItem);
             }
           }
+          $response = true;
+        }
+      break;
+      case 'DELETE':
+        if (isset($_GET["idProduto"])) {
+          $response = ProdutoDao::excluir($idEstabelecimento, $_GET["idProduto"]);
           $response = true;
         }
       break;
