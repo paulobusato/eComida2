@@ -47,4 +47,18 @@ class ProdutoDao {
 
     return $produtos;
   }
+
+  public static function inserir($idEstabelecimento, $produto) {
+    $sql = "
+      INSERT INTO PRODUTO (IDESTABELECIMENTO, TITULO, DESCRICAO, VALOR, IMGURL)
+      VALUES (
+        '{$idEstabelecimento}',
+        '{$produto->titulo}',
+        '{$produto->descricao}',
+        '{$produto->valor}',
+        '{$produto->imgUrl}'
+      );
+    ";
+    Dao::executar($sql);
+  }
 }

@@ -5,6 +5,7 @@ require_once '../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
 $jwt = substr(apache_request_headers()["Authorization"], 7);
+// $jwt = apache_request_headers()["authorization"];
 
 define('SECRET_KEY', 'Super-Secret-Key');
 define('ALGORITHM', 'HS256');
@@ -24,7 +25,7 @@ try {
   $json_str = file_get_contents('php://input');
   $json_obj = json_decode($json_str);
   $method = $_SERVER["REQUEST_METHOD"];
-  
+
   if (isset($idEstabelecimento)) {
     switch ($method) {
       case 'GET':
@@ -34,6 +35,11 @@ try {
           $response = ProdutoDao::consultar($idEstabelecimento);
         }
         break;
+      case 'POST':
+        if (isset($json_obj)) {
+          $response = ProdutoDao::inserir($idEstabelecimento, $json_obj);
+        }
+      break;
       default:
         $response = 'Não existe';
       break;
