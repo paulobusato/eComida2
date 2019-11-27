@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material';
 import { ProdutoEditarDialogComponent } from './produto-editar-dialog/produto-editar-dialog.component';
 import { Componente } from 'src/app/cliente/cliente.type';
 import * as cloneDeep from 'lodash.clonedeep';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-produto-editar',
@@ -11,12 +12,20 @@ import * as cloneDeep from 'lodash.clonedeep';
 })
 export class ProdutoEditarComponent implements OnInit {
   componentes: Componente[] = [];
+  produtoForm: FormGroup;
 
   constructor(
     private dialog: MatDialog,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.produtoForm = this.fb.group({
+      titulo: [''],
+      descricao: [''],
+      valor: [''],
+      imgUrl: [''],
+    });
   }
 
   openDialogComponente(): void {
