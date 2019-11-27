@@ -3,7 +3,7 @@
     <header>
         <h1>Cadastro de Produto</h1>
     </header>
-    <form [formGroup]="produtoForm" gdColumns="repeat(2, 1fr)" fxLayoutGap="48px">
+    <form [formGroup]="produtoForm" (ngSubmit)="onSubmit()" gdColumns="repeat(2, 1fr)" fxLayoutGap="48px">
         <div fxLayout="column">
             <h2>Produto</h2>
             <mat-form-field>

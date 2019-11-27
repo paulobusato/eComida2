@@ -4,6 +4,7 @@ import { ProdutoEditarDialogComponent } from './produto-editar-dialog/produto-ed
 import { Componente } from 'src/app/cliente/cliente.type';
 import * as cloneDeep from 'lodash.clonedeep';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AdministrativoService } from '../administrativo.service';
 
 @Component({
   selector: 'app-produto-editar',
@@ -16,7 +17,8 @@ export class ProdutoEditarComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private administrativoService: AdministrativoService
   ) { }
 
   ngOnInit() {
@@ -26,6 +28,13 @@ export class ProdutoEditarComponent implements OnInit {
       valor: [''],
       imgUrl: [''],
     });
+  }
+
+  onSubmit(): void {
+    this.administrativoService.addProduto(this.produtoForm.value).subscribe(
+      next => console.log(next),
+      error => console.log(error),
+    );
   }
 
   openDialogComponente(): void {

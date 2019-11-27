@@ -46,6 +46,10 @@ export class AdministrativoService {
     }
   }
 
+  addProduto(produto: Produto): Observable<void> {
+    return this.http.post<void>(this.urlProduto, produto, this.httpOpcoes);
+  }
+
   alterarStatusPedido(idPedido: number, novoStatus: string): Observable<void> {
     const body = {idPedido, novoStatus};
 
