@@ -23,4 +23,17 @@ class ComponenteItemDao {
 
     return $componenteItems;
   }
+
+  public static function inserir($idProduto, $idComponente, $componenteItem) {
+    $sql = "
+      INSERT INTO COMPONENTEITEM (IDPRODUTO, IDCOMPONENTE, DESCRICAO, VALOR)
+      VALUES (
+        {$idProduto},
+        {$idComponente},
+        '{$componenteItem->descricao}',
+        {$componenteItem->valor}
+      );
+    ";
+    Dao::executar($sql);
+  }
 }

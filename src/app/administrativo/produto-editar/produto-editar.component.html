@@ -25,7 +25,7 @@
         <div fxLayout="column">
             <div fxLayout fxLayoutAlign="space-between center">
                 <h2>Componentes</h2>
-                <button mat-raised-button color="primary" (click)="openDialogComponente()">Adicionar</button>
+                <button type="button" mat-raised-button color="primary" (click)="openDialogComponente()">Adicionar</button>
             </div>
             <div class="componente_wrapper">
                 <section class="componente" *ngFor="let componente of componentes; let i = index">
@@ -33,6 +33,7 @@
                         <h2>{{componente.descricao}}</h2>
                         <span>{{componente.obrigatorio ? 'Obrigatorio' : ''}}</span>
                         <button
+                            type="button"
                             mat-mini-fab color="warn"
                             gdGridAlign="end center"
                             gdRow="1 / 3"

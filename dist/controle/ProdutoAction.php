@@ -1,6 +1,8 @@
 <?php
 require_once 'cors/cors.php';
 require_once '../modelo/dao/ProdutoDao.php';
+require_once '../modelo/dao/ComponenteDao.php';
+require_once '../modelo/dao/ComponenteItemDao.php';
 require_once '../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
@@ -37,7 +39,19 @@ try {
         break;
       case 'POST':
         if (isset($json_obj)) {
-          $response = ProdutoDao::inserir($idEstabelecimento, $json_obj);
+          // $codigoProduto = ProdutoDao::inserir($idEstabelecimento, $json_obj);
+          // $response = $json_obj;
+          $idProduto = ProdutoDao::inserir($idEstabelecimento, $json_obj->produto);
+
+          foreach ($json_obj->componentes as $componente) {
+            $idComponente = ComponenteDao::inserir($idProduto, $componente);
+            $response = $idComponente;
+
+            foreach ($componente->componenteItems as $componenteItem) {
+              ComponenteItemDao::inserir($idProduto, $idComponente, $componenteItem);
+            }
+          }
+          $response = true;
         }
       break;
       default:

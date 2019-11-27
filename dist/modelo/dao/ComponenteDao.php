@@ -39,4 +39,29 @@ class ComponenteDao {
 
     return $componentes;
   }
+
+  public static function obterUltimoComponente($idProduto) {
+    $sql = "
+      SELECT MAX(C.IDCOMPONENTE) AS IDCOMPONENTE
+      FROM COMPONENTE C
+      WHERE C.IDPRODUTO = {$idProduto}
+    ";
+    $db_componente = Dao::consultar($sql)[0];
+    return $db_componente->IDCOMPONENTE;
+  }
+
+  public static function inserir($idProduto, $componente) {
+    $obrigatorio = $componente->obrigatorio == true ? 'S' : 'N';
+    $sql = "
+      INSERT INTO COMPONENTE (IDPRODUTO, DESCRICAO, QUANTIDADE, OBRIGATORIO)
+      VALUES (
+        {$idProduto},
+        '{$componente->descricao}',
+        {$componente->quantidade},
+        '$obrigatorio'
+      );
+    ";
+    $db_componente = Dao::executar($sql);
+    return ComponenteDao::obterUltimoComponente($idProduto);
+  }
 }

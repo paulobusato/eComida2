@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Estabelecimento } from '../estabelecimento/estabelecimento.type';
-import { Pedido, Produto } from '../cliente/cliente.type';
+import { Pedido, Produto, Componente } from '../cliente/cliente.type';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +46,7 @@ export class AdministrativoService {
     }
   }
 
-  addProduto(produto: Produto): Observable<void> {
+  addProduto(produto: { produto: Produto, componentes: Componente[]}): Observable<void> {
     return this.http.post<void>(this.urlProduto, produto, this.httpOpcoes);
   }
 

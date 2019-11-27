@@ -48,6 +48,16 @@ class ProdutoDao {
     return $produtos;
   }
 
+  public static function obterUltimoProduto($idEstabelecimento) {
+    $sql = "
+      SELECT MAX(P.IDPRODUTO) AS IDPRODUTO
+      FROM PRODUTO P
+      WHERE P.IDESTABELECIMENTO = {$idEstabelecimento}
+    ";
+    $db_produto = Dao::consultar($sql)[0];
+    return $db_produto->IDPRODUTO;
+  }
+
   public static function inserir($idEstabelecimento, $produto) {
     $sql = "
       INSERT INTO PRODUTO (IDESTABELECIMENTO, TITULO, DESCRICAO, VALOR, IMGURL)
@@ -60,5 +70,6 @@ class ProdutoDao {
       );
     ";
     Dao::executar($sql);
+    return ProdutoDao::obterUltimoProduto($idEstabelecimento);
   }
 }
