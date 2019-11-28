@@ -31,7 +31,7 @@
             <tr mat-header-row *matHeaderRowDef="colunaNomes"></tr>
             <tr mat-row *matRowDef="let row; columns: colunaNomes;"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
 </main>
 <button class="add-button" type="button" mat-fab [routerLink]="['/administrativo/produto/0']">
