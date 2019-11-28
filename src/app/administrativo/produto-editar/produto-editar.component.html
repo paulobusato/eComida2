@@ -29,10 +29,10 @@
             </div>
             <div class="componente_wrapper">
                 <section class="componente" *ngFor="let componente of componentes; let i = index">
-                    <div gdColumns="500px 100px 50px" gdRows="repeat(2, 50px)" gdAlignRows="between between" gdAlignColumns="center center">
+                    <div gdColumns="500px 100px" gdRows="repeat(2, 50px)" gdAlignRows="between between" gdAlignColumns="center center">
                         <h2>{{componente.descricao}}</h2>
-                        <span>{{componente.obrigatorio ? 'Obrigatorio' : ''}}</span>
-                        <button
+                        <span class="obrigatorio" gdGridAlign="end center">{{componente.obrigatorio ? 'Obrigatorio' : ''}}</span>
+                        <!-- <button
                             type="button"
                             mat-mini-fab color="warn"
                             gdGridAlign="end center"
@@ -41,8 +41,8 @@
                             (click)="openDialogComponenteItem(i)"
                         >
                             <mat-icon>add</mat-icon>
-                        </button>
-                        <span gdRow="2">Escolha ate <b>{{componente.quantidade}}</b> itens</span>
+                        </button> -->
+                        <span>Escolha ate <b>{{componente.quantidade}}</b> itens</span>
                     </div>
                     <mat-divider></mat-divider>
                     <main class="componente-item" fxLayout="column" fxLayoutGap="12px">

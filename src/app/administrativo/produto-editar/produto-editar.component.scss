@@ -19,6 +19,7 @@
     .componente_wrapper {
         height: 600px;
         overflow-y: auto;
+        padding: 24px;
     }
 
     button {
@@ -30,6 +31,14 @@
         border-radius: 4px;
         background-color: mat-color($theme-app-background);
         margin-bottom: 24px;
+    }
+
+    .componente {
+
+        .obrigatorio {
+            color: mat-color($theme-app-secundary);
+            font-weight: bold;
+        }
     }
 
     .componente-item {
