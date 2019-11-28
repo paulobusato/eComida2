@@ -57,13 +57,14 @@ class ComponenteDao {
 
   public static function inserir($idProduto, $componente) {
     $obrigatorio = $componente->obrigatorio == true ? 'S' : 'N';
+    $quantidade = $componente->quantidade === '' ? 0 : $componente->quantidade;
     $sql = "
       INSERT INTO COMPONENTE (IDPRODUTO, DESCRICAO, QUANTIDADE, OBRIGATORIO)
       VALUES (
         {$idProduto},
         '{$componente->descricao}',
-        {$componente->quantidade},
-        '$obrigatorio'
+        {$quantidade},
+        '{$obrigatorio}'
       );
     ";
     $db_componente = Dao::executar($sql);
@@ -76,7 +77,7 @@ class ComponenteDao {
       UPDATE COMPONENTE
       SET DESCRICAO = '{$componente->descricao}',
           QUANTIDADE = '{$componente->quantidade}',
-          OBRIGATORIO = '{$componente->valor}'
+          OBRIGATORIO = '{$obrigatorio}'
       WHERE IDPRODUTO = {$idProduto}
         AND IDCOMPONENTE = {$componente->idComponente}
     ";
