@@ -52,8 +52,34 @@ try {
         }
       case 'PUT':
         if (isset($json_obj) && isset($_GET["idProduto"])) {
-          ProdutoDao::alterar($idEstabelecimento, $_GET["idProduto"], $json_obj);
-          $response = true;
+          // ProdutoDao::alterar($idEstabelecimento, $_GET["idProduto"], $json_obj->produto);
+          // $todosComponentes = ComponenteDao::consultar($_GET["idProduto"]);
+          // $codigosComponentesEnviado = array();
+
+          // $tempArray = array();
+
+          // foreach ($json_obj->componentes as $componente) {
+          //   array_push($codigosComponentesEnviado, $componente->idComponente);
+          // }
+
+          // foreach ($todosComponentes as $componente) {
+          //   if (!in_array($componente->idComponente, $codigosComponentesEnviado)) {
+          //     ComponenteDao::excluir($_GET["idProduto"]);
+          //   }
+          // }
+          
+          // foreach ($json_obj->componentes as $componente) {
+          //   $componenteEncontrado = ComponenteDao::consultar($_GET["idProduto"], $componente->idComponente);
+            
+          //   if (isset($componenteEncontrado)) {
+          //     ComponenteDao::alterar($_GET["idProduto"], $componente);
+          //   } else {
+          //     ComponenteDao::inserir($_GET["idProduto"], $componente);
+          //   }
+          // }
+
+          // $response = true;
+          $response = $json_obj;
         }
       break;
       case 'DELETE':
