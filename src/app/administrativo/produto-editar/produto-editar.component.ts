@@ -113,7 +113,7 @@ export class ProdutoEditarComponent implements OnInit {
   }
 
   openDialogComponenteItem(idxComponente?: number, idxComponenteItem?: number): void {
-    const data = idxComponente && idxComponenteItem
+    const data = idxComponente !== undefined && idxComponenteItem !== undefined
       ? {
         idxComponente,
         idxComponenteItem,
