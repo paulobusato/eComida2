@@ -57,8 +57,8 @@ export class ProdutoEditarComponent implements OnInit {
   onSubmit(): void {
     if (this.idProduto > 0) {
       this.administrativoService.editarProduto(this.idProduto, { produto: this.produtoForm.value, componentes: this.componentes}).subscribe(
-        // () => this.location.back(),
-        (next) => console.log(next),
+        () => this.location.back(),
+        // (next) => console.log(next),
       );
     } else {
       this.administrativoService.addProduto({ produto: this.produtoForm.value, componentes: this.componentes}).subscribe(
@@ -83,7 +83,7 @@ export class ProdutoEditarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       response => {
         if (response) {
-          if (this.componentes) {
+          if (this.componentes.length > 0) {
             if (response.idxComponente !== undefined) {
               this.componentes = this.componentes.map((e, i) => {
                 if (i === response.idxComponente) {
@@ -102,11 +102,13 @@ export class ProdutoEditarComponent implements OnInit {
             } else {
               this.componentes = [
                 ...cloneDeep(this.componentes),
-                response
+                {...response.componente},
               ];
             }
           } else {
-            this.componentes = [response];
+            this.componentes = [
+              {...response.componente},
+            ];
           }
         }
       },
