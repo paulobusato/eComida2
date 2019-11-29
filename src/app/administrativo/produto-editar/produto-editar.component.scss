@@ -33,7 +33,23 @@
         margin-bottom: 24px;
     }
 
+    mat-icon {
+        cursor: pointer;
+    }
+
     .componente {
+        header {
+            padding: 12px 0;
+            margin: 0;
+            
+            h2 {
+                margin: 0;
+            }
+
+            span {
+                font-size: 1.2em;
+            }
+        }
 
         .obrigatorio {
             color: mat-color($theme-app-secundary);

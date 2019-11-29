@@ -29,30 +29,23 @@
             </div>
             <div class="componente_wrapper">
                 <section class="componente" *ngFor="let componente of componentes; let i = index">
-                    <div gdColumns="500px 100px" gdRows="repeat(2, 50px)" gdAlignRows="between between" gdAlignColumns="center center">
-                        <h2>{{componente.descricao}}</h2>
-                        <span class="obrigatorio" gdGridAlign="end center">{{componente.obrigatorio ? 'Obrigatorio' : ''}}</span>
-                        <!-- <button
-                            type="button"
-                            mat-mini-fab color="warn"
-                            gdGridAlign="end center"
-                            gdRow="1 / 3"
-                            gdColumn="3 / 4"
-                            (click)="openDialogComponenteItem(i)"
-                        >
-                            <mat-icon>add</mat-icon>
-                        </button> -->
-                        <span>Escolha ate <b>{{componente.quantidade}}</b> itens</span>
-                    </div>
+                    <header gdColumns="50px repeat(2, 1fr) 50px" gdGap="12px">
+                        <mat-icon gdGridAlign="center center">edit</mat-icon>
+                        <h2 gdColumn="2 / span 2" gdGridAlign="start center">{{componente.descricao}}</h2>
+                        <mat-icon gdGridAlign="center center">remove</mat-icon>
+                        <span gdColumn="1 / span 2" gdGridAlign="start center">Escolha ate <b>{{componente.quantidade}}</b> itens</span>
+                        <span gdColumn="3 / span 2" class="obrigatorio" gdGridAlign="end center">{{componente.obrigatorio ? 'Obrigatorio' : ''}}</span>
+                    </header>
                     <mat-divider></mat-divider>
                     <main class="componente-item" fxLayout="column" fxLayoutGap="12px">
                         <article
                             *ngFor="let componenteItem of componente.componenteItems"
-                            fxLayout
-                            fxLayoutAlign="space-between center"
+                            gdColumns="50px auto 100px 50px"
                             fxLayoutGap="6px">
+                            <mat-icon gdGridAlign="center center">edit</mat-icon>
                             <span>{{componenteItem.descricao}}</span>
-                            <span>R$ {{componenteItem.valor}}</span>
+                            <span gdGridAlign="end center">R$ {{componenteItem.valor}}</span>
+                            <mat-icon gdGridAlign="center center">remove</mat-icon>
                         </article>
                     </main>
                 </section>
