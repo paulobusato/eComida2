@@ -28,9 +28,9 @@
                 <button type="button" mat-raised-button color="primary" (click)="openDialogComponente()">Adicionar</button>
             </div>
             <div class="componente_wrapper">
-                <section class="componente" *ngFor="let componente of componentes; let i = index">
+                <section class="componente" *ngFor="let componente of componentes; let idxComponente = index">
                     <header gdColumns="50px repeat(2, 1fr) 50px" gdGap="12px">
-                        <mat-icon gdGridAlign="center center">edit</mat-icon>
+                        <mat-icon gdGridAlign="center center" (click)="openDialogComponente(idxComponente)">edit</mat-icon>
                         <h2 gdColumn="2 / span 2" gdGridAlign="start center">{{componente.descricao}}</h2>
                         <mat-icon gdGridAlign="center center" (click)="openDialogRemover()">remove</mat-icon>
                         <span gdColumn="1 / span 2" gdGridAlign="start center">Escolha ate <b>{{componente.quantidade}}</b> itens</span>
@@ -39,10 +39,10 @@
                     <mat-divider></mat-divider>
                     <main class="componente-item" fxLayout="column" fxLayoutGap="12px">
                         <article
-                            *ngFor="let componenteItem of componente.componenteItems"
+                            *ngFor="let componenteItem of componente.componenteItems; let idxComponenteItem = index"
                             gdColumns="50px auto 100px 50px"
                             fxLayoutGap="6px">
-                            <mat-icon gdGridAlign="center center">edit</mat-icon>
+                            <mat-icon gdGridAlign="center center" (click)="openDialogComponenteItem(idxComponente, idxComponenteItem)">edit</mat-icon>
                             <span>{{componenteItem.descricao}}</span>
                             <span gdGridAlign="end center">R$ {{componenteItem.valor}}</span>
                             <mat-icon gdGridAlign="center center" (click)="openDialogRemover()">remove</mat-icon>

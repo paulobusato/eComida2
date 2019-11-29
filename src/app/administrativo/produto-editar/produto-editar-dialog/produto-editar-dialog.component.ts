@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { Componente, ComponenteItem } from 'src/app/cliente/cliente.type';
 
 @Component({
   selector: 'app-produto-editar-dialog',
@@ -13,7 +14,12 @@ export class ProdutoEditarDialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: {componenteItem: boolean},
+    @Inject(MAT_DIALOG_DATA) public data: {
+      idxComponente: number,
+      componente?: Componente,
+      idxComponenteItem?: number,
+      componenteItem?: ComponenteItem
+    },
   ) { }
 
   ngOnInit() {
@@ -27,6 +33,22 @@ export class ProdutoEditarDialogComponent implements OnInit {
       descricao: [''],
       valor: [''],
     });
+
+    if (this.data.idxComponente !== undefined) {
+      if (this.data.idxComponenteItem === undefined) {
+        this.componenteForm.patchValue({
+          descricao: this.data.componente.descricao,
+          quantidade: this.data.componente.quantidade,
+          obrigatorio: this.data.componente.obrigatorio,
+        });
+      } else {
+        this.componenteItemForm.patchValue({
+          descricao: this.data.componenteItem.descricao,
+          valor: this.data.componenteItem.valor,
+        });
+      }
+    }
+
   }
 
 }

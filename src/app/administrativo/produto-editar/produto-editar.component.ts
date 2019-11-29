@@ -57,8 +57,7 @@ export class ProdutoEditarComponent implements OnInit {
   onSubmit(): void {
     if (this.idProduto > 0) {
       this.administrativoService.editarProduto(this.idProduto, { produto: this.produtoForm.value, componentes: this.componentes}).subscribe(
-        (next) => console.log(next)
-        // () => this.location.back(),
+        () => this.location.back(),
       );
     } else {
       this.administrativoService.addProduto({ produto: this.produtoForm.value, componentes: this.componentes}).subscribe(
@@ -67,34 +66,66 @@ export class ProdutoEditarComponent implements OnInit {
     }
   }
 
-  openDialogComponente(): void {
+  openDialogComponente(idxComponente?: number): void {
     const dialogRef = this.dialog.open(ProdutoEditarDialogComponent, {
       width: '500px',
       height: '350px',
-      data: {componenteItem: false},
+      data: idxComponente !== undefined
+        ? {
+        idxComponente,
+        componente: this.componentes
+          .find((e, i) => i === idxComponente),
+        }
+        : {},
     });
 
     dialogRef.afterClosed().subscribe(
-      result => {
-        if (result) {
+      response => {
+        if (response) {
           if (this.componentes) {
-            this.componentes = [
-              ...cloneDeep(this.componentes),
-              result
-            ];
+            if (response.idxComponente !== undefined) {
+              this.componentes = this.componentes.map((e, i) => {
+                if (i === response.idxComponente) {
+                  return {
+                    ...e,
+                    descricao: response.componente.descricao,
+                    quantidade: response.componente.quantidade,
+                    obrigatorio: response.componente.obrigatorio,
+                  };
+                } else {
+                  return {
+                    ...e
+                  };
+                }
+              });
+            } else {
+              this.componentes = [
+                ...cloneDeep(this.componentes),
+                response
+              ];
+            }
           } else {
-            this.componentes = [result];
+            this.componentes = [response];
           }
         }
       },
     );
   }
 
-  openDialogComponenteItem(idxComponente: number): void {
+  openDialogComponenteItem(idxComponente?: number, idxComponenteItem?: number): void {
+    const data = idxComponente && idxComponenteItem
+      ? {
+        idxComponente,
+        idxComponenteItem,
+        componenteItem: this.componentes.find((e, i) => i === idxComponente)
+          .componenteItems.find((e, i) => i === idxComponenteItem),
+      }
+      : 0;
+
     const dialogRef = this.dialog.open(ProdutoEditarDialogComponent, {
       width: '500px',
       height: '300px',
-      data: {componenteItem: true},
+      data,
     });
 
     dialogRef.afterClosed().subscribe(
