@@ -57,17 +57,29 @@ try {
           $codigosComponentesEnviado = array();
 
           foreach ($json_obj->componentes as $componente) {
+            $componenteItemsIdx = array();
             if (property_exists($componente, 'idComponente')) {
-              array_push($codigosComponentesEnviado, $componente->idComponente);
+              foreach ($componente->componenteItems as $componenteItem) {
+                if (property_exists($componenteItem, 'idComponenteItem')) {
+                  array_push($componenteItemsIdx, $componenteItem->idComponenteItem);
+                }
+              }
+              array_push($codigosComponentesEnviado, array(
+                "idComponente" => $componente->idComponente,
+                "idComponenteItems" => $componenteItemsIdx
+              ));
             }
           }
 
           foreach ($todosComponentes as $componente) {
             if (!in_array($componente->idComponente, $codigosComponentesEnviado)) {
+              foreach ($componente->componenteItems as $componenteItem) {
+                ComponenteItemDao::excluir($_GET["idProduto"], $componente->idComponente, $componenteItem->idComponenteItem);
+              }
               ComponenteDao::excluir($_GET["idProduto"], $componente->idComponente);
             }
           }
-          
+
           foreach ($json_obj->componentes as $componente) {
             if (!property_exists($componente, 'idComponente')) {
               ComponenteDao::inserir($_GET["idProduto"], $componente);
@@ -77,10 +89,22 @@ try {
               if (isset($componenteEncontrado)) {
                 ComponenteDao::alterar($_GET["idProduto"], $componente);
               }
+              
+              foreach ($componente->componenteItems as $componenteItem) {
+                if (!property_exists($componenteItem, 'idComponenteItem')) {
+                  ComponenteItemDao::inserir($_GET["idProduto"], $componente->idComponente, $componenteItem);
+                } else {
+                  $componenteItemEncontrado = ComponenteItemDao::consultar($_GET["idProduto"], $componente->idComponente, $componenteItem->idComponenteItem);
+
+                  if (isset($componenteItemEncontrado)) {
+                    $response = ComponenteItemDao::alterar($_GET["idProduto"], $componente->idComponente, $componenteItem);
+                  }
+                }
+              }
             }
           }
         }
-        $response = true;
+        $response = $json_obj;
       break;
       case 'DELETE':
         if (isset($_GET["idProduto"])) {

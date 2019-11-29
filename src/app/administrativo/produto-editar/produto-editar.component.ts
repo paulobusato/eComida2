@@ -57,7 +57,8 @@ export class ProdutoEditarComponent implements OnInit {
   onSubmit(): void {
     if (this.idProduto > 0) {
       this.administrativoService.editarProduto(this.idProduto, { produto: this.produtoForm.value, componentes: this.componentes}).subscribe(
-        () => this.location.back(),
+        // () => this.location.back(),
+        (next) => console.log(next),
       );
     } else {
       this.administrativoService.addProduto({ produto: this.produtoForm.value, componentes: this.componentes}).subscribe(

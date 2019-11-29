@@ -2,14 +2,25 @@
 
 class ComponenteItemDao {
 
-  public static function consultar($idProduto, $idComponente) {
+  public static function consultar($idProduto, $idComponente, $idComponenteItem = '') {
     $componenteItems = array();
-    $sql = "
-      SELECT *
-      FROM COMPONENTEITEM CI
-      WHERE CI.IDPRODUTO = {$idProduto}
-        AND CI.IDCOMPONENTE = {$idComponente}
-    ";
+    
+    if ($idComponenteItem != '') {
+      $sql = "
+        SELECT *
+        FROM COMPONENTEITEM CI
+        WHERE CI.IDPRODUTO = {$idProduto}
+          AND CI.IDCOMPONENTE = {$idComponente}
+          AND CI.IDCOMPONENTEITEM = {$idComponenteItem}
+      ";
+    } else {
+      $sql = "
+        SELECT *
+        FROM COMPONENTEITEM CI
+        WHERE CI.IDPRODUTO = {$idProduto}
+          AND CI.IDCOMPONENTE = {$idComponente}
+      ";
+    }
 
     $db_componenteItems = Dao::consultar($sql);
     foreach ($db_componenteItems as $db_componenteItem) {
@@ -18,6 +29,11 @@ class ComponenteItemDao {
         $db_componenteItem->DESCRICAO,
         $db_componenteItem->VALOR
       );
+
+      if ($idComponenteItem != '') {
+        return $componenteItem;
+      }
+
       array_push($componenteItems, $componenteItem);
     }
 
@@ -33,6 +49,28 @@ class ComponenteItemDao {
         '{$componenteItem->descricao}',
         {$componenteItem->valor}
       );
+    ";
+    Dao::executar($sql);
+  }
+
+  public static function alterar($idProduto, $idComponente, $ComponenteItem) {
+    $sql = "
+      UPDATE COMPONENTEITEM
+      SET DESCRICAO = '{$ComponenteItem->descricao}',
+          VALOR = '{$ComponenteItem->valor}',
+      WHERE IDPRODUTO = {$idProduto}
+      AND IDCOMPONENTE = {$idComponente}
+      AND IDCOMPONENTEITEM = {$ComponenteItem->idComponenteItem}
+    ";
+    Dao::executar($sql);
+  }
+
+  public static function excluir($idProduto, $idComponente, $idComponenteItem) {
+    $sql = "
+      DELETE FROM COMPONENTEITEM
+      WHERE IDPRODUTO = {$idProduto}
+        AND IDCOMPONENTE = {$idComponente}
+        AND IDCOMPONENTEITEM = {$idComponenteItem}
     ";
     Dao::executar($sql);
   }
