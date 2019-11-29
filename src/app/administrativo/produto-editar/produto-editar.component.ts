@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ProdutoEditarDialogComponent } from './produto-editar-dialog/produto-editar-dialog.component';
-import { Componente, Produto } from 'src/app/cliente/cliente.type';
+import { Componente, Produto, ComponenteItem } from 'src/app/cliente/cliente.type';
 import * as cloneDeep from 'lodash.clonedeep';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdministrativoService } from '../administrativo.service';
@@ -129,25 +129,44 @@ export class ProdutoEditarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(
-      result => {
-        if (result) {
+      response => {
+        if (response) {
           this.componentes = this.componentes.map(
             (value: Componente, index) => {
               if (index === idxComponente) {
                 if (value.componenteItems) {
-                  return {
-                    ...value,
-                    componenteItems: [
-                      ...value.componenteItems,
-                      {
-                        ...result,
-                      },
-                    ],
-                  };
+                  if (response.idxComponenteItem !== undefined) {
+                    return {
+                      ...value,
+                      componenteItems: value.componenteItems.map(
+                        (componenteItem: ComponenteItem, iComponenteItem: number) => {
+                          if (iComponenteItem === response.idxComponenteItem) {
+                            return {
+                              ...response.componenteItem,
+                            };
+                          } else {
+                            return {
+                              ...componenteItem,
+                            };
+                          }
+                        }
+                      ),
+                    };
+                  } else {
+                    return {
+                      ...value,
+                      componenteItems: [
+                        ...value.componenteItems,
+                        {
+                          ...response,
+                        },
+                      ],
+                    };
+                  }
                 } else {
                   return {
                     ...value,
-                    componenteItems: [{...result}],
+                    componenteItems: [{...response}],
                   };
                 }
               } else {
