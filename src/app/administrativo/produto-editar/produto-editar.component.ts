@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdministrativoService } from '../administrativo.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { ProdutoRemoverDialogComponent } from './produto-remover-dialog/produto-remover-dialog.component';
 
 @Component({
   selector: 'app-produto-editar',
@@ -128,5 +129,12 @@ export class ProdutoEditarComponent implements OnInit {
         }
       }
     );
+  }
+
+  openDialogRemover(): void {
+    const dialogRef = this.dialog.open(ProdutoRemoverDialogComponent, {
+      width: '400px',
+      height: '150px'
+    });
   }
 }

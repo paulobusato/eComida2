@@ -13,6 +13,7 @@ import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProdutoEditarDialogComponent } from './produto-editar/produto-editar-dialog/produto-editar-dialog.component';
+import { ProdutoRemoverDialogComponent } from './produto-editar/produto-remover-dialog/produto-remover-dialog.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ProdutoEditarDialogComponent } from './produto-editar/produto-editar-di
     ProdutoEditarComponent,
     EstabelecimentoHeaderComponent,
     ProdutoEditarDialogComponent,
+    ProdutoRemoverDialogComponent,
   ],
   imports: [
     CommonModule,

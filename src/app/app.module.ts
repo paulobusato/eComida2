@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { ProdutoEditarDialogComponent } from './administrativo/produto-editar/produto-editar-dialog/produto-editar-dialog.component';
+import { ProdutoRemoverDialogComponent } from './administrativo/produto-editar/produto-remover-dialog/produto-remover-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,6 @@ import { ProdutoEditarDialogComponent } from './administrativo/produto-editar/pr
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ProdutoEditarDialogComponent]
+  entryComponents: [ProdutoEditarDialogComponent, ProdutoRemoverDialogComponent]
 })
 export class AppModule { }

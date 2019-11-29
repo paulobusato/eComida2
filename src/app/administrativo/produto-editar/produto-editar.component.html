@@ -32,7 +32,7 @@
                     <header gdColumns="50px repeat(2, 1fr) 50px" gdGap="12px">
                         <mat-icon gdGridAlign="center center">edit</mat-icon>
                         <h2 gdColumn="2 / span 2" gdGridAlign="start center">{{componente.descricao}}</h2>
-                        <mat-icon gdGridAlign="center center">remove</mat-icon>
+                        <mat-icon gdGridAlign="center center" (click)="openDialogRemover()">remove</mat-icon>
                         <span gdColumn="1 / span 2" gdGridAlign="start center">Escolha ate <b>{{componente.quantidade}}</b> itens</span>
                         <span gdColumn="3 / span 2" class="obrigatorio" gdGridAlign="end center">{{componente.obrigatorio ? 'Obrigatorio' : ''}}</span>
                     </header>
@@ -45,7 +45,7 @@
                             <mat-icon gdGridAlign="center center">edit</mat-icon>
                             <span>{{componenteItem.descricao}}</span>
                             <span gdGridAlign="end center">R$ {{componenteItem.valor}}</span>
-                            <mat-icon gdGridAlign="center center">remove</mat-icon>
+                            <mat-icon gdGridAlign="center center" (click)="openDialogRemover()">remove</mat-icon>
                         </article>
                     </main>
                 </section>
