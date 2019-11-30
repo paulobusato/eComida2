@@ -195,10 +195,20 @@ export class ProdutoEditarComponent implements OnInit {
     );
   }
 
-  openDialogRemover(): void {
+  openDialogRemover(idxComponente: number, idxComponenteItem?: number): void {
     const dialogRef = this.dialog.open(ProdutoRemoverDialogComponent, {
       width: '400px',
       height: '150px'
     });
+
+    dialogRef.afterClosed().subscribe(
+      (acao: string) => {
+        if (acao === 'Confirmar') {
+          this.componentes = this.componentes
+            .filter((e, i) => i !== idxComponente);
+        }
+      }
+    );
+
   }
 }

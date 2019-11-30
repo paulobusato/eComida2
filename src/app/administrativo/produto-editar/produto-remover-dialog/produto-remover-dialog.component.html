@@ -1,7 +1,7 @@
 <main fxLayout="column" fxLayoutGap="24px">
     <h1>Deseja realmente realizar a exclusão?</h1>
     <nav fxLayout fxLayoutAlign="end center" fxLayoutGap="12px">
-        <button mat-raised-button color="warn" [mat-dialog-close]>Cancelar</button>
-        <button mat-raised-button color="primary">Confirmar</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="'Cancelar'">Cancelar</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="'Confirmar'">Confirmar</button>
     </nav>
 </main>
