@@ -106,12 +106,18 @@ export class ProdutoEditarComponent implements OnInit {
             } else {
               this.componentes = [
                 ...cloneDeep(this.componentes),
-                {...response.componente},
+                {
+                  ...response.componente,
+                  componenteItems: [],
+                },
               ];
             }
           } else {
             this.componentes = [
-              {...response.componente},
+              {
+                ...response.componente,
+                componenteItems: [],
+              },
             ];
           }
         }
