@@ -211,9 +211,27 @@ export class ProdutoEditarComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(
       (acao: string) => {
+        console.log(acao, idxComponente, idxComponenteItem);
         if (acao === 'Confirmar') {
-          this.componentes = this.componentes
-            .filter((e, i) => i !== idxComponente);
+          if (idxComponenteItem === undefined) {
+            this.componentes = this.componentes
+              .filter((e, i) => i !== idxComponente);
+          } else {
+            this.componentes = this.componentes
+              .map((componente: Componente, indexComponente: number) => {
+                if (indexComponente === idxComponenteItem) {
+                  return {
+                    ...componente,
+                    componenteItems: componente.componenteItems
+                      .filter((componenteItem: ComponenteItem, indexComponenteItem) => {
+                        return indexComponenteItem !== idxComponenteItem;
+                      }),
+                  };
+                } else {
+                  return componente;
+                }
+              });
+          }
         }
       }
     );

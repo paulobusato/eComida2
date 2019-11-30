@@ -45,7 +45,7 @@
                             <mat-icon gdGridAlign="center center" (click)="openDialogComponenteItem(idxComponente, idxComponenteItem)">edit</mat-icon>
                             <span>{{componenteItem.descricao}}</span>
                             <span gdGridAlign="end center">R$ {{componenteItem.valor | number:'1.2-2'}}</span>
-                            <mat-icon gdGridAlign="center center" (click)="openDialogRemover()" color="warn">delete_forever</mat-icon>
+                            <mat-icon gdGridAlign="center center" (click)="openDialogRemover(idxComponente, idxComponenteItem)" color="warn">delete_forever</mat-icon>
                         </article>
                         <button type="button" mat-mini-fab color="warn" (click)="openDialogComponenteItem(idxComponente)">
                             <mat-icon>add</mat-icon>
