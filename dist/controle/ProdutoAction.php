@@ -63,7 +63,9 @@ try {
 
               $codComponenteItem = array();
               foreach ($componente->componenteItems as $componenteItem) {
-                array_push($codComponenteItem, $componenteItem->idComponenteItem);
+                if (property_exists($componenteItem, 'idComponenteItem')) {
+                  array_push($codComponenteItem, $componenteItem->idComponenteItem);
+                }
               }
 
               array_push($componentesItemsEnviado, array(
