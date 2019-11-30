@@ -65,13 +65,21 @@ class ComponenteItemDao {
     Dao::executar($sql);
   }
 
-  public static function excluir($idProduto, $idComponente, $idComponenteItem) {
-    $sql = "
+  public static function excluir($idProduto, $idComponente, $idComponenteItem = '') {
+    if ($idComponenteItem != '') {
+      $sql = "
       DELETE FROM COMPONENTEITEM
       WHERE IDPRODUTO = {$idProduto}
         AND IDCOMPONENTE = {$idComponente}
         AND IDCOMPONENTEITEM = {$idComponenteItem}
     ";
+    } else {
+      $sql = "
+        DELETE FROM COMPONENTEITEM
+        WHERE IDPRODUTO = {$idProduto}
+          AND IDCOMPONENTE = {$idComponente}
+      ";
+    }
     Dao::executar($sql);
   }
 }

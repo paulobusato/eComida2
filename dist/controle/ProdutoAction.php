@@ -55,20 +55,39 @@ try {
           ProdutoDao::alterar($idEstabelecimento, $_GET["idProduto"], $json_obj->produto);
           $todosComponentes = ComponenteDao::consultar($_GET["idProduto"]);
           $componentesEnviado = array();
+          $componentesItemsEnviado = array();
 
           foreach ($json_obj->componentes as $componente) {
             if (property_exists($componente, 'idComponente')) {
               array_push($componentesEnviado, $componente->idComponente);
+
+              $codComponenteItem = array();
+              foreach ($componente->componenteItems as $componenteItem) {
+                array_push($codComponenteItem, $componenteItem->idComponenteItem);
+              }
+
+              array_push($componentesItemsEnviado, array(
+                "idComponente" => $componente->idComponente,
+                "idComponenteItems" => $codComponenteItem
+              ));
             }
           }
           
           if (sizeof($todosComponentes) > 0) {
             foreach ($todosComponentes as $componente) {
               if (!in_array($componente->idComponente, $componentesEnviado)) {
-                // foreach ($componente->componenteItems as $componenteItem) {
-                //   ComponenteItemDao::excluir($_GET["idProduto"], $componente->idComponente, $componenteItem->idComponenteItem);
-                // }
+                ComponenteItemDao::excluir($_GET["idProduto"], $componente->idComponente);
                 ComponenteDao::excluir($_GET["idProduto"], $componente->idComponente);
+              } else {
+                foreach ($componente->componenteItems as $componenteItem) {
+                  foreach ($componentesItemsEnviado as $componentesItemEnviado) {
+                    if ($componentesItemEnviado["idComponente"] == $componente->idComponente) {
+                      if (!in_array($componenteItem->idComponenteItem, $componentesItemEnviado["idComponenteItems"])) {
+                        ComponenteItemDao::excluir($_GET["idProduto"], $componente->idComponente, $componenteItem->idComponenteItem);
+                      }
+                    }
+                  }
+                }
               }
             }
           }
