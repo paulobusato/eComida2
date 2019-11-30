@@ -1,4 +1,4 @@
-<form *ngIf="data.idxComponenteItem === undefined" [formGroup]="componenteForm" fxLayout="column" fxLayoutGap="4px">
+<form *ngIf="data.entidade === 'Componente'" [formGroup]="componenteForm" fxLayout="column" fxLayoutGap="4px">
     <mat-form-field>
         <input type="text" matInput placeholder="Descricao" formControlName="descricao">
     </mat-form-field>
@@ -18,7 +18,7 @@
     </nav>
 </form>
 
-<form *ngIf="data.idxComponenteItem !== undefined" [formGroup]="componenteItemForm" fxLayout="column" fxLayoutGap="4px">
+<form *ngIf="data.entidade === 'ComponenteItem'" [formGroup]="componenteItemForm" fxLayout="column" fxLayoutGap="4px">
     <mat-form-field>
         <input type="text" matInput placeholder="Descricao" formControlName="descricao">
     </mat-form-field>

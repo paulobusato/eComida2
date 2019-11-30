@@ -15,6 +15,8 @@ export class ProdutoEditarDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: {
+      novo: boolean,
+      entidade: string,
       idxComponente: number,
       componente?: Componente,
       idxComponenteItem?: number,
@@ -34,19 +36,17 @@ export class ProdutoEditarDialogComponent implements OnInit {
       valor: [''],
     });
 
-    if (this.data.idxComponente !== undefined) {
-      if (this.data.idxComponenteItem === undefined) {
-        this.componenteForm.patchValue({
-          descricao: this.data.componente.descricao,
-          quantidade: this.data.componente.quantidade,
-          obrigatorio: this.data.componente.obrigatorio,
-        });
-      } else {
-        this.componenteItemForm.patchValue({
-          descricao: this.data.componenteItem.descricao,
-          valor: this.data.componenteItem.valor,
-        });
-      }
+    if (this.data.novo === false && this.data.entidade === 'Componente') {
+      this.componenteForm.patchValue({
+        descricao: this.data.componente.descricao,
+        quantidade: this.data.componente.quantidade,
+        obrigatorio: this.data.componente.obrigatorio,
+      });
+    } else if (this.data.novo === false && this.data.entidade === 'ComponenteItem') {
+      this.componenteItemForm.patchValue({
+        descricao: this.data.componenteItem.descricao,
+        valor: this.data.componenteItem.valor,
+      });
     }
 
   }

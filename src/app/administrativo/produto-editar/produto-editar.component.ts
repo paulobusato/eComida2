@@ -72,11 +72,16 @@ export class ProdutoEditarComponent implements OnInit {
       height: '350px',
       data: idxComponente !== undefined
         ? {
+        novo: false,
+        entidade: 'Componente',
         idxComponente,
         componente: this.componentes
           .find((e, i) => i === idxComponente),
         }
-        : {},
+        : {
+          novo: true,
+          entidade: 'Componente',
+        },
     });
 
     dialogRef.afterClosed().subscribe(
@@ -114,15 +119,22 @@ export class ProdutoEditarComponent implements OnInit {
     );
   }
 
-  openDialogComponenteItem(idxComponente?: number, idxComponenteItem?: number): void {
+  openDialogComponenteItem(idxComponente: number, idxComponenteItem?: number): void {
     const data = idxComponente !== undefined && idxComponenteItem !== undefined
       ? {
+        novo: false,
+        entidade: 'ComponenteItem',
         idxComponente,
         idxComponenteItem,
         componenteItem: this.componentes.find((e, i) => i === idxComponente)
           .componenteItems.find((e, i) => i === idxComponenteItem),
       }
-      : 0;
+      : {
+        novo: true,
+        entidade: 'ComponenteItem',
+        idxComponente,
+        idxComponenteItem: undefined
+      };
 
     const dialogRef = this.dialog.open(ProdutoEditarDialogComponent, {
       width: '500px',
@@ -136,7 +148,7 @@ export class ProdutoEditarComponent implements OnInit {
           this.componentes = this.componentes.map(
             (value: Componente, index) => {
               if (index === idxComponente) {
-                if (value.componenteItems) {
+                if (value.componenteItems.length > 0) {
                   if (response.idxComponenteItem !== undefined) {
                     return {
                       ...value,
@@ -166,6 +178,7 @@ export class ProdutoEditarComponent implements OnInit {
                     };
                   }
                 } else {
+                  //////////////
                   return {
                     ...value,
                     componenteItems: [{...response}],
