@@ -88,7 +88,6 @@ try {
                   ComponenteItemDao::inserir($_GET["idProduto"], $componente->idComponente, $componenteItem);
                 } else {
                   $componenteItemEncontrado = ComponenteItemDao::consultar($_GET["idProduto"], $componente->idComponente, $componenteItem->idComponenteItem);
-                  $response = $componente->componenteItems;
 
                   if (isset($componenteItemEncontrado)) {
                     ComponenteItemDao::alterar($_GET["idProduto"], $componente->idComponente, $componenteItem);
@@ -98,7 +97,7 @@ try {
             }
           }
         }
-        // $response = $json_obj;
+        $response = $json_obj;
       break;
       case 'DELETE':
         if (isset($_GET["idProduto"])) {

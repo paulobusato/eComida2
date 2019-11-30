@@ -57,7 +57,7 @@ class ComponenteItemDao {
     $sql = "
       UPDATE COMPONENTEITEM
       SET DESCRICAO = '{$ComponenteItem->descricao}',
-          VALOR = '{$ComponenteItem->valor}',
+          VALOR = '{$ComponenteItem->valor}'
       WHERE IDPRODUTO = {$idProduto}
       AND IDCOMPONENTE = {$idComponente}
       AND IDCOMPONENTEITEM = {$ComponenteItem->idComponenteItem}
