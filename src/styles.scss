@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'src/variables.scss';
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-dialog-container {
+    padding: 0 !important;
+}
+
+.mat-dialog-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.mat-dialog-container::-webkit-scrollbar-thumb {
+    background-color: mat-color($theme-app-primary);
+}

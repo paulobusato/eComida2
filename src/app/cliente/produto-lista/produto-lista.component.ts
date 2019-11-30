@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Produto, Componente, Estabelecimento } from '../cliente.type';
+import { Produto, Componente, Estabelecimento, ComponenteItem } from '../cliente.type';
 import { ClienteService } from '../cliente.service';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { ProdutoEditarComponent } from '../produto-editar/produto-editar.component';
 
 @Component({
   selector: 'app-produto-lista',
@@ -16,6 +18,7 @@ export class ProdutoListaComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private clienteService: ClienteService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -32,20 +35,30 @@ export class ProdutoListaComponent implements OnInit {
   }
 
   onClickProduto(produto: Produto): void {
-    const componenteItens: Componente[] = [...produto.componentes]
-      .map(e => {
+    const componentes: Componente[] = produto.componentes
+      .map((componente: Componente) => {
         return {
-          ...e,
-          componenteItems: e.componenteItems
-            .map(e => { return { ...e, selecionado: false } }),
-          selecionado: false,
+          ...componente,
+          componenteItems: componente.componenteItems
+            .map((componenteItem: ComponenteItem) => {
+              return {
+                ...componenteItem,
+                selecionado: false,
+              };
+            }),
+            selecionado: false,
         };
       });
-    
+
     this.clienteService.produtoAtivado = {
       ...produto,
-      componentes: componenteItens
+      componentes
     };
-    this.router.navigate(['/cliente/produto-editar']);
+
+    const dialogRef = this.dialog.open(ProdutoEditarComponent, {
+      width: '500px',
+      height: '500px',
+    });
+    // this.router.navigate(['/cliente/produto-editar']);
   }
 }

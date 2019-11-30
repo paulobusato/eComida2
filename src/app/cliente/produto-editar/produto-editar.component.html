@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 <form fxLayout="column" fxLayoutAlign="start">
   <section class="titulo" fxLayout="column" fxLayoutAlign="start">
     <p>{{pedidoItem.produto.descricao}}</p>
@@ -25,9 +25,7 @@
       <mat-icon>add</mat-icon>
     </button>
   </nav>
-  <button type="submit" mat-fab (click)="onSubmit()">
-    <mat-icon>check</mat-icon>
-  </button>
+  <button type="submit" mat-stroked-button (click)="onSubmit()">Confirmar</button>
 </form>
-<app-bottom-navigation fxShow fxHide.gt-sm></app-bottom-navigation>
-<app-footer fxHide fxShow.gt-sm></app-footer>
+<!-- <app-bottom-navigation fxShow fxHide.gt-sm></app-bottom-navigation>
+<app-footer fxHide fxShow.gt-sm></app-footer> -->
