@@ -54,29 +54,22 @@ try {
         if (isset($json_obj) && isset($_GET["idProduto"])) {
           ProdutoDao::alterar($idEstabelecimento, $_GET["idProduto"], $json_obj->produto);
           $todosComponentes = ComponenteDao::consultar($_GET["idProduto"]);
-          $codigosComponentesEnviado = array();
+          $componentesEnviado = array();
 
           foreach ($json_obj->componentes as $componente) {
-            $componenteItemsIdx = array();
             if (property_exists($componente, 'idComponente')) {
-              foreach ($componente->componenteItems as $componenteItem) {
-                if (property_exists($componenteItem, 'idComponenteItem')) {
-                  array_push($componenteItemsIdx, $componenteItem->idComponenteItem);
-                }
-              }
-              array_push($codigosComponentesEnviado, array(
-                "idComponente" => $componente->idComponente,
-                "idComponenteItems" => $componenteItemsIdx
-              ));
+              array_push($componentesEnviado, $componente->idComponente);
             }
           }
-
-          foreach ($todosComponentes as $componente) {
-            if (!in_array($componente->idComponente, $codigosComponentesEnviado)) {
-              foreach ($componente->componenteItems as $componenteItem) {
-                ComponenteItemDao::excluir($_GET["idProduto"], $componente->idComponente, $componenteItem->idComponenteItem);
+          
+          if (sizeof($todosComponentes) > 0) {
+            foreach ($todosComponentes as $componente) {
+              if (!in_array($componente->idComponente, $componentesEnviado)) {
+                // foreach ($componente->componenteItems as $componenteItem) {
+                //   ComponenteItemDao::excluir($_GET["idProduto"], $componente->idComponente, $componenteItem->idComponenteItem);
+                // }
+                ComponenteDao::excluir($_GET["idProduto"], $componente->idComponente);
               }
-              ComponenteDao::excluir($_GET["idProduto"], $componente->idComponente);
             }
           }
 
