@@ -47,6 +47,9 @@
                             <span gdGridAlign="end center">R$ {{componenteItem.valor}}</span>
                             <mat-icon gdGridAlign="center center" (click)="openDialogRemover()">remove</mat-icon>
                         </article>
+                        <button type="button" mat-mini-fab color="warn" (click)="openDialogComponenteItem(idxComponente)">
+                            <mat-icon>add</mat-icon>
+                        </button>
                     </main>
                 </section>
             </div>

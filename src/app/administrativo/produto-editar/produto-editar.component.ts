@@ -172,16 +172,15 @@ export class ProdutoEditarComponent implements OnInit {
                       componenteItems: [
                         ...value.componenteItems,
                         {
-                          ...response,
+                          ...response.componenteItem,
                         },
                       ],
                     };
                   }
                 } else {
-                  //////////////
                   return {
                     ...value,
-                    componenteItems: [{...response}],
+                    componenteItems: [{ ...response.componenteItem }],
                   };
                 }
               } else {
