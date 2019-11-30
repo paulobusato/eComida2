@@ -217,7 +217,7 @@ export class ProdutoEditarComponent implements OnInit {
           } else {
             this.componentes = this.componentes
               .map((componente: Componente, indexComponente: number) => {
-                if (indexComponente === idxComponenteItem) {
+                if (indexComponente === idxComponente) {
                   return {
                     ...componente,
                     componenteItems: componente.componenteItems
