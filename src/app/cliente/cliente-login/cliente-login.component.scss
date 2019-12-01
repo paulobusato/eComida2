@@ -1,24 +1,38 @@
 @import 'src/variables.scss';
 
-form {
-  height: 100%;
-  padding-left: 10%;
-  padding-right: 10%;
-
-  mat-form-field {
+main {
+  padding-top: 81px;
+  height: calc(100% - 81px);
+  
+  form {
+    height: calc(50% - 81px);
     width: 100%;
-
-    @media #{$break-lg-screen} {
-      width: 300px;
+    padding-left: 10%;
+    padding-right: 10%;
+  
+    mat-form-field {
+      width: 100%;
+  
+      @media #{$break-lg-screen} {
+        width: 300px;
+      }
+    }
+  
+    p {
+      color: #f44336;
+    }
+  
+    button {
+      margin: 20px 0;
+      width: 100px;
     }
   }
 
-  p {
-    color: #f44336;
-  }
-
-  button {
-    margin: 20px 0;
-    width: 100px;
+  .link-cadastro {
+    font-weight: bold;
+    font-size: 1.3em;
+    margin: 96px 0 !important;
+    white-space: normal !important;
   }
 }
+

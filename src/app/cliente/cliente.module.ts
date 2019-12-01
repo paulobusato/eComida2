@@ -22,6 +22,7 @@ import { ProdutoEditarComponent } from './produto-editar/produto-editar.componen
 import { SacolaComponent } from './sacola/sacola.component';
 import { SearchComponent } from './search/search.component';
 import { SharedModule } from '../shared/shared.module';
+import { ClienteCadastroComponent } from './cliente-login/cliente-cadastro/cliente-cadastro.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SharedModule } from '../shared/shared.module';
     ProdutoEditarComponent,
     SacolaComponent,
     SearchComponent,
+    ClienteCadastroComponent,
   ],
   imports: [
     CommonModule,

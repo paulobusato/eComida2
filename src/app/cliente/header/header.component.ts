@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     if (this.route.snapshot.url[1] && this.route.snapshot.url[1].path === 'sacola'
-        || this.route.snapshot.url[1] && this.route.snapshot.url[1].path === 'login') {
+        || this.route.snapshot.url[1] && this.route.snapshot.url[1].path === 'login'
+        || this.route.snapshot.url[1] && this.route.snapshot.url[1].path === 'cadastro') {
       this.beforeLogin = true;
     } else {
       this.beforeLogin = false;
