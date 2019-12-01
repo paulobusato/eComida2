@@ -1,5 +1,5 @@
-<!-- <app-header></app-header> -->
-<form fxLayout="column" fxLayoutAlign="start">
+<app-header fxShow fxHide.gt-sm></app-header>
+<form fxLayout="column" fxLayoutAlign="start" [ngStyle.lt-sm]="{'margin-top': '81px'}">
   <section class="titulo" fxLayout="column" fxLayoutAlign="start">
     <p>{{pedidoItem.produto.descricao}}</p>
     <p>R$ {{pedidoItem.produto.valor}}</p>
@@ -27,5 +27,5 @@
   </nav>
   <button type="submit" mat-stroked-button (click)="onSubmit()">Confirmar</button>
 </form>
-<!-- <app-bottom-navigation fxShow fxHide.gt-sm></app-bottom-navigation>
-<app-footer fxHide fxShow.gt-sm></app-footer> -->
+<app-bottom-navigation fxShow fxHide.gt-sm></app-bottom-navigation>
+<app-footer fxShow fxHide.gt-sm></app-footer>

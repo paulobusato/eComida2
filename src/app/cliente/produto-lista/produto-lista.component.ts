@@ -5,6 +5,7 @@ import { ClienteService } from '../cliente.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { ProdutoEditarComponent } from '../produto-editar/produto-editar.component';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-produto-lista',
@@ -19,6 +20,7 @@ export class ProdutoListaComponent implements OnInit {
     private route: ActivatedRoute,
     private clienteService: ClienteService,
     private dialog: MatDialog,
+    public devideService: DeviceDetectorService
   ) { }
 
   ngOnInit() {
@@ -55,10 +57,13 @@ export class ProdutoListaComponent implements OnInit {
       componentes
     };
 
-    const dialogRef = this.dialog.open(ProdutoEditarComponent, {
-      width: '500px',
-      height: '500px',
-    });
-    // this.router.navigate(['/cliente/produto-editar']);
+    if (!this.devideService.isMobile()) {
+      const dialogRef = this.dialog.open(ProdutoEditarComponent, {
+        width: '500px',
+        height: '500px',
+      });
+    } else {
+      this.router.navigate(['/cliente/produto-editar']);
+    }
   }
 }

@@ -19,6 +19,8 @@ import { ProdutoEditarDialogComponent } from './administrativo/produto-editar/pr
 import { ProdutoRemoverDialogComponent } from './administrativo/produto-editar/produto-remover-dialog/produto-remover-dialog.component';
 import { ProdutoEditarComponent } from './cliente/produto-editar/produto-editar.component';
 
+import { DeviceDetectorModule } from 'ngx-device-detector';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +45,7 @@ import { ProdutoEditarComponent } from './cliente/produto-editar/produto-editar.
         blacklistedRoutes: ['localhost/auth/login'],
       },
     }),
+    DeviceDetectorModule.forRoot(),
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
