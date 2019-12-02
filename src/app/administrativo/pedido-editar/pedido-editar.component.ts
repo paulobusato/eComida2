@@ -20,7 +20,10 @@ export class PedidoEditarComponent implements OnInit {
     const idPedido = +this.route.snapshot.paramMap.get('idPedido');
 
     this.administrativoService.obterPedidos(idPedido).subscribe(
-      response => console.log(response),
+      (pedido: Pedido) => {
+        console.log(pedido);
+        this.pedido = pedido;
+      },
     );
   }
 

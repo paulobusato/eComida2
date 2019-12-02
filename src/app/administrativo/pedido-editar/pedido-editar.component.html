@@ -1,2 +1,21 @@
 <app-estabelecimento-header></app-estabelecimento-header>
-<p>pedido-editar works!</p>
+<main gdColumns="100%" gdRows="100px auto" gdAlignColumns="start center" gdAlignRows="center center">
+    <h1>Itens do Pedido</h1>
+    <section>
+        <article *ngFor="let pedidoItem of pedido.pedidoItens">
+            <h3>{{pedidoItem.produto.descricao}}</h3>
+            <hr>
+            <h4>Componentes</h4>
+            <section class="componentes">
+                <article *ngFor="let componente of pedidoItem.componentes">
+                    <header>
+                        <h5>{{componente.descricao}}</h5>
+                    </header>
+                    <p *ngFor="let componenteItem of componente.componenteItems">
+                        {{componenteItem.descricao}}
+                    </p>
+                </article>
+            </section>
+        </article>
+    </section>
+</main>
