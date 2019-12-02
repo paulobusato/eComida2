@@ -39,7 +39,7 @@ class PedidoDao {
           EstabelecimentoDao::consultar($db_pedido->IDESTABELECIMENTO),
           ClienteDao::consultar($db_pedido->IDCLIENTE),
           $db_pedido->DATA,
-          PedidoItemDao::consultar($db_pedido->IDPEDIDO),
+          PedidoItemDao::consultar($db_pedido->IDPEDIDO, $db_pedido->IDESTABELECIMENTO),
           $db_pedido->VALOR,
           $db_pedido->STATUS
         );

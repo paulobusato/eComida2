@@ -1,11 +1,12 @@
 <?php
 
 require_once 'PedidoItemComponenteDao.php';
+require_once 'ProdutoDao.php';
 require_once '../modelo/entidade/PedidoItem.php';
 
 class PedidoItemDao {
 
-  public static function consultar($idPedido) {
+  public static function consultar($idPedido, $idEstabelecimento = '') {
     $pedidoItems = array();
     $sql = "
       SELECT *
@@ -18,7 +19,7 @@ class PedidoItemDao {
       $pedidoItem = new PedidoItem(
         $db_pedidoItem->IDPEDIDO,
         $db_pedidoItem->IDPEDIDOITEM,
-        $db_pedidoItem->IDPRODUTO,
+        ProdutoDao::consultar($idEstabelecimento, $db_pedidoItem->IDPRODUTO),
         $db_pedidoItem->QUANTIDADE,
         $db_pedidoItem->VALOR
       );
