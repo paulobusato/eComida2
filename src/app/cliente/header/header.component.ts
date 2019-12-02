@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -29,4 +30,8 @@ export class HeaderComponent implements OnInit {
     this.location.back();
   }
 
+  onSair(): void{
+    localStorage.clear();
+    this.router.navigate(['/landing']);
+  }
 }
