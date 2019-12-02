@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './produto-editar.component.html',
   styleUrls: ['./produto-editar.component.scss']
 })
-export class ProdutoEditarComponent implements OnInit, OnDestroy {
+export class ProdutoEditarComponent implements OnInit {
   pedidoItem: PedidoItem;
   idxPedidoItem: string;
 
@@ -103,9 +103,5 @@ export class ProdutoEditarComponent implements OnInit, OnDestroy {
 
       componenteItem.selecionado = false;
     }
-  }
-
-  ngOnDestroy() {
-    this.clienteService.estabelecimentoAtivo = null;
   }
 }
