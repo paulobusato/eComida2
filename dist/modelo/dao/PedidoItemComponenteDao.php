@@ -10,34 +10,47 @@ class PedidoItemComponenteDao {
 
   public static function consultar($idPedido, $idPedidoItem, $idProduto) {
     $sql = "
-      SELECT *
+      SELECT DISTINCT IDCOMPONENTE
       FROM PEDIDOITEMCOMPONENTE
       WHERE IDPEDIDO = {$idPedido}
         AND IDPEDIDOITEM = {$idPedidoItem}
     ";
     $componentes = array();
 
-    $db_pedidoItemComponentes = Dao::consultar($sql);
+    $db_pedidoComponentes = Dao::consultar($sql);
 
-    foreach ($db_pedidoItemComponentes as $db_pedidoItemComponente) {
-      $componente = ComponenteDao::consultar($idProduto, $db_pedidoItemComponente->IDCOMPONENTE);
-      $componenteItem = ComponenteItemDao::consultar($idProduto, $db_pedidoItemComponente->IDCOMPONENTE, $db_pedidoItemComponente->IDCOMPONENTEITEM);
-      
+    foreach ($db_pedidoComponentes as $db_pedidoComponente) {
+      $componente = ComponenteDao::consultar($idProduto, $db_pedidoComponente->IDCOMPONENTE);
+
+      $componenteItens = array();
+
+      $sql = "
+        SELECT *
+        FROM PEDIDOITEMCOMPONENTE
+        WHERE IDPEDIDO = {$idPedido}
+          AND IDPEDIDOITEM = {$idPedidoItem}
+            AND IDCOMPONENTE = {$db_pedidoComponente->IDCOMPONENTE}
+      ";
+
+      $db_componenteItens = Dao::consultar($sql);
+
+      foreach ($db_componenteItens as $db_componenteItem) {
+        array_push(
+          $componenteItens,
+          ComponenteItemDao::consultar($idProduto, $db_pedidoComponente->IDCOMPONENTE, $db_componenteItem->IDCOMPONENTEITEM)
+        );
+      }
+    
       array_push($componentes, new Componente(
-          $db_pedidoItemComponente->IDCOMPONENTE,
+          $db_pedidoComponente->IDCOMPONENTE,
           '',
           $componente->descricao,
           $componente->quantidade,
           $componente->quantidade,
-          new ComponenteItem(
-            $componenteItem->idComponenteItem,
-            $componenteItem->descricao,
-            $componenteItem->valor
-          )
+          $componenteItens
         )
       );
     }
-
     return $componentes;
   }
 
