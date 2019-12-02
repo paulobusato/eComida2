@@ -8,12 +8,14 @@ import { SacolaComponent } from './sacola/sacola.component';
 import { SearchComponent } from './search/search.component';
 import { ProdutoAtivoGuard } from './guard/produto-ativo.guard';
 import { ClienteCadastroComponent } from './cliente-login/cliente-cadastro/cliente-cadastro.component';
+import { PedidoListaComponent } from './pedido-lista/pedido-lista.component';
 
 
 const routes: Routes = [
   {path: 'cliente', component: ClienteComponent},
   {path: 'cliente/login', component: ClienteLoginComponent},
   {path: 'cliente/cadastro', component: ClienteCadastroComponent},
+  {path: 'cliente/pedido-lista', component: PedidoListaComponent},
   {path: 'cliente/produto-lista/:idEstabelecimento', component: ProdutoListaComponent},
   {path: 'cliente/produto-editar', component: ProdutoEditarComponent, canActivate: [ProdutoAtivoGuard]},
   {path: 'cliente/sacola', component: SacolaComponent},
