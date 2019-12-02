@@ -1,0 +1,8 @@
+@import 'src/variables.scss';
+
+main {
+  padding-top: 81px;
+  padding-bottom: 81px;
+  background-color  : mat-color($theme-app-light);
+  height: calc(100% - 243px);
+}
