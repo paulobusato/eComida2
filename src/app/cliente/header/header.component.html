@@ -3,6 +3,6 @@
     <mat-icon (click)="onBack()">chevron_left</mat-icon>
     <h1 *ngIf="!beforeLogin" [routerLink]="['/cliente']">eComida</h1>
     <mat-icon *ngIf="!beforeLogin" fxHide fxShow.gt-sm [routerLink]="['/cliente/sacola']">shopping_basket</mat-icon>
-    <button mat-button (click)="onSair()">Sair</button>
+    <button *ngIf="!beforeLogin" mat-button (click)="onSair()">Sair</button>
   </mat-toolbar>
 </header>

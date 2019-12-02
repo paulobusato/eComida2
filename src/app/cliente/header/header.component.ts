@@ -17,12 +17,11 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.route.snapshot.url[1] && this.route.snapshot.url[1].path === 'sacola'
-        || this.route.snapshot.url[1] && this.route.snapshot.url[1].path === 'login'
-        || this.route.snapshot.url[1] && this.route.snapshot.url[1].path === 'cadastro') {
-      this.beforeLogin = true;
-    } else {
+    const estaLogado = localStorage.getItem('token');
+    if (estaLogado) {
       this.beforeLogin = false;
+    } else {
+      this.beforeLogin = true;
     }
   }
 
