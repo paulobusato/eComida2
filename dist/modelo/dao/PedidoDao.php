@@ -12,17 +12,18 @@ class PedidoDao {
   public static function consultar($idEstabelecimento = '', $idPedido = '') {
     $pedidos = array();
 
-    if ($idEstabelecimento != '') {
-      $sql = "
-        SELECT *
-        FROM PEDIDO P
-        WHERE P.IDESTABELECIMENTO = {$idEstabelecimento}
-      ";
-    } else if ($idPedido != '') {
+    if ($idEstabelecimento != '' && $idPedido != '') {
       $sql = "
         SELECT *
         FROM PEDIDO P
         WHERE P.IDPEDIDO = {$idPedido}
+          AND P.IDESTABELECIMENTO = {$idEstabelecimento}
+      ";
+    } else if ($idEstabelecimento != '') {
+      $sql = "
+        SELECT *
+        FROM PEDIDO P
+        WHERE P.IDESTABELECIMENTO = {$idEstabelecimento}
       ";
     } else {
       $sql = "
