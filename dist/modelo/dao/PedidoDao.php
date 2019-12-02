@@ -10,7 +10,7 @@ require_once 'PedidoItemComponenteDao.php';
 
 class PedidoDao {
 
-  public static function consultar($idEstabelecimento = '', $idPedido = '') {
+  public static function consultar($idEstabelecimento = '', $idPedido = '', $idCliente = '') {
     $pedidos = array();
 
     if ($idEstabelecimento != '' && $idPedido != '') {
@@ -26,7 +26,13 @@ class PedidoDao {
         FROM PEDIDO P
         WHERE P.IDESTABELECIMENTO = {$idEstabelecimento}
       ";
-    } else {
+    } else if ($idCliente != '') {
+      $sql = "
+        SELECT *
+        FROM PEDIDO P
+        WHERE P.IDCLIENTE = {$idCliente}
+      ";
+    }  else {
       $sql = "
         SELECT *
         FROM PEDIDO P

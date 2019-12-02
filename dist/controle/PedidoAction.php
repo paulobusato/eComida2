@@ -32,6 +32,7 @@ try {
   if (isset($idCliente)) {
     switch ($method) {
       case 'GET':
+        $response = PedidoDao::consultar('', '', $idCliente);
       break;
       case 'POST':
         PedidoDao::inserir(
