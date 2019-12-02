@@ -14,7 +14,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProdutoEditarDialogComponent } from './produto-editar/produto-editar-dialog/produto-editar-dialog.component';
 import { ProdutoRemoverDialogComponent } from './produto-editar/produto-remover-dialog/produto-remover-dialog.component';
-import { PedidoDetalheComponent } from './pedido-lista/pedido-detalhe/pedido-detalhe.component';
 
 
 @NgModule({
@@ -28,7 +27,6 @@ import { PedidoDetalheComponent } from './pedido-lista/pedido-detalhe/pedido-det
     EstabelecimentoHeaderComponent,
     ProdutoEditarDialogComponent,
     ProdutoRemoverDialogComponent,
-    PedidoDetalheComponent,
   ],
   imports: [
     CommonModule,
