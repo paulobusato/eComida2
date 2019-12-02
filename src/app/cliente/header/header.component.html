@@ -2,7 +2,7 @@
   <mat-toolbar color="primary" gdColumns="48px auto 48px" gdColumns.gt-sm="96px 96px auto 96px 96px 100px">
     <mat-icon (click)="onBack()">chevron_left</mat-icon>
     <h1 *ngIf="!beforeLogin" [routerLink]="['/cliente']">eComida</h1>
-    <span></span>
+    <span *ngIf="!beforeLogin" fxHide fxShow.gt-sm></span>
     <mat-icon *ngIf="!beforeLogin" fxHide fxShow.gt-sm [routerLink]="['/cliente/sacola']">shopping_basket</mat-icon>
     <mat-icon *ngIf="!beforeLogin" fxHide fxShow.gt-sm [routerLink]="['/cliente/pedido-lista']">archive</mat-icon>
     <button *ngIf="!beforeLogin" mat-button (click)="onSair()">Sair</button>
