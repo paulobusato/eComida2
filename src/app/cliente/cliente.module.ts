@@ -23,6 +23,7 @@ import { SacolaComponent } from './sacola/sacola.component';
 import { SearchComponent } from './search/search.component';
 import { SharedModule } from '../shared/shared.module';
 import { ClienteCadastroComponent } from './cliente-login/cliente-cadastro/cliente-cadastro.component';
+import { PedidoListaComponent } from './pedido-lista/pedido-lista.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ClienteCadastroComponent } from './cliente-login/cliente-cadastro/clien
     SacolaComponent,
     SearchComponent,
     ClienteCadastroComponent,
+    PedidoListaComponent,
   ],
   imports: [
     CommonModule,
