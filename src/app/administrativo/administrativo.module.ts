@@ -9,11 +9,12 @@ import { EstabelecimentoCadastroComponent } from './estabelecimento-cadastro/est
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { ProdutoEditarComponent } from './produto-editar/produto-editar.component';
 import { EstabelecimentoHeaderComponent } from './estabelecimento-header/estabelecimento-header.component';
-import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSelectModule, MatIconModule, MatDialogModule, MatCheckboxModule, MatDividerModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSelectModule, MatIconModule, MatDialogModule, MatCheckboxModule, MatDividerModule, MatTreeModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProdutoEditarDialogComponent } from './produto-editar/produto-editar-dialog/produto-editar-dialog.component';
 import { ProdutoRemoverDialogComponent } from './produto-editar/produto-remover-dialog/produto-remover-dialog.component';
+import { PedidoDetalheComponent } from './pedido-lista/pedido-detalhe/pedido-detalhe.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ProdutoRemoverDialogComponent } from './produto-editar/produto-remover-
     EstabelecimentoHeaderComponent,
     ProdutoEditarDialogComponent,
     ProdutoRemoverDialogComponent,
+    PedidoDetalheComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +48,7 @@ import { ProdutoRemoverDialogComponent } from './produto-editar/produto-remover-
     MatDialogModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatTreeModule,
   ]
 })
 export class AdministrativoModule { }
