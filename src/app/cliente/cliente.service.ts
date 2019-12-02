@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class ClienteService {
   urlEstabelecimento = 'http://localhost/eComida2/dist/controle/estabelecimentoaction.php';
   urlCliente = 'http://localhost/eComida2/dist/controle/clienteaction.php';
+  urlPedido = 'http://localhost/eComida2/dist/controle/pedidoaction.php';
   produtoAtivado: Produto;
   estabelecimentoAtivo: Estabelecimento;
   clienteAtivo: Cliente;
@@ -42,13 +43,7 @@ export class ClienteService {
 
   addPedido(): Observable<any> {
     return this.http.post(
-      'http://localhost/eComida2/dist/controle/pedidoaction.php',
-      JSON.stringify(this.pedido),
-      {
-        headers: new HttpHeaders()
-          .set('Content-Type', 'application/json')
-      }
-    );
+      this.urlPedido, this.pedido, this.httpOpcoes);
   }
 
   obterCliente(): Observable<Cliente> {

@@ -5,6 +5,7 @@ require_once '../modelo/entidade/Pedido.php';
 require_once 'PedidoItemDao.php';
 require_once 'ClienteDao.php';
 require_once 'EstabelecimentoDao.php';
+require_once 'PedidoItemComponenteDao.php';
 
 
 class PedidoDao {

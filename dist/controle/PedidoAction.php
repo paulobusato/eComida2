@@ -28,7 +28,7 @@ try {
   $json_str = file_get_contents('php://input');
   $json_obj = json_decode($json_str);
   $method = $_SERVER["REQUEST_METHOD"];
-
+  
   if (isset($idCliente)) {
     switch ($method) {
       case 'GET':
@@ -47,11 +47,11 @@ try {
         $response = 'Não existe';
       break;
     }
-    if (isset($_GET["idEstabelecimento"])) {
-      $response = EstabelecimentoDao::consultar($_GET["idEstabelecimento"])[0];
-    } else {
-      $response = EstabelecimentoDao::consultar();
-    }
+    // if (isset($_GET["idEstabelecimento"])) {
+    //   $response = EstabelecimentoDao::consultar($_GET["idEstabelecimento"])[0];
+    // } else {
+    //   $response = EstabelecimentoDao::consultar();
+    // }
   } else if (isset($idEstabelecimento)) {
     switch ($method) {
       case 'GET':

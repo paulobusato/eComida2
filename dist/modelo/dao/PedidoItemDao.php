@@ -21,7 +21,8 @@ class PedidoItemDao {
         $db_pedidoItem->IDPEDIDOITEM,
         ProdutoDao::consultar($idEstabelecimento, $db_pedidoItem->IDPRODUTO),
         $db_pedidoItem->QUANTIDADE,
-        $db_pedidoItem->VALOR
+        $db_pedidoItem->VALOR,
+        PedidoItemComponenteDao::consultar($db_pedidoItem->IDPEDIDO, $db_pedidoItem->IDPEDIDOITEM, $db_pedidoItem->IDPRODUTO)
       );
       array_push($pedidoItems, $pedidoItem);
     }
@@ -29,14 +30,13 @@ class PedidoItemDao {
     return $pedidoItems;
   }
 
-  public static function obterUltimoIdItemPedido($idPedido, $idProduto, $quantidade, $valor) {
+  public static function obterUltimoIdItemPedido($idPedido, $idProduto, $quantidade) {
     $sql = "
       SELECT MAX(PI.IDPEDIDOITEM) AS IDPEDIDOITEM
       FROM PEDIDOITEM PI
       WHERE PI.IDPEDIDO = '{$idPedido}'
         AND PI.IDPRODUTO = '{$idProduto}'
         AND PI.QUANTIDADE = '{$quantidade}'
-        AND PI.VALOR = '{$valor}'
     ";
     $db_idPedidoItem = Dao::consultar($sql);
     return $db_idPedidoItem[0]->IDPEDIDOITEM;
@@ -55,7 +55,7 @@ class PedidoItemDao {
     ";
     Dao::executar($sql);
 
-    $ultimoIdItemPedido = PedidoItemDao::obterUltimoIdItemPedido($idPedido, $idProduto, $quantidade, $valor);
+    $ultimoIdItemPedido = PedidoItemDao::obterUltimoIdItemPedido($idPedido, $idProduto, $quantidade);
 
     foreach ($componentes as $componente) {
       foreach ($componente->componenteItems as $componenteItem) {
