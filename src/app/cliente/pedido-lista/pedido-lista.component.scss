@@ -2,7 +2,22 @@
 
 main {
   padding-top: 81px;
-  padding-bottom: 81px;
-  background-color  : mat-color($theme-app-light);
-  height: calc(100% - 243px);
+  background-image: url('/assets/images/image3.jpeg');
+  background-size: cover;
+  height: calc(100% - 162px);
+  overflow: hidden;
+
+  section {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-rows: 100px;
+    row-gap: 24px;
+    overflow: auto;
+    height: 100%;
+    padding: 24px;
+  }
+
+  mat-card {
+    opacity: .6;
+  }
 }
