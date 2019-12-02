@@ -18,6 +18,12 @@ export class ClienteService {
     private http: HttpClient
   ) { }
 
+  httpOpcoes = {
+    headers: new HttpHeaders({
+      'Content-type': 'application/json',
+    }),
+  };
+
   obterCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>('http://localhost/eComida2/dist/controle/categoriaaction.php');
   }
@@ -47,5 +53,9 @@ export class ClienteService {
 
   obterCliente(): Observable<Cliente> {
     return this.http.get<Cliente>(this.urlCliente);
+  }
+
+  addCliente(cliente: Cliente): Observable<void> {
+    return this.http.post<void>(this.urlCliente, cliente, this.httpOpcoes);
   }
 }

@@ -60,6 +60,26 @@ class ClienteDao {
     return $clientes;
   }
 
+  public static function inserir($cliente) {
+    $sql = "
+      INSERT INTO `CLIENTE` (`NOME`, `CPF`, `EMAIL`, `SENHA`, `TELEFONE`, `CEP`, `LOGRADOURO`, `NUMERO`, `BAIRRO`, `CIDADE`, `UF`)
+      VALUES (
+        '$cliente->nome',
+        '$cliente->cpf',
+        '$cliente->email',
+        '$cliente->senha',
+        '$cliente->telefone',
+        '$cliente->cep',
+        '$cliente->logradouro',
+        '$cliente->numero',
+        '$cliente->bairro',
+        '$cliente->cidade',
+        '$cliente->uf'
+      );
+    ";
+    Dao::executar($sql);
+  }
+
   public static function login($email, $senha) {
     $sql = "
       SELECT C.IDCLIENTE

@@ -25,6 +25,10 @@ try {
     case 'GET':
       $response = ClienteDao::consultar($idCliente);
     break;
+    case 'POST':
+      ClienteDao::inserir($json_obj);
+      $response = true;
+    break;
     default:
       $response = 'Não existe';
     break;

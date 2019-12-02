@@ -1,36 +1,39 @@
 <app-header fxShow fxHide.gt-sm></app-header>
 <main fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="48px">
     <h1>Cadastro</h1>
-    <form fxLayout="column" fxLayoutAlign="center center">
+    <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center">
         <mat-form-field>
-            <input type="text" matInput placeholder="Nome">
+            <input type="text" matInput placeholder="Nome" formControlName="nome">
         </mat-form-field>
         <mat-form-field>
-            <input type="number" matInput placeholder="CPF">
+            <input type="number" matInput placeholder="CPF" formControlName="cpf">
         </mat-form-field>
         <mat-form-field>
-            <input type="email" matInput placeholder="Email">
+            <input type="email" matInput placeholder="Email" formControlName="email">
         </mat-form-field>
         <mat-form-field>
-            <input type="password" matInput placeholder="Senha">
+            <input type="password" matInput placeholder="Senha" formControlName="senha">
         </mat-form-field>
         <mat-form-field>
-            <input type="number" matInput placeholder="CEP">
+            <input type="number" matInput placeholder="Telefone" formControlName="telefone">
         </mat-form-field>
         <mat-form-field>
-            <input type="text" matInput placeholder="Logradouro">
+            <input type="number" matInput placeholder="CEP" formControlName="cep">
         </mat-form-field>
         <mat-form-field>
-            <input type="number" matInput placeholder="Numero">
+            <input type="text" matInput placeholder="Logradouro" formControlName="logradouro">
         </mat-form-field>
         <mat-form-field>
-            <input type="text" matInput placeholder="Bairro">
+            <input type="number" matInput placeholder="Numero" formControlName="numero">
         </mat-form-field>
         <mat-form-field>
-            <input type="text" matInput placeholder="Cidade">
+            <input type="text" matInput placeholder="Bairro" formControlName="bairro">
         </mat-form-field>
         <mat-form-field>
-            <input type="text" matInput placeholder="UF">
+            <input type="text" matInput placeholder="Cidade" formControlName="cidade">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput placeholder="UF" formControlName="uf">
         </mat-form-field>
         <button type="submit" mat-raised-button color="primary">Confirmar</button>
     </form>
