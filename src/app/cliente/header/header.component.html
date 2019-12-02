@@ -1,5 +1,5 @@
 <header>
-  <mat-toolbar color="primary" gdColumns="48px auto 48px">
+  <mat-toolbar color="primary" gdColumns="48px auto 48px" gdColumns.gt-sm="48px auto 48px 100px">
     <mat-icon (click)="onBack()">chevron_left</mat-icon>
     <h1 *ngIf="!beforeLogin" [routerLink]="['/cliente']">eComida</h1>
     <mat-icon *ngIf="!beforeLogin" fxHide fxShow.gt-sm [routerLink]="['/cliente/sacola']">shopping_basket</mat-icon>
