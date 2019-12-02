@@ -10,7 +10,7 @@ import { AdministrativoService } from '../administrativo.service';
   styleUrls: ['./pedido-lista.component.scss']
 })
 export class PedidoListaComponent implements OnInit {
-  colunaNomes: string[] = ['nomeCliente', 'logradouro', 'numero', 'bairro', 'cidade', 'status'];
+  colunaNomes: string[] = ['nomeCliente', 'logradouro', 'numero', 'bairro', 'cidade', 'status', 'acoes'];
   fonteDados: MatTableDataSource<Pedido>;
   pedidos$: Observable<Pedido[]>;
 
