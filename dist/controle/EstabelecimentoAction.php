@@ -4,6 +4,17 @@ require_once '../modelo/dao/EstabelecimentoDao.php';
 require_once '../vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
+$json_str = file_get_contents('php://input');
+$json_obj = json_decode($json_str);
+$method = $_SERVER["REQUEST_METHOD"];
+
+if ($method == 'POST') {
+  EstabelecimentoDao::inserir($json_obj);
+  http_response_code(200);
+  echo json_encode(true);
+  exit;
+}
+
 $jwt = substr(apache_request_headers()["Authorization"], 7);
 
 define('SECRET_KEY', 'Super-Secret-Key');
@@ -19,12 +30,7 @@ try {
     $idCliente = $decoded->data->idCliente;
   }
 
-
   http_response_code(200);
-
-  $json_str = file_get_contents('php://input');
-  $json_obj = json_decode($json_str);
-  $method = $_SERVER["REQUEST_METHOD"];
 
   if (isset($idCliente) && $method == 'GET') {
     if (isset($_GET["idEstabelecimento"])) {

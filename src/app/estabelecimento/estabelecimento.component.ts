@@ -33,6 +33,7 @@ export class EstabelecimentoComponent implements OnInit {
       email: ['', Validators.required],
       senha: ['', Validators.required],
       telefone: ['', Validators.required],
+      imgUrl: ['', Validators.required],
       cep: ['', Validators.required],
       logradouro: ['', Validators.required],
       numero: [''],

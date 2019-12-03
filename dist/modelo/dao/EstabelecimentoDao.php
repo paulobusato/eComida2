@@ -55,7 +55,7 @@ class EstabelecimentoDao {
         '$estabelecimento->nomeFantasia',
         '$estabelecimento->cnpj',
         '$estabelecimento->status',
-        '$estabelecimento->rating',
+        '0',
         '$estabelecimento->imgUrl',
         '$estabelecimento->email',
         '$estabelecimento->senha',

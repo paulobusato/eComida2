@@ -48,6 +48,10 @@
         <input type="number" matInput placeholder="Telefone" formControlName="telefone">
         <mat-error>O campo telefone é obrigatório</mat-error>
       </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput name="imgUrl" placeholder="Imagem URL" formControlName="imgUrl">
+        <mat-error>O campo Image URL é obrigatório</mat-error>
+      </mat-form-field>
     </div>
     <div gdColumn.gt-sm="2">
       <mat-form-field>
@@ -75,6 +79,7 @@
         <mat-error>O campo UF é obrigatório</mat-error>
       </mat-form-field>
     </div>
+    <p gdGridAlign="center center" gdColumn="1 / span 2" class="mensagem-confirmacao" *ngIf="formSubmitted">Cliente cadastrado com sucesso.</p>
     <button [disabled]="estabelecimentoForm.invalid" type="submit" mat-stroked-button color="primary" gdColumn.gt-sm="1 / 3">Cadastrar</button>
   </form>
 </main>
