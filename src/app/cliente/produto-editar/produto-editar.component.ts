@@ -118,6 +118,18 @@ export class ProdutoEditarComponent implements OnInit {
     }
   }
 
+  onBloquearCheckbox(componente: Componente): boolean {
+    let quantidadeComponenteItensSelecioandos = 0;
+
+    for (const componenteItem of componente.componenteItems) {
+      quantidadeComponenteItensSelecioandos += componenteItem.selecionado
+        ? 1 : 0;
+    }
+
+    return quantidadeComponenteItensSelecioandos > (componente.quantidade - 1)
+      ? true : false;
+  }
+
   calcularTotalPedido(): number {
     const pedidoItens: PedidoItem[] = this.clienteService.pedido.pedidoItens;
     let total = 0;

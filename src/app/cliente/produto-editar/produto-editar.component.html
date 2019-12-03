@@ -12,7 +12,7 @@
     </p>
     <section class="componentes">
       <article *ngFor="let componenteItem of componente.componenteItems">
-        <mat-checkbox [checked]="componenteItem.selecionado" (change)="onChangeCheckbox($event, componente, componenteItem)">{{componenteItem.descricao}}</mat-checkbox>
+        <mat-checkbox [disabled]="onBloquearCheckbox(componente)" [checked]="componenteItem.selecionado" (change)="onChangeCheckbox($event, componente, componenteItem)">{{componenteItem.descricao}}</mat-checkbox>
       </article>
     </section>
   </section>
