@@ -1,6 +1,10 @@
 <app-header></app-header>
 <main>
-    <section>
+    <section *ngIf="!pedidos || pedidos.length == 0" fxLayout="column" fxLayoutAlign="center center">
+        <h3>Você ainda não realizou nenhum pedido !</h3>
+        <button type="button" mat-stroked-button [routerLink]="['/cliente']">Escolher uma comida</button>
+    </section>
+    <section *ngIf="pedidos && pedidos.length > 0">
         <mat-card *ngFor="let pedido of pedidos">
             <p>{{pedido.status}}</p>
             <section>
