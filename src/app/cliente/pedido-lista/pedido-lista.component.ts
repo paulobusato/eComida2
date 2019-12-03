@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from '../cliente.service';
+import { Pedido } from '../cliente.type';
 
 @Component({
   selector: 'app-pedido-lista',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pedido-lista.component.scss']
 })
 export class PedidoListaComponent implements OnInit {
+  pedidos: Pedido[];
 
-  constructor() { }
+  constructor(
+    private clienteService: ClienteService,
+  ) { }
 
   ngOnInit() {
+    this.clienteService.obterPedidos().subscribe(
+      (pedidos: Pedido[]) => {
+        console.log(pedidos);
+        this.pedidos = pedidos;
+      },
+    );
   }
 
 }

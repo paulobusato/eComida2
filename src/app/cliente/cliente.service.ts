@@ -41,6 +41,10 @@ export class ClienteService {
     return this.http.get<Produto[]>(`http://localhost/eComida2/dist/controle/produtoaction.php?idEstabelecimento=${idEstabelecimento}`);
   }
 
+  obterPedidos(): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(this.urlPedido);
+  }
+
   addPedido(): Observable<any> {
     return this.http.post(
       this.urlPedido, this.pedido, this.httpOpcoes);
