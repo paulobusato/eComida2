@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { ClienteService } from '../../cliente.service';
 
 @Component({
@@ -9,6 +9,9 @@ import { ClienteService } from '../../cliente.service';
 })
 export class ClienteCadastroComponent implements OnInit {
   clienteForm: FormGroup;
+  formSubmitted = false;
+
+  @ViewChild('formDirective', {static: true}) private formDirective: NgForm;
 
   constructor(
     private fb: FormBuilder,
@@ -18,24 +21,27 @@ export class ClienteCadastroComponent implements OnInit {
   ngOnInit() {
 
     this.clienteForm = this.fb.group({
-      nome: [''],
-      cpf: [''],
-      email: [''],
-      senha: [''],
-      telefone: [''],
-      cep: [''],
-      logradouro: [''],
+      nome: ['', Validators.required],
+      cpf: ['', Validators.required],
+      email: ['', Validators.required],
+      senha: ['', Validators.required],
+      telefone: ['', Validators.required],
+      cep: ['', Validators.required],
+      logradouro: ['', Validators.required],
       numero: [''],
-      bairro: [''],
-      cidade: [''],
-      uf: [''],
+      bairro: ['', Validators.required],
+      cidade: ['', Validators.required],
+      uf: ['', Validators.required],
     });
   }
 
   onSubmit(): void {
     console.log(this.clienteForm.value);
     this.clienteService.addCliente(this.clienteForm.value).subscribe(
-      (response) => console.log(response)
+      () => {
+        this.formSubmitted = true;
+        this.formDirective.resetForm();
+      }
     );
   }
 

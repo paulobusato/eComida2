@@ -1,44 +1,55 @@
 <app-header fxShow fxHide.gt-sm></app-header>
 <main fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="48px">
     <h1>Cadastro</h1>
-    <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" gdColumns="repeat(2, 1fr)">
+    <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" gdColumns="repeat(2, 1fr)" #formDirective="ngForm">
         <section>
             <mat-form-field>
                 <input type="text" matInput placeholder="Nome" formControlName="nome">
+                <mat-error>O campo nome é obrigatório</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input type="number" matInput placeholder="CPF" formControlName="cpf">
+                <mat-error>O campo CPF é obrigatório</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input type="email" matInput placeholder="Email" formControlName="email">
+                <mat-error>O campo e-mail é obrigatório</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input type="password" matInput placeholder="Senha" formControlName="senha">
+                <mat-error>O campo senha é obrigatório</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input type="number" matInput placeholder="Telefone" formControlName="telefone">
+                <mat-error>O campo telefone é obrigatório</mat-error>
             </mat-form-field>
         </section>
         <section>
             <mat-form-field>
                 <input type="number" matInput placeholder="CEP" formControlName="cep">
+                <mat-error>O campo CEP é obrigatório</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input type="text" matInput placeholder="Logradouro" formControlName="logradouro">
+                <mat-error>O campo logradouro é obrigatório</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input type="number" matInput placeholder="Numero" formControlName="numero">
             </mat-form-field>
             <mat-form-field>
                 <input type="text" matInput placeholder="Bairro" formControlName="bairro">
+                <mat-error>O campo bairro é obrigatório</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input type="text" matInput placeholder="Cidade" formControlName="cidade">
+                <mat-error>O campo cidade é obrigatório</mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input type="text" matInput placeholder="UF" formControlName="uf">
+                <mat-error>O campo UF é obrigatório</mat-error>
             </mat-form-field>
         </section>
-        <button type="submit" mat-raised-button color="primary" gdGridAlign="center center" gdColumn="1 / span 2">Confirmar</button>
+        <p gdGridAlign="center center" gdColumn="1 / span 2" class="mensagem-confirmacao" *ngIf="formSubmitted">Cliente cadastrado com sucesso.</p>
+        <button [disabled]="clienteForm.invalid" type="submit" mat-raised-button color="primary" gdGridAlign="center center" gdColumn="1 / span 2">Confirmar</button>
     </form>
 </main>
