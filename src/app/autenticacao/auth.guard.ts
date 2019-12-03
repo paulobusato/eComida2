@@ -17,16 +17,13 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = this.jwtHelper.decodeToken(localStorage.getItem('token'));
 
-    console.log(token);
-    console.log(next);
-
     if (token && token.data.idCliente && next.url[0].path === 'cliente') {
       return true;
-    } else if (token && token.data.idEstabelecimento && next.url[0].path === 'estabelecimento') {
+    } else if (token && token.data.idEstabelecimento && next.url[0].path === 'administrativo') {
       return true;
     } else if (next.url[0].path === 'cliente') {
       this.router.navigate(['/cliente/login']);
-    } else if (next.url[0].path === 'estabelecimento') {
+    } else if (next.url[0].path === 'administrativo') {
       this.router.navigate(['/estabelecimento']);
     } else {
       this.router.navigate(['/landing']);
