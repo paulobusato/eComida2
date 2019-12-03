@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,13 @@ export class HeaderComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute,
     private router: Router,
+    private jwtHelper: JwtHelperService,
   ) { }
 
   ngOnInit() {
-    const estaLogado = localStorage.getItem('token');
-    if (estaLogado) {
+    const token = this.jwtHelper.decodeToken(localStorage.getItem('token'));
+
+    if (token && token.data.idCliente) {
       this.beforeLogin = false;
     } else {
       this.beforeLogin = true;
@@ -29,7 +32,7 @@ export class HeaderComponent implements OnInit {
     this.location.back();
   }
 
-  onSair(): void{
+  onSair(): void {
     localStorage.clear();
     this.router.navigate(['/landing']);
   }
