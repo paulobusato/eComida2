@@ -89,7 +89,14 @@ export class ProdutoEditarComponent implements OnInit {
 
     this.clienteService.pedido = {
       ...this.clienteService.pedido,
-      valor: this.calcularTotalPedido()
+      valor: this.calcularTotalPedido(),
+      pedidoItens: this.clienteService.pedido.pedidoItens
+        .map(pedidoItem => {
+          return {
+            ...pedidoItem,
+            valor: this.calcularTotalPedidoItem(pedidoItem),
+          };
+        }),
     };
 
     this.location.back();
@@ -116,23 +123,28 @@ export class ProdutoEditarComponent implements OnInit {
     let total = 0;
 
     for (const pedidoItem of pedidoItens) {
-      total += +pedidoItem.valor;
-
-      const componentes: Componente[] = pedidoItem.produto.componentes;
-
-      for (const componente of componentes) {
-        if (componente.selecionado && componente.componenteItems) {
-          for (const componenteItem of componente.componenteItems) {
-            if (componenteItem.selecionado) {
-              total += +componenteItem.valor;
-            }
-          }
-        }
-      }
-
-      total *= +pedidoItem.quantidade;
+      total = this.calcularTotalPedidoItem(pedidoItem);
     }
 
     return total;
+  }
+
+  calcularTotalPedidoItem(pedidoItem: PedidoItem): number {
+    const componentes: Componente[] = pedidoItem.produto.componentes;
+    let total = 0;
+
+    total += +pedidoItem.valor;
+
+    for (const componente of componentes) {
+      if (componente.selecionado && componente.componenteItems) {
+        for (const componenteItem of componente.componenteItems) {
+          if (componenteItem.selecionado) {
+            total += +componenteItem.valor;
+          }
+        }
+      }
+    }
+
+    return total *= +pedidoItem.quantidade;
   }
 }
