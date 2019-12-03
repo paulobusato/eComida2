@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from '../cliente.service';
+import { Observable } from 'rxjs';
+import { Estabelecimento } from '../cliente.type';
 
 @Component({
   selector: 'app-search',
@@ -6,17 +9,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  estabelecimentos: string[] = [
-    'Bobs',
-    'Kikos',
-    'K-Skina',
-    'Bizzoka',
-    'Maluco Beleza'
-  ]
+  estabelecimentos: Estabelecimento[];
+  private todosEstabelecimentos: Estabelecimento[];
 
-  constructor() { }
+  constructor(
+    private clienteService: ClienteService,
+  ) { }
 
   ngOnInit() {
+    this.clienteService.obterEstabelecimentos().subscribe(
+      (estabelecimentos: Estabelecimento[]) => {
+        this.estabelecimentos = estabelecimentos;
+        this.todosEstabelecimentos = estabelecimentos;
+      }
+    );
   }
 
+  onKeyUp(value: string): void {
+    if (!value) {
+      this.estabelecimentos = this.todosEstabelecimentos;
+    }
+    this.estabelecimentos = this.estabelecimentos
+      .filter((estabelecimento: Estabelecimento) => {
+        return estabelecimento.nomeFantasia.toLowerCase().includes(value.toLowerCase());
+      });
+  }
 }

@@ -1,10 +1,13 @@
 <app-header></app-header>
 <main>
   <mat-form-field>
-    <input type="text" matInput placeholder="Buscar">
+    <input type="text" matInput placeholder="Buscar" (keyup)="onKeyUp($event.target.value)">
   </mat-form-field>
   <section>
-    <p *ngFor="let estabelecimento of estabelecimentos">{{estabelecimento}}</p>
+    <p
+      *ngFor="let estabelecimento of estabelecimentos"
+      [routerLink]="['/cliente/produto-lista', estabelecimento.idEstabelecimento]"
+    >{{estabelecimento.nomeFantasia}}</p>
   </section>
 </main>
 <app-bottom-navigation fxShow fxHide.gt-sm></app-bottom-navigation>
