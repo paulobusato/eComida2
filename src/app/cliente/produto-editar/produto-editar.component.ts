@@ -83,9 +83,15 @@ export class ProdutoEditarComponent implements OnInit {
         cliente: cloneDeep(this.clienteService.clienteAtivo),
         data: new Date(),
         pedidoItens: [cloneDeep(this.pedidoItem)],
-        valor: 100,
+        valor: 0,
       };
     }
+
+    this.clienteService.pedido = {
+      ...this.clienteService.pedido,
+      valor: this.calcularTotalPedido()
+    };
+
     this.location.back();
   }
 
@@ -103,5 +109,30 @@ export class ProdutoEditarComponent implements OnInit {
 
       componenteItem.selecionado = false;
     }
+  }
+
+  calcularTotalPedido(): number {
+    const pedidoItens: PedidoItem[] = this.clienteService.pedido.pedidoItens;
+    let total = 0;
+
+    for (const pedidoItem of pedidoItens) {
+      total += +pedidoItem.valor;
+
+      const componentes: Componente[] = pedidoItem.produto.componentes;
+
+      for (const componente of componentes) {
+        if (componente.selecionado && componente.componenteItems) {
+          for (const componenteItem of componente.componenteItems) {
+            if (componenteItem.selecionado) {
+              total += +componenteItem.valor;
+            }
+          }
+        }
+      }
+
+      total *= +pedidoItem.quantidade;
+    }
+
+    return total;
   }
 }
