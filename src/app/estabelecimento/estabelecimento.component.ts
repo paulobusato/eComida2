@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { EstabelecimentoService } from './estabelecimento.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -13,6 +13,9 @@ import { AuthService, Login } from '../autenticacao/auth.service';
 export class EstabelecimentoComponent implements OnInit {
   estabelecimentoForm: FormGroup;
   estabelecimentoLoginForm: FormGroup;
+  formSubmitted = false;
+
+  @ViewChild('formDirective', {static: true}) private formDirective: NgForm;
 
   constructor(
     private fb: FormBuilder,
@@ -24,23 +27,23 @@ export class EstabelecimentoComponent implements OnInit {
 
   ngOnInit() {
     this.estabelecimentoForm = this.fb.group({
-      razaoSocial: [''],
-      nomeFantasia: [''],
-      cnpj: [''],
-      email: [''],
-      senha: [''],
-      telefone: [''],
-      cep: [''],
-      logradouro: [''],
+      razaoSocial: ['', Validators.required],
+      nomeFantasia: ['', Validators.required],
+      cnpj: ['', Validators.required],
+      email: ['', Validators.required],
+      senha: ['', Validators.required],
+      telefone: ['', Validators.required],
+      cep: ['', Validators.required],
+      logradouro: ['', Validators.required],
       numero: [''],
-      bairro: [''],
-      cidade: [''],
-      uf: [''],
+      bairro: ['', Validators.required],
+      cidade: ['', Validators.required],
+      uf: ['', Validators.required],
     });
 
     this.estabelecimentoLoginForm = this.fb.group({
-      email: [''],
-      senha: [''],
+      email: ['', Validators.required],
+      senha: ['', Validators.required],
     });
   }
 
@@ -50,7 +53,10 @@ export class EstabelecimentoComponent implements OnInit {
 
   onSubmit(): void {
     this.estabelecimentoService.addEstabelecimento({ ...this.estabelecimentoForm.value , status: 'P' }).subscribe(
-      next => console.log(next),
+      () => {
+        this.formSubmitted = true;
+        this.formDirective.resetForm();
+      },
       error => console.log(error)
     );
   }

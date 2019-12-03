@@ -36,7 +36,6 @@ export class ClienteCadastroComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.clienteForm.value);
     this.clienteService.addCliente(this.clienteForm.value).subscribe(
       () => {
         this.formSubmitted = true;

@@ -15,7 +15,7 @@
       <p *ngIf="this.loginForm.valid && error?.status === 'invalido'">{{error.mensagem}}</p>
       <button type="submit" mat-raised-button color="primary">Entrar</button>
     </form>
-    <button class="link-recuperar-senha" type="button" mat-button color="primary" fxFlexAlign="center">Esqueci minha senha</button>
+    <button [disabled]="loginForm.invalid" class="link-recuperar-senha" type="button" mat-button color="primary" fxFlexAlign="center">Esqueci minha senha</button>
   </section>
   <section>
     <app-cliente-cadastro fxHide fxShow.gt-sm></app-cliente-cadastro>
