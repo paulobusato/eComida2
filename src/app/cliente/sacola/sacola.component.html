@@ -7,7 +7,7 @@
       <mat-card *ngFor="let pedidoItem of pedido.pedidoItens; let i = index">
           <mat-card-title>{{pedidoItem.produto.titulo}}</mat-card-title>
           <mat-card-subtitle>{{pedidoItem.produto.descricao}}</mat-card-subtitle>
-          <mat-card-content>R$ {{pedidoItem.produto.valor}}</mat-card-content>
+          <mat-card-content>R$ {{pedidoItem.valor | number:'1.1-2'}}</mat-card-content>
           <mat-card-actions>
             <button type="button" mat-stroked-button color="danger" (click)="onExcluirPedidoItem(i)">Excluir</button>
             <button type="button" mat-stroked-button color="warn" (click)="onEditarPedidoItem(i)">Editar</button>
