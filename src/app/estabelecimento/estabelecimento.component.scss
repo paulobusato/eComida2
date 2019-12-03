@@ -23,6 +23,12 @@ main {
   margin: 0 48px;
 
   @media #{$break-lg-screen} {
+    background-image: url('/assets/images/image4.jpeg');
+    background-size: cover;
+    margin: 0;
+  }
+
+  @media #{$break-lg-screen} {
     #form-login {
       width: 300px;
     }

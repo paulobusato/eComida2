@@ -17,7 +17,6 @@ export class PedidoListaComponent implements OnInit {
   ngOnInit() {
     this.clienteService.obterPedidos().subscribe(
       (pedidos: Pedido[]) => {
-        console.log(pedidos);
         this.pedidos = pedidos;
       },
     );
